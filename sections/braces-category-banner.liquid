@@ -1,0 +1,84 @@
+{% include 'category-banner' %}
+
+{% schema %}
+  {
+    "name": "Banner",
+	"class": "container category-page-section category-banner",
+    "settings": [
+      {
+        "id": "banner_img",
+        "type": "image_picker",
+        "label": "Banner image"
+      },
+      {
+        "id": "title1",
+        "type": "text",
+        "label": "Title 1",
+        "default": "CATEGORY"
+      },
+      {
+        "id": "title2",
+        "type": "text",
+        "label": "Title 2",
+        "default": "Banner Title."
+      },
+      {
+        "id": "title3",
+        "type": "text",
+        "label": "Title 3",
+        "default": "Banner copy."
+      },
+      {
+        "id": "cta1_text",
+        "type": "text",
+        "label": "Button 1 Text",
+        "default": "Button 1"
+      },
+      {
+        "id": "cta1_link",
+        "type": "url",
+        "label": "Button 1 Link"
+      },
+      {
+        "id": "cta2_text",
+        "type": "text",
+        "label": "Button 2 Text",
+        "default": "Button 2"
+      },
+      {
+        "id": "cta2_link",
+        "type": "url",
+        "label": "Button 2 Link"
+      }
+	],
+	"blocks": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.category-product-list {
+	margin: 50px auto 60px;
+}
+.category-product-list h1 {
+	margin-bottom: 10px;
+}
+.category-product-list p {
+	font-size: 22px;
+	line-height: 1.2;
+	max-width: 800px;
+	color: #002D72;
+}
+.category-page-section > h1 {
+	font-size: 42px;
+	line-height: 1;
+}
+.stay-touch-sect.container {
+	background:#f2f7ff;
+	padding: 35px 0px 0;
+	max-width: 100%;
+	margin: 0 auto 40px;
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

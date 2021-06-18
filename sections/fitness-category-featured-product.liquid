@@ -1,0 +1,164 @@
+<div class="fp-fg">
+  <div>
+      {% if section.settings.featured_img != blank %}
+  	  <img src="{{ section.settings.featured_img | img_url: 'master' }}" alt="" />
+      {% endif %}
+  </div>
+  <div>
+      <h1 class="heading">
+      {{ section.settings.title1 }}
+      </h1>
+      <h2 class="heading">
+      {{ section.settings.title2 }}
+      </h2>
+      <p>
+      {{ section.settings.copy }}
+      </p>
+	
+      {% if section.settings.link_text != blank %}
+      <a href="{{ section.settings.link_url }}" class="button button--primary">
+        {{ section.settings.link_text }}
+      </a>
+      {% endif %}
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Featured Product",
+	"class": "container category-page-section featured-product-sect",
+    "settings": [
+      {
+        "id": "featured_img",
+        "type": "image_picker",
+        "label": "Featured image"
+      },
+      {
+        "id": "title1",
+        "type": "text",
+        "label": "Title 1"
+      },
+      {
+        "id": "title2",
+        "type": "text",
+        "label": "Title 2"
+      },
+      {
+        "id": "copy",
+        "type": "textarea",
+        "label": "Copy"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Link Text"
+      },
+      {
+        "id": "link_url",
+        "type": "url",
+        "label": "Link Url"
+      }
+	],
+	"blocks": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.category-page-section.featured-product-sect {
+	margin: -75px auto 0px;
+	position: relative;
+}
+  .category-page-section.featured-product-sect:before {
+      content: ' ';
+      position: absolute;
+      width: calc(100% - 40px);
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: url('https://heb.pdf.richmondday.com/wellwise/featured-products-bg.png') center center no-repeat;
+      background-size: cover;
+      z-index: 1;
+  }
+	.category-page-section.featured-product-sect .fp-fg {
+		display: flex;
+		padding: 0 0px;
+		align-items: center;
+		border: 1px solid #D8D8D8;
+		background: #fff;
+	}
+		.category-page-section.featured-product-sect .fp-fg > div:nth-child(1) { 
+			width: 50%; 
+			background: #fff;
+			position: relative;
+		}
+			.category-page-section.featured-product-sect .fp-fg > div:nth-child(1) > img {
+				margin: 0px auto;
+				display: block;
+				max-width: 600px;
+				width: 100%;
+				padding: 35px 0 25px;
+			}
+        .category-page-section.featured-product-sect .fp-fg > div:nth-child(2) {
+			width: 50%;
+        	padding: 20px 6%;
+			z-index: 2;
+        }
+
+    .category-page-section.featured-product-sect .fp-fg h1 {
+        font-size: 30px;
+        line-height: 1.1;
+		color: #C3D7EE;
+		margin-bottom: 0px;
+    }
+    .category-page-section.featured-product-sect .fp-fg h2 {
+        color: #fff;
+		font-size: 42px;
+		line-height: 1.1;
+		margin-bottom: 20px;
+	}
+    .category-page-section.featured-product-sect .fp-fg p {
+        color: #fff;
+		font-size: 22px;
+		line-height: 1.1;
+    }
+      .category-page-section.featured-product-sect .button {
+          background: #C3D7EE;
+          color: #002D72;
+          border-color: #C3D7EE;
+		  margin-top: 40px;
+		  max-width: 280px;
+      }
+		.category-page-section.featured-product-sect .button:hover {
+          color: #fff;
+          background: #CB333B;
+          border-color: #CB333B;
+      	}
+@media(max-width: 768px) {
+.category-page-section.featured-product-sect {
+	padding: 0px 0px 20px;
+	background: #002D72;
+}
+	.category-page-section.featured-product-sect:before { display: none; }
+	.category-page-section.featured-product-sect .fp-fg {
+		flex-direction: column;
+		padding: 35px 20px 50px;
+		border-bottom: 0;
+		background: #002D72;
+	}
+		.category-page-section.featured-product-sect .fp-fg > div:nth-child(1) {
+			display: none;
+		}
+		.category-page-section.featured-product-sect .fp-fg > div:nth-child(2) {
+			width: 100%;
+			padding: 20px 0px;
+		}
+	.category-page-section.featured-product-sect .button {
+		width: 100%;
+		max-width: 100%;
+	}
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

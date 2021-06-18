@@ -1,0 +1,150 @@
+<div class="container category-page-section">
+  <h1 class="heading">
+    {{ section.settings.title }}
+  </h1>
+  {% if section.settings.copy != blank and page.handle != 'light-therapy-category' %}
+  <p>
+    {{ section.settings.copy }}
+  </p>
+  {% endif %}
+</div>
+
+<div class="category-wi-icons">
+  <div class="inner">
+    {% for block in section.blocks %}
+    <div>
+      {% if block.settings.icon != blank %}
+      <div class="img-icon-container">
+      	<img src="{{ block.settings.icon | img_url: 'master' }}" class="img-icon" alt="{{ block.settings.title }}" />
+      </div>
+      {% endif %}
+	  
+      {% if  block.settings.title != blank %}
+      <h2 class="heading">
+        {{ block.settings.title }}
+      </h2>
+      {% endif %}
+      
+      <p>
+        {{ block.settings.copy }}
+      </p>
+      {% if block.settings.link_text != blank %}
+      <a href="{{ block.settings.link_url }}" class="item-cta">
+        {{ block.settings.link_text }}
+      </a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container button-copy-container">
+  {% if section.settings.copy != blank and page.handle == 'light-therapy-category' %}
+    <p>
+      {{ section.settings.copy }}
+    </p>
+  {% endif %}
+
+  {% if section.settings.button_text != blank %}
+  <a href="{{ section.settings.button_link }}" class="button button--primary category-wi-icons-cta" >
+    {{ section.settings.button_text }}
+  </a>
+  {% endif %}
+</div>
+
+{% style %}
+.category-wi-icons {
+	background: #fff;
+	border: 1px solid #D8D8D8;
+	margin: 30px auto 50px;
+}
+.category-page-section > p {
+	font-size: 22px;
+	line-height: 1.2;
+	color: #002D72;
+}
+.category-wi-icons .inner {
+	display: flex;
+}
+	.category-wi-icons .inner > div {
+		position: relative;
+		width: 100%;
+		padding: 45px 4.6% 60px;
+		border-right: 1px solid #D8D8D8;
+		text-align: center;
+	}
+.category-wi-icons .inner h2 {
+	font-size: 28px;
+	line-height: 1;
+	margin-bottom: 20px;
+}
+.category-wi-icons .inner p {
+	font-size: 20px;
+	line-height: 1.2;
+	color: #002D72;
+	max-width: 640px;
+	margin: 0px auto;
+}
+.category-wi-icons .inner .img-icon-container ~ p {
+	font-size: 22px;
+	margin-top: 20px;
+	margin-bottom: 35px;
+}
+.category-wi-icons .img-icon-container {
+	margin-bottom: 20px;
+	height: 64px;
+}
+.category-wi-icons-cta {
+    margin: -10px auto 60px;
+    display: block;
+}
+.category-wi-icons .item-cta {
+	position: absolute;
+	bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+	font-family: 'VolteB';
+	font-size: 20px;
+	line-height: 1px;
+	color: #307FE2;
+	white-space: nowrap;
+}
+
+	.category-wi-icons .item-cta:after {
+        content: ' ';
+        position: absolute;
+        right: -26px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: url('https://wellwise.s3.amazonaws.com/fa-arrow-right-lb.png') center center no-repeat;
+        background-size: contain;
+        width: 11px;
+        height: 11px;
+	}
+@media(max-width: 1024px) {
+	.category-wi-icons .inner {
+		flex-direction: column
+	}
+		.category-wi-icons .inner > div,
+		.incont-wrapper .category-wi-icons .inner > div{
+			width: 100%;
+			max-width: 100%;
+			border-bottom: 1px solid #D8D8D8;
+		}
+	.light-ther-wrapper .button-copy-container .category-wi-icons-cta {
+		margin: 0px auto;
+	}
+}
+@media(min-width: 768px) and (max-width: 1024px) { }
+@media(min-width: 1024px) and (max-width: 1200px) {
+	.category-wi-icons .inner > div {
+		border-bottom: 1px solid #D8D8D8;
+	}
+	.category-wi-icons .inner {
+		flex-direction: column;
+	}
+	.incont-wrapper .category-wi-icons .inner > div {
+		width: 100%;
+	}
+}
+{% endstyle %}

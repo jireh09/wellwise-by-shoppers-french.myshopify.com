@@ -1,0 +1,6 @@
+development:
+  password: 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
+  theme_id: "123869823148"
+  store: wellwise-by-shoppers-french.myshopify.com
+  ignore_files:
+  - config/settings_data.json 

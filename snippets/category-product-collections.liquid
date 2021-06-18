@@ -1,0 +1,153 @@
+<h1 class="heading">
+  {{ section.settings.title1 }}
+</h1>
+<p>
+  {{ section.settings.title2 }}
+</p>
+
+<div class="product-group-flex">
+  {% for block in section.blocks %}
+  {% assign productItem = collections[block.settings.collection] %}
+
+  <div data-id="{{ productItem.id }}">
+    <div>
+      {% if productItem.image != blank %}
+      <img src="{{ productItem.image | img_url:'master' }}" alt="{{ productItem.title }}" />
+      {% endif %}
+    </div>
+    <div>
+      <h2 class="heading">
+        {{ productItem.title }}
+      </h2>
+      {% if productItem.description contains '</p>' %}
+      		{{ productItem.description }}
+      {% else %}
+          <p>
+          {{ productItem.description }}
+          </p>
+      {% endif %}
+      <a href="/collections/{{ productItem.handle }}" class="button button--primary button-shop">
+        Shop now
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% style %}
+.category-product-list {
+	margin: 60px auto 80px;
+}
+.category-product-list h1 {
+	margin-bottom: 15px;
+}
+.category-product-list p {
+	font-size: 22px;
+	line-height: 1.2;
+	max-width: 900px;
+	color: #002D72;
+}
+.category-page-section > h1 {
+	font-size: 42px;
+	line-height: 1;
+}
+.product-group-flex {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 35px auto 0;
+	column-gap: 15px;
+}
+	.product-group-flex > div {
+		width: calc(50% - 8px);
+		margin: 0 0px 15px 0px;
+		background: #C3D7EE;
+		border: 1px solid #D8D8D8;
+	}
+	.product-group-flex > div > div {
+		position: relative;
+		display: inline-block;
+		width: 35%;
+		height: 100%;
+		vertical-align: top;
+		background: #fff;
+	}
+	.product-group-flex > div > div:nth-child(2) {
+		width: 64%;
+		background: #C3D7EE;
+		padding: 35px 30px 70px;
+	}
+	.product-group-flex img {
+    	position: relative;
+    	top: 50%;
+    	transform: translateY(-50%);
+		display: block;
+		margin: 0px auto;
+	}
+    .product-group-flex h2 {
+        font-size: 30px;
+        line-height: 1;
+		margin-bottom: 14px;
+    }
+	.product-group-flex .button--primary {
+		position: absolute;
+		bottom: 20px;
+		max-width: 260px;
+	}
+.stay-touch-sect.container {
+	background:#f2f7ff;
+	padding: 35px 0px 0;
+	max-width: 100%;
+	margin: 0 auto 40px;
+}
+
+@media(max-width: 768px) {
+	.product-group-flex {
+		flex-direction: column;
+   		margin-left: -20px;
+    	width: calc(100% + 40px);
+	}
+	
+    .product-group-flex > div > div:nth-child(1) {
+	    display: none;
+    }
+	.product-group-flex > div > div:nth-child(2),
+	.product-group-flex .button--primary,
+	.product-group-flex > div {
+		width: 100%;
+		max-width: 100%;
+	}
+	.product-group-flex .button--primary {
+		position: relative;
+		bottom: auto;
+		margin-top: 12px;
+	}
+	.product-group-flex > div > div:nth-child(2) {
+		padding: 35px 30px 40px;
+	}
+}
+
+@media(min-width: 768px) and (max-width: 1024px) {
+	.product-group-flex {
+		flex-direction: row;
+		margin-left: 0px;
+		width: 100%;
+	}
+	.product-group-flex > div {
+		width: 100%;
+	}
+	.product-group-flex .button--primary {
+        position: absolute;
+        bottom: 20px;
+        max-width: 240px;
+		width: 100%;
+    }
+	.product-group-flex > div > div:nth-child(2) {
+		padding-bottom: 90px;
+	}
+}
+@media(min-width: 1024px) and (max-width: 1200px) {
+	.product-group-flex > div {
+		width: 100%;	
+	}
+}
+{% endstyle %}

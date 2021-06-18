@@ -1,0 +1,116 @@
+{% include 'featured-items' %}
+
+{% schema %}
+  {
+    "name": "Featured Items",
+	"class": "container category-page-section featured-items-section health-sect",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "copy",
+              "type": "richtext",
+              "label": "Copy"
+            },
+			{
+              "id": "link_text",
+              "type": "text",
+              "label": "Link text"
+            },
+			{
+              "id": "link_Url",
+              "type": "url",
+              "label": "Link Url"
+            },
+			{
+              "id": "featured_image",
+              "type": "image_picker",
+              "label": "Featured Image"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+	.featured-items-section.health-sect {
+		background: none;
+		padding: 0px 0 5px;
+	}
+        .featured-items-section.health-sect .ww-fis-item {
+			background: #C3D7EE;
+			flex-direction: row !important;
+        }
+			.featured-items-section.health-sect .ww-fis-item > div:nth-child(1) {
+				padding: 2.2% 5.6% 2%;
+				width: 55%;
+			}
+			.featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item > div:nth-child(2) { width: 45%; position: relative; }
+				.featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item > div:nth-child(2) img { 
+					position: relative;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+
+@media(max-width: 768px) {
+    .featured-items-section.health-sect .category-page-section { 
+    	max-width: 100%;
+    	width: 100%;
+    	padding: 0px;
+    }
+	.featured-items-section.health-sect .ww-fis-item {
+		flex-direction: column !important;
+		margin-bottom: 0px;
+	}	
+        .featured-items-section.health-sect .ww-fis-item > div:nth-child(1) {
+            width: 100%;
+			padding: 25px 20px 60px;
+        }
+        .featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item > div:nth-child(2) {display: none; }
+			.featured-items-section.health-sect .category-page-section > h1 {
+                padding: 0px 20px;
+            }
+}
+@media(min-width: 768px) and (max-width: 1200px) {
+	.featured-items-section.health-sect .ww-fis-item {
+		margin-bottom: 0px;
+	}
+	.featured-items-section.health-sect .ww-fis-item > div:nth-child(1) {
+		padding: 2.2% 20px 2%;
+	}
+		.featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item-copy p {
+			font-size: 18px;
+		}
+	.featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item > div:nth-child(2) {
+		overflow: hidden;
+	}
+        .featured-items-section.health-sect .ww-featured-items-sect .ww-fis-item > div:nth-child(2) img {
+            width: 100vw;
+            max-width: 700px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

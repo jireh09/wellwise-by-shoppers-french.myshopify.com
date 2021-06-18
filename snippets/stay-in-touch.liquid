@@ -1,0 +1,35 @@
+
+<section class="section">
+    <div class="stay-in-touch-sect stay-in-touch-form">
+        <div class="stay-touch-flex container">
+        	<div>
+                <h1 class="heading">
+                  {{ section.settings.title }}
+                </h1>
+              	{% if section.settings.copy != blank %}
+              	{{ section.settings.copy }}
+              	{% else %}
+              	<p>Sign up to receive the latest health &amp; wellness guidance, offers, and product information delivered right to your inbox from Wellwise by Shoppers™. If you are a PC Optimum™ member, please provide the same email address that is associated with your account.</p><p><strong>By providing your email address, you consent to receiving electronic communications from Shoppers Drug Mart Inc. You may withdraw your consent at any time.</strong></p>
+              	<p><strong>Shoppers Drug Mart Inc. 243 Consumers Rd., Toronto, Ontario, M2J 4W8</strong></p>
+              	<p><strong>Our privacy policy:&nbsp;</strong><a href="https://www.loblaw.ca/en/privacy-policy/" target="_blank" rel="noopener noreferrer" aria-describedby="a11y-new-window-message"><strong>https://www.loblaw.ca/en/privacy-policy/</strong></a></p>
+              	{% endif %}
+            </div>
+            <div>
+                <div class="vs-center hide-if-success">
+                  <input type="email" class="subscribe-email-input" placeholder="Enter your email">
+                  <button type="button" class="button button--primary subscribe-submit-btn">
+                    Submit
+                  </button>
+                </div>
+              	<div class="vs-center show-if-success">
+                  <h1>
+                    {{ section.settings.success_title }}
+                  </h1>
+                  <p>
+					{{ section.settings.success_copy }}
+                  </p>
+              	</div>
+            </div>
+        </div>
+    </div>
+</section>

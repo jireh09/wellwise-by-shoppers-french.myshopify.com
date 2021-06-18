@@ -1,0 +1,273 @@
+<div class="container container--takeover-custom">
+  <header class="page__header">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
+</div>
+
+  
+<div class="container shipping-container">
+  <br />
+  <br />
+  {% if false %}
+  <h2 class="heading">
+  Shipping update:
+  </h2>
+  
+  <div class="shipping-update-disclaimer">
+    <h3 class="heading">
+      High-level parcel volumes resulting in delays as Canada Post continues to deliver.
+    </h3>
+    
+    <p>
+      Wellwise remains committed to supporting our customers and we’re working with our shipping partner (Canada Post) to respond to the increased demand in online shopping in a responsible manner, putting the safety, and the communities we serve, first.
+    </p>
+    <p>
+      As a result, customers may experience a delay in standard order processing and shipping times for all orders placed online at wellwise.ca. We apologize for this short-term issue.
+    </p>
+    <p>
+      If you have questions regarding your existing order, please contact Customer Service through our Contact Us page or by phone at 1-866-220-3837.
+    </p>
+  </div>
+  {% endif %}
+  
+  <h2 class="heading">
+  Shipping & Handling.
+  </h2>
+  
+  <h3 class="heading">
+    Where We Ship
+  </h3>
+  <p>
+    We are currently shipping to all Canadian provinces. Limited shipping options may be available in some areas.
+  </p>
+  <h3 class="heading reg-ordering">
+    Regular Order Processing
+  </h3>
+  <div class="maxwt">
+    <p>
+      After your order has been placed, you will be notified with an Order Confirmation Email. Your order will be processed in our fulfillment center within 1-2 business days, subject to peak holiday periods.
+    </p>
+    <p>
+      Once your order has shipped, you will receive a Shipping Confirmation Email with a shipment tracking number. If you are a registered user, you may also log into your account to review the status of your current and past orders.
+    </p>
+  </div>
+  
+  <br />
+  <h2 class="heading shipping-opt-lbl">
+    Shipping Options.
+  </h2>
+  <p>
+    Once your order has shipped, you can track your shipment using your Shipping Confirmation or Shipment Notification emails. When shipping within Canada, your order will arrive within these delivery estimates based on your specified delivery location.
+  </p>
+  
+  <div class="shipping-options-container">
+    <div class="shipping-options-side-by-side">
+      <div>
+        <h4 class="heading">
+          Expedited Canada Post
+        </h4>
+        <p>
+          Expedited Canada Post
+        </p>
+      </div>
+      <div>
+        <h4 class="heading">
+          Expedited FedEx
+        </h4>
+        <p>
+          4-10 Business Days
+        </p>
+      </div>
+    </div>
+    <div class="shipping-options-note">
+      <p>
+        <strong>Please note:</strong> Online orders that qualify for free shipping will be sent by Expedited Canada Post.
+      </p>
+    </div>
+  </div>
+  
+  <p class="shipping-disclaimer">Shipping time is estimated from when you receive your shipping confirmation email. Delivery times may vary based on destination address.</p>  
+</div>
+
+<div class="container-wide shipping-container">
+  <div class="shipping-grid-2">
+    <div>
+      <div class="inner">
+        <h2>
+          Custom Orders.
+        </h2>
+        <p>
+          All Custom Order Products will be processed in our fulfillment center within an estimated 2 – 4 weeks (or sooner if possible), subject to availability and/or peak holiday periods. Once your order has shipped, you will receive a Shipping Confirmation Email with a shipment tracking number. If you have other items in your order, these will be processed and shipped separately based on our Regular Order Processing and Shipping.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="inner">
+        <h2>
+          Shipping Restrictions.
+        </h2>
+        <p>
+          We reserve the right to restrict delivery to certain remote locations. At this time, we are not able to split an order into multiple shipping destinations.
+        </p>
+        <p>
+          Some items are considered hazardous and are required to be shipped by Standard shipping only. These may include aerosols and alcohol-based products.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <p class="shipping-grid-2-disclaimer">
+    For all other inquiries regarding your order, please contact Customer Service, through our <a id="ww-contactus-link" href="/pages/contact-us">Contact Us</a> page or by phone at 1-866-220-3837.
+  </p>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Shipping",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.shipping-container h1,
+.shipping-container h2,
+.shipping-container h3,
+.shipping-container h4,
+.shipping-container p,
+.shipping-container a,
+.shipping-container span {
+	color: #002D72;
+}
+.shipping-container h2 {
+  font-size: 42px;
+  line-height: 42px;
+margin-bottom: 20px;
+}
+.shipping-container h3 {
+  font-size: 30px;
+  line-height: 32px;
+	margin-bottom: 6px;
+}
+.shipping-container .reg-ordering {
+	margin: 22px 0px 6px;
+}
+.shipping-container .shipping-opt-lbl {
+	margin-top: 30px;
+}
+.shipping-update-disclaimer {
+	background: #FEDD00;
+	padding: 30px 30px;
+	margin-bottom: 60px;
+}
+	.shipping-update-disclaimer h2 {
+		font-size: 30px;
+		line-height: 30px;
+	}
+.maxwt {
+	max-width: 1000px;
+}
+.shipping-options-side-by-side {
+	display: flex;
+	text-align: center;
+}
+.shipping-options-side-by-side > div {
+	width: 100%;
+	background: #002D72;
+	padding: 30px 5px;
+}
+.shipping-options-side-by-side > div:first-child {
+	background: #307FE2;
+}
+.shipping-options-side-by-side h4 {
+	color: #fff;
+	font-size: 30px;
+	line-height: 30px;
+	margin-bottom: 6px;
+}
+.shipping-options-side-by-side p {
+	color: #fff;
+	font-size: 22px;
+	line-height: 22px;
+}
+.shipping-options-note {
+	padding: 20px 15px;
+	text-align: center;
+}
+.shipping-options-container {
+	border: 2px solid #C7C7C7;
+	margin: 26px 0 25px;
+}
+.shipping-disclaimer {
+	margin-top: 15px;
+	font-family: 'VolteB';
+}
+.shipping-grid-2 {
+	display: flex;
+	width: 100%;
+	background: #fff;
+	margin: 50px 0 20px
+}
+.shipping-grid-2 h2 {
+	font-family: 'VolteB';
+}
+.shipping-grid-2 p {
+  font-size: 22px;
+  line-height: 26px;
+}
+.shipping-grid-2 > div {
+	width: 100%;
+	border: 1px solid #D8D8D8;
+	padding: 50px 0;
+}
+.shipping-grid-2 .inner {
+	max-width: 78%;
+  	margin: 0px auto;
+  	text-align: center;
+}
+.shipping-grid-2-disclaimer {
+	font-family: 'VolteB';
+	max-width: 1520px;
+	margin: 15px auto 5px;
+	padding-bottom: 30px;
+}
+
+#ww-contactus-link {
+	text-decoration:underline;
+
+}
+
+#ww-contactus-link:hover {
+	text-decoration:none;
+
+}
+
+@media(max-width: 768px) {
+	.shipping-container h2 {
+		font-size: 30px;
+		line-height: 1.2;
+	}
+	.shipping-container h3 {
+      font-size: 24px;
+      line-height: 1.2;
+	}
+	.shipping-container p {
+      font-size: 18px;
+      line-height: 1.2;
+	}
+	.shipping-grid-2,
+	.shipping-options-side-by-side {
+		flex-direction: column;
+	}
+	.shipping-grid-2 > div,
+  	.shipping-options-side-by-side > div {
+		width: 100%;
+  	}
+	.shipping-grid-2-disclaimer {
+		padding: 0px 15px 30px;
+	}
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

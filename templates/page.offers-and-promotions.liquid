@@ -1,0 +1,67 @@
+<div class="offers-promotions-wrapper">
+  <div class="container container--takeover-custom">
+    <header class="page__header">
+      <h1 class="page__title heading">
+        Our Latest Offers <br />
+        & Promotions
+      </h1>
+    </header>
+  </div>
+  
+  <div class="container">
+    <div class="fg-intro">
+      <div>
+        <p>
+          We like to take care of our valued customers, which is why we’re always working to create special deals on your favourite products.
+          <br /><br />Explore below to see all of our current offer and promotional details, and be sure to check our weekly flyer for even more deals!
+        </p>
+      </div>
+      <div>
+        <img src="https://wellwise.s3.amazonaws.com/offer-promotions/offerspromo.png" alt="" />
+      </div>
+    </div>
+  </div>
+  
+  {% section 'promotion-block' %}
+  
+  {% section 'offers-with-icons' %}
+</div>
+
+{% style %}
+.container--takeover-custom .heading {
+	text-align: left;
+}
+.offers-promotions-wrapper p {
+	font-size: 20px;
+	line-height: 1.2;
+	color: #002D72;
+}
+.offers-promotions-wrapper .fg-intro {
+	display: flex;
+	align-items: center;
+	margin: 80px auto 100px;
+	border-bottom: 1px solid #a2a2a2;
+	padding-bottom: 80px;
+}
+.offers-promotions-wrapper .fg-intro > div {
+	width: 100%;
+}
+.offers-promotions-wrapper .fg-intro img {
+	margin: 0px auto;
+	display: block;
+}
+.container > h1 {
+	font-size: 50px;
+	line-height: 1.1;
+}
+
+@media(max-width: 768px) {
+	.offers-promotions-wrapper .fg-intro {
+		flex-direction: column;
+		margin-top: 40px;
+	}
+	.offers-promotions-wrapper .fg-intro img {
+		margin: 60px auto 0;
+	}
+}
+{% endstyle %}

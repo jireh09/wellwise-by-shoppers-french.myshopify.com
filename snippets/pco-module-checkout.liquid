@@ -1,0 +1,62 @@
+<div class="card3">
+  <div class="card__section">
+    <div class="pco-rewards">
+      <span><img style="max-width: 50px" src="https://cdn.shopify.com/s/files/1/0541/7841/4790/files/pco-logo.jpg?v=1619684119" alt="pcoimg"> </span>
+      <span style="vertical-align: top" class="pco-module-title-in-cart"> {{settings.module_pcoModuleTitle}}</span>
+      <div class="pco-text3"> Points you could earn today! </div>
+    </div>
+
+
+    {%- assign totalValue = 0 -%}
+    {%- assign bonusPoints = 0 -%}
+    
+    {%- for line_item in items -%}
+    	{%- assign discountValue = 0 -%}
+    
+    	{% if line_item.discount_allocations.size > 0 %}
+          {% for discount_allocation in line_item.discount_allocations %}
+    		{%- assign discountValue = discountValue | plus: discount_allocation.amount -%}
+          {% endfor %}
+        {% endif %}
+    
+        {%- assign pco = line_item.variant.metafields.pim.pco -%}
+        {%- assign quantity = line_item.quantity -%}
+    	{%- assign price = line_item.final_price | times: quantity | minus: discountValue -%}
+     	{%- assign totalValue = totalValue | plus: price -%}
+        {%- assign basePco = price | divided_by: 100 | floor | times: 15 -%}
+
+        {%- if pco.PCOBonus == 'yes' -%}
+          {%- if pco.PCOPromoType == 'fixed' -%} 
+            {%- assign  bonusPco = pco.PCOAmount | times: quantity -%}
+          {%- else -%}
+            {%- assign  bonusPco = pco.PCOAmount | minus: 1 | times: basePco  -%}
+          {%- endif -%}
+        {%- else -%}
+            {%- assign bonusPco = 0 -%}
+        {%- endif -%}
+
+        {%- assign bonusPoints = bonusPoints | plus: bonusPco -%}
+	{%- endfor -%}
+    
+    {%- assign basePoints = totalValue | divided_by: 100 | floor | times: 15 -%}
+    
+    
+    
+    <div class="cart-recap__price-line5 text--pull">
+      <span class="base-pts-in-cart">{{settings.module_pcoModuleBase}} </span>
+      <span class="base-pts-in-cart-amount"> {{ basePoints | times: 100 | money_without_currency | remove: '.00' }} pts</span>
+      </div>
+      <div class="cart-recap__price-line6 text--pull">
+        <span class="bonus-pts-in-cart">{{settings.module_pcoModuleBonus}}</span>
+        <span class="bonus-pts-in-cart-amount">{{ bonusPoints | times: 100 | money_without_currency | remove: '.00'  }} pts</span>
+    </div>
+    
+    <div class="cart-recap__price-line7 text--pull">
+      <span class="total-pts-in-cart">{{settings.module_pcoModuleTotal}} </span>
+      <span class="total-pts-in-cart-amount">{{ basePoints | plus: bonusPoints | times: 100 | money_without_currency | remove: '.00'  }} pts</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="pco-text2">{{settings.module_pcoModuleDisclaimer}}</div>

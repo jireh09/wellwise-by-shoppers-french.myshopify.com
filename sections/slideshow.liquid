@@ -1,0 +1,420 @@
+<section data-section-id="{{ section.id }}" data-section-type="slideshow">
+    <div class="slideshow slick-carousel slideshow--preserve-ratio slideshow--edge2edge" data-slidesToScroll="1">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.mobile_image -%}
+          {%- capture mobile_size -%}{{ block.settings.mobile_image.width | at_most: 600 }}x{{ block.settings.mobile_image.height | at_most: 800 }}{%- endcapture -%}
+          {%- capture bgset -%}{{ block.settings.mobile_image | img_url: mobile_size, crop: 'center' }} [--phone] | {{ block.settings.image | img_url: '800x' }} 800w, {{ block.settings.image | img_url: '1000x' }} 1000w, {{ block.settings.image | img_url: '1200x' }} 1200w, {{ block.settings.image | img_url: '1400x' }} 1400w, {{ block.settings.image | img_url: '1600x' }} 1600w, {{ block.settings.image | img_url: '1800x' }} 1800w{%- endcapture -%}
+        {%- else -%}
+          {%- capture mobile_size -%}{{ block.settings.image.width | at_most: 600 }}x{{ block.settings.image.height | at_most: 800 }}{%- endcapture -%}
+          {%- capture bgset -%}{{ block.settings.image | img_url: mobile_size, crop: 'center' }} [--phone] | {{ block.settings.image | img_url: '800x' }} 800w, {{ block.settings.image | img_url: '1000x' }} 1000w, {{ block.settings.image | img_url: '1200x' }} 1200w, {{ block.settings.image | img_url: '1400x' }} 1400w, {{ block.settings.image | img_url: '1600x' }} 1600w, {{ block.settings.image | img_url: '1800x' }} 1800w{%- endcapture -%}
+        {%- endif -%}
+
+        {%- capture slide_inner -%}
+          <div class="slideshow__slide-inner slideshow__slide-inner--{{ block.settings.content_position | replace: '_', '-' }} slideshow__slider--banner__{{ block.settings.banner_type }} lazyload image--fade-in">
+            {%- unless block.settings.image -%}
+              {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+
+                {{- placeholder | placeholder_svg_tag: 'slideshow__image-placeholder' -}}
+            {%- endunless -%}
+
+              {%- capture supported_sizes -%}{%- render 'image-size', sizes: '800,900,1000,1100,1200,1300,1400,1600,1800,2000,2200,2400,2600', image: block.settings.image -%}{%- endcapture -%}
+              {%- assign image_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              <div class="aspect-ratio {% if block.settings.mobile_image %}hidden-phone{% endif %}" style="padding-bottom: {{ 100.0 | divided_by: block.settings.image.aspect_ratio }}%">
+                <img class="slideshow__image lazyload image--fade-in" alt="{{ block.settings.image.alt | escape }}" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto">
+              </div>
+            
+            	{%- if block.settings.tablet_image -%}
+                {%- capture supported_sizes -%}{%- render 'image-size', sizes: '600,700,800,900,1000,1100,1200', image: block.settings.tablet_image -%}{%- endcapture -%}
+                {%- assign image_url = block.settings.tablet_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                <div class="aspect-ratio tablet-img">
+                  <img class="slideshow__image lazyload image--fade-in" alt="{{ block.settings.tablet_image.alt | escape }}" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto">
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.mobile_image -%}
+                {%- capture supported_sizes -%}{%- render 'image-size', sizes: '600,700,800,900,1000,1100,1200', image: block.settings.mobile_image -%}{%- endcapture -%}
+                {%- assign image_url = block.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                <div class="aspect-ratio hidden-tablet-and-up" style="padding-bottom: {{ 100.0 | divided_by: block.settings.mobile_image.aspect_ratio }}%">
+                  <img class="slideshow__image lazyload image--fade-in" alt="{{ block.settings.mobile_image.alt | escape }}" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto">
+                </div>
+              {%- endif -%}
+
+            {%- capture slide_content -%}
+              <h2 class="slideshow__title heading {% if block.settings.title_top != blank %} title-multi-line {% endif %}" style="color: {{ block.settings.text_color }};">
+                {%- if block.settings.title_top != blank -%}
+                <span class="slideshow__title_top">{{ block.settings.title_top | escape }}</span>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank -%}
+                {{ block.settings.title | escape }}
+                {%- endif -%}
+              </h2>
+
+              {%- if block.settings.content != blank -%}
+                <p class="slideshow__content" style="color: {{ block.settings.text_color }};">{{ block.settings.content | escape | newline_to_br }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.link != blank and block.settings.button_text != blank -%}
+                <a href="{{ block.settings.link }}" class="slideshow__button button" style="background: {{ block.settings.button_background }}; color: {{ block.settings.button_text_color }};">{{ block.settings.button_text | escape }}</a>
+              {%- endif -%}
+            {%- endcapture -%}
+
+            {%- if slide_content != blank -%}
+              <div class="slideshow__content-wrapper">
+                <div class="container">
+                  {{ slide_content }}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+      
+          <style>
+                #block-{{ block.id }} .button:hover {
+                  background: {{ block.settings.button_background | color_modify: 'alpha', 0.8 }};
+                }
+                #block-{{ block.id }} .slideshow__slide-inner .aspect-ratio:after {
+                  background: {{ block.settings.backgroundColor }};
+                }
+                #block-{{ block.id }} .slideshow__slider--banner__graphic_banner .slideshow__image {
+                  background: {{ block.settings.backgroundColor }};
+                }
+            @media(max-width: 800px) {
+              #block-{{ block.id }} .slideshow__content-wrapper {
+              	background: {% if block.settings.backgroundColor contains '#fff' %} transparent {% else if %} {{ block.settings.backgroundColor }} {% endif %};
+              }
+            }
+          </style>
+        {%- endcapture -%}
+
+        {%- if block.settings.link != blank and block.settings.button_text == blank -%}
+          <a href="{{ block.settings.link }}" class="slideshow__slide {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            {{- slide_inner -}}
+          </a>
+        {%- else -%}
+          <div class="slideshow__slide {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            {{- slide_inner -}}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+</section>
+
+{% stylesheet %}
+.slideshow { }
+    .slideshow .tablet-img {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+    .slideshow .slideshow__slide-inner {
+        overflow: hidden;
+    }
+    .slideshow .slick-dots li {
+        background-color: #fff;
+        border-color: #fff;
+	}
+	.slideshow .slick-dots li.not-slick {
+		background: url('https://heb.pdf.richmondday.com/wellwise/carousel-icon-arrow-white.png') center center no-repeat;
+	}
+    .slideshow .slideshow__title {
+        font-size: 80px;
+        line-height: 1;
+        max-width: 45%;
+    }
+    .slideshow .slideshow__title_top {
+        display: block;
+        font-size: 28px;
+        line-height: 1;
+		margin-bottom: 14px;
+    }
+    .slideshow .slideshow__content {
+        font-size: 22px;
+        line-height: 1.2;
+        max-width: 45%;
+    }
+    .slideshow .button {
+        font-family: 'VolteB';
+        font-size: 20px;
+        margin-top: 1.4vw;
+        max-width: 360px;
+        width: 100%;
+        padding: 10px 30px;
+    }
+
+/*GRAPHICS BANNER*/
+.slideshow__slider--banner__graphic_banner .aspect-ratio { position: relative; }
+.slideshow__slider--banner__graphic_banner .slideshow__image {
+    position: absolute;
+	left: 0%;
+    width: 100%;
+	height: auto;
+	z-index: -1;
+}
+.slideshow__slider--banner__graphic_banner .slideshow__content-wrapper {
+	background: transparent;
+}
+	.slideshow .slideshow__slider--banner__graphic_banner .slideshow__content {
+		max-width: 50%;
+	}
+	.slideshow__slider--banner__graphic_banner .aspect-ratio { 
+		position: relative;
+		height: 100%;
+	}
+		.slideshow__slider--banner__graphic_banner .aspect-ratio:after {
+            content: ' ';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: {{ block.settings.backgroundColor }};
+            z-index: -2;
+        }
+/*END BANNER*/
+
+@media(min-width: 1530px) and (max-width: 1700px) {
+	.slideshow .slideshow__title {
+		font-size: 72px;
+	}
+	.slideshow .slideshow__title.title-multi-line {
+        font-size: 64px;
+    }
+}
+@media(min-width: 800px) and (max-width: 1530px) {
+        .slideshow .slideshow__title {
+            font-size: 42px;
+        }
+        .slideshow .slideshow__title_top {
+            font-size: 22px;
+			margin-bottom: 10px;
+        }
+        .slideshow .slick-dots {
+            left: 52% !important;
+        }
+}
+@media(min-width: 800px) and (max-width: 1200px) {	
+    .slideshow__slider--banner__graphic_banner .tablet-img {
+        display: block;
+        z-index: 1;
+    }
+	.slideshow .aspect-ratio.hidden-phone,
+    .slideshow__slider--banner__graphic_banner .hidden-phone {
+    	display: none !important;
+    }
+}
+@media(max-width: 800px) {
+  .slideshow {
+      background: transparent;
+  }
+    .slideshow .aspect-ratio.hidden-phone {
+        display: none !important;
+    }
+  	.slideshow__slider--banner__graphic_banner .slideshow__title {
+		max-width: 100%;
+  	}
+	.slideshow__slider--banner__lifestyle_banner .slideshow__content {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+    .slideshow.slideshow--preserve-ratio .slideshow__content-wrapper,
+    .slideshow .aspect-ratio img, 
+	.slideshow .slick-dots {
+        position: relative !important;
+    }
+	.slideshow .aspect-ratio {
+		padding-bottom: 0px !important;
+	}
+	.slideshow.slideshow--preserve-ratio .slideshow__content-wrapper {
+		transform: none;
+    	left: auto;
+    	top: 0;
+		padding-top: 25px;
+		text-align: left;
+	}
+	.slideshow .slick-dots  {
+		text-align: center !important;
+		bottom: 12px !important;
+	}
+	.slideshow .slideshow__title {
+        font-size: 32px;
+        max-width: 100%;
+     }
+		.slideshow .slideshow__title_top {
+			font-size: 18px;
+			line-height: 1;
+			margin-bottom: 8px;
+		}
+      	.slideshow .slideshow__slider--banner__graphic_banner .slideshow__content {
+          font-size: 18px;
+          line-height: 1.2;
+		  max-width: 100%;
+      	}
+      	.slideshow .button {
+          margin-top: 1.4vw;
+          max-width: 100%;
+          width: 100%;
+      	}
+		.slideshow .hidden-tablet-and-up { display: block !important; }
+
+	/*SLICK NAV*/
+	.slideshow .slick-dots li {
+        background-color: #307fe2;
+        border-color: #307fe2;
+	}
+	.slideshow .slick-dots li.not-slick {
+		background: url('https://heb.pdf.richmondday.com/wellwise/carousel-icon-arrow.png') center center no-repeat;
+	}
+	/*END*/
+}
+@media(min-width: 768px) and (max-width: 800px) {
+	.slideshow .aspect-ratio.hidden-tablet-and-up {
+		padding-bottom: 65px !important;
+	}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "max_blocks": 6,
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "select",
+          "id": "banner_type",
+          "label": "Banner type",
+          "options": [
+            {
+              "value": "lifestyle_banner",
+              "label": "Lifestyle Banner"
+            },
+            {
+              "value": "graphic_banner",
+              "label": "Graphic Banner"
+            }
+          ],
+          "default": "lifestyle_banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image",
+          "info": ".jpg recommended"
+        },
+		{
+          "type": "image_picker",
+          "id": "tablet_image",
+          "label": "Tablet image",
+          "info": ".jpg recommended. If none is set, desktop image will be used."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": ".jpg recommended. If none is set, desktop image will be used."
+        },
+		{
+          "type": "color",
+          "id": "backgroundColor",
+          "label": "Background color",
+          "default": "#ffffff"
+      	},
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "title_top",
+          "label": "Top Heading (optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Slide title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Tell your story"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "info": "On mobile, content is always centered.",
+          "options": [
+            {
+              "value": "top_left",
+              "label": "Top left"
+            },
+            {
+              "value": "top_center",
+              "label": "Top center"
+            },
+            {
+              "value": "top_right",
+              "label": "Top right"
+            }
+          ],
+          "default": "top_left"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "Button"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "If no text is set for button, the whole image becomes clickable."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

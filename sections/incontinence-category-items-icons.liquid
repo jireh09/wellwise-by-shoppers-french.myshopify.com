@@ -1,0 +1,70 @@
+{% include 'category-items-with-icon' %}
+
+{% schema %}
+  {
+    "name": "Category Items (Icons)",
+	"class": "category-items-container",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		},
+		{
+          "id": "copy",
+          "type": "text",
+          "label": "Copy"
+		},
+		{
+          "id": "button_text",
+          "type": "text",
+          "label": "Button"
+		},
+		{
+          "id": "button_link",
+          "type": "url",
+          "label": "Link"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+            {
+              "id": "icon",
+              "type": "image_picker",
+              "label": "Icon"
+            },
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "copy",
+              "type": "text",
+              "label": "Copy"
+            },
+            {
+              "id": "link_text",
+              "type": "text",
+              "label": "Link text"
+            },
+            {
+              "id": "link_url",
+              "type": "url",
+              "label": "Link Url"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

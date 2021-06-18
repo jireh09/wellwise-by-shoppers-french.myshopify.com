@@ -1,0 +1,128 @@
+[
+  {
+    "id": "\/collections\/incontinence",
+    "image_name": "incontience.jpg",
+    "copy": "Explore resources designed to help you find the best incontinence solutions for your unique needs.",
+    "cta_label": "Incontinence",
+    "cta_link": "\/pages\/incontinence-1"
+  },
+  {
+    "id": "\/collections\/ostomy",
+    "image_name": "ostomy.jpg",
+    "copy": "Browse a variety of resources that can help you manage your unique ostomy needs.",
+    "cta_label": "Ostomy",
+    "cta_link": "\/pages\/ostomy"
+  },
+  {
+    "id": "\/collections\/cpap",
+    "image_name": "cpap.jpg",
+    "copy": "Discover our wide range of sleep apnea resources and learn what you can do to get a better nightâ€™s sleep.",
+    "cta_label": "CPAP",
+    "cta_link": "\/pages\/cpap"
+  },
+  {
+    "id": "\/collections\/electronics-1",
+    "image_name": "electronics.jpg",
+    "copy": "Gain a better understanding of our latest electronics products and solutions with these helpful resources.",
+    "cta_label": "Electronics",
+    "cta_link": "\/pages\/electronics"
+  },
+  {
+    "id": "\/collections\/sleep-aids",
+    "image_name": "sleepaids.jpg",
+    "copy": "Explore resources designed to help you find the best sleep solutions for your unique needs.",
+    "cta_label": "Sleep Aids",
+    "cta_link": "\/pages\/sleep-aids"
+  },
+  {
+    "id": "\/collections\/light-therapy",
+    "image_name": "lighttherapy.jpg",
+    "copy": "Gain a better understanding of our latest light therapy products and solutions with these helpful resources.",
+    "cta_label": "Light Therapy",
+    "cta_link": "\/pages\/light-therapy"
+  },
+  {
+    "id": "\/collections\/rollators-walkers",
+    "image_name": "rollatorwalkers.jpg",
+    "copy": "Discover our wide range of mobility resources and learn what you can do to help maintain your independence.",
+    "cta_label": "Rollators & Walkers",
+    "cta_link": "\/pages\/rollators-walkers"
+  },
+  {
+    "id": "\/collections\/scooters-power-chairs-1",
+    "image_name": "scooterspowerchairs.jpg",
+    "copy": "Gain a better understanding of our scooters and power chairs with these helpful resources.",
+    "cta_label": "Scooters & Power Chairs",
+    "cta_link": "\/pages\/scooters-power-chairs"
+  },
+  {
+    "id": "\/collections\/wheelchairs-transport-chairs",
+    "image_name": "wheelchairs.jpg",
+    "copy": "Browse a variety of resources that can help you manage your unique mobility needs.",
+    "cta_label": "Wheelchairs & Transport Chairs",
+    "cta_link": "\/pages\/wheelchairs-transport-chairs"
+  },
+  {
+    "id": "\/collections\/canes",
+    "image_name": "canes.jpg",
+    "copy": "Explore resources designed to help you find the best cane(s) for your unique needs.",
+    "cta_label": "Canes",
+    "cta_link": "\/pages\/canes"
+  },
+  {
+    "id": "\/collections\/braces-supports",
+    "image_name": "bracessupport.jpg",
+    "copy": "Gain a better understanding of our latest braces and supports offerings with these helpful resources.",
+    "cta_label": "Braces & Supports",
+    "cta_link": "\/pages\/braces-supports"
+  },
+  {
+    "id": "\/collections\/compression",
+    "image_name": "compression.jpg",
+    "copy": "Discover our wide range of compression therapy resources and how compression products could help you.",
+    "cta_label": "Compression",
+    "cta_link": "\/pages\/compression"
+  },
+  {
+    "id": "\/collections\/pain-management",
+    "image_name": "painmanagement.jpg",
+    "copy": "Explore resources designed to help you learn more about available pain management products and solutions.",
+    "cta_label": "Pain Management",
+    "cta_link": "\/pages\/pain-management"
+  },
+  {
+    "id": "\/collections\/health-monitoring",
+    "image_name": "healthmonitoring.jpg",
+    "copy": "Browse a variety of resources that can help you better understand your health monitoring needs.",
+    "cta_label": "Health Monitoring",
+    "cta_link": "\/pages\/health-monitoring"
+  },
+  {
+    "id": "\/collections\/home",
+    "image_name": "home.jpg",
+    "copy": "Discover our wide range of home comfort and safety resources and learn what you can do to stay longer in the home you love.",
+    "cta_label": "Home",
+    "cta_link": "\/pages\/home"
+  },
+  {
+    "id": "\/collections\/daily-living",
+    "image_name": "dailyliving.jpg",
+    "copy": "Gain a better understanding of our latest daily living products and solutions with these helpful resources.",
+    "cta_label": "Daily Living",
+    "cta_link": "\/pages\/daily-living"
+  },
+  {
+    "id": "\/collections\/fitness-nutrition",
+    "image_name": "fitness.jpg",
+    "copy": "Explore resources designed to help you create and reach your fitness and nutrition goals.",
+    "cta_label": "Fitness & Nutrition",
+    "cta_link": "\/pages\/fitness-nutrition"
+  },
+  {
+    "id": "\/collections\/wellness",
+    "image_name": "wellness.jpg",
+    "copy": "Browse a variety of wellness resources that can help educate you on your everyday needs.",
+    "cta_label": "Wellness",
+    "cta_link": "\/pages\/wellness"
+  }
+]

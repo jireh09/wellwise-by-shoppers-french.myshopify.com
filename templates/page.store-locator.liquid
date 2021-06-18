@@ -1,0 +1,43 @@
+ <style>
+    <!--
+      .bullseyeWrapper{
+
+          max-width: 100%;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 0 var(--mobile-container-gutter);
+          height: 1200px;
+
+      }
+   -->
+  </style>
+
+<header class="page__header page__header--centered">
+  <h1 class="page__title heading h1">{{ page.title }}</h1>
+</header>
+
+<div class="page__content rte">
+  {{ page.content }}
+    
+  {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+  {%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+     replace:'\/','/' | 
+     replace:'%20',' ' | 
+     replace:'\u0026','&'
+  -%}
+ 
+  {%- assign pageQuerystring = pageUrl | split:'/' | last -%}  
+  
+  {%- capture queryString -%}
+  	{% if pageQuerystring == page.handle %}
+  		{{}}
+  	{% else %}
+  		{{"?location=SDM000" | append: pageQuerystring}}
+  	{% endif %}
+  {%- endcapture -%}
+  
+  <div class="bullseyeWrapper">  
+    <iframe title="Wellwise Store Locator" id="storeLocator" src="https://wellwise-dev-bullseye-cdn-endpoint.azureedge.net/en.html{{queryString | strip}}" scrolling="auto" width="100%" height="100%" frameborder="0" sandbox="allow-same-origin allow-popups allow-scripts">
+    </iframe>
+  </div> 
+</div>

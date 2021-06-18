@@ -1,0 +1,70 @@
+{% include 'category-items-with-icon' %}
+
+{% schema %}
+  {
+    "name": "Category Items (Icons)",
+	"class": "category-items-container compression-sect",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		},
+		{
+          "id": "copy",
+          "type": "text",
+          "label": "Copy"
+		},
+		{
+          "id": "button_text",
+          "type": "text",
+          "label": "Button"
+		},
+		{
+          "id": "button_link",
+          "type": "url",
+          "label": "Link"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+            {
+              "id": "icon",
+              "type": "image_picker",
+              "label": "Icon"
+            },
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "copy",
+              "type": "text",
+              "label": "Copy"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.category-items-container.compression-sect {
+	margin: 100px auto 0;
+}
+	.category-items-container.compression-sect .category-wi-icons .inner {
+		flex-wrap: wrap;
+	}
+		.category-items-container.compression-sect .category-wi-icons .inner > div {
+			width: 50%;
+			border-bottom: 1px solid #D8D8D8;
+		}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

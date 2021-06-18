@@ -1,0 +1,60 @@
+{% include 'category-rental-pricing' %}
+
+{% schema %}
+  {
+    "name": "Pricing",
+	"class": "container category-page-section rental-pricing-section",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		},
+		{
+          "id": "copy",
+          "type": "text",
+          "label": "Copy"
+		},
+		{
+          "id": "link_text",
+          "type": "text",
+          "label": "Link text"
+		},
+		{
+          "id": "link_url",
+          "type": "url",
+          "label": "Link Url"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "subTitle",
+              "type": "text",
+              "label": "Subtitle"
+            },
+			{
+              "id": "copy",
+              "type": "text",
+              "label": "Copy"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

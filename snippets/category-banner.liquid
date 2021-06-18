@@ -1,0 +1,147 @@
+<div class="inner">
+  <div>
+    <h1 class="heading">
+      {{ section.settings.title1 }}
+    </h1>
+
+    <h2 class="heading">
+      {{ section.settings.title2 }}
+    </h2>
+    <p>
+      {{ section.settings.title3 }}
+    </p>
+
+    {% if section.settings.cta1_text != blank %}
+    <a href="{{ section.settings.cta1_link }}" class="button cta-button-1">
+      {{ section.settings.cta1_text }}
+    </a>
+    {% endif %}
+    {% if section.settings.cta2_text != blank %}
+    <a href="{{ section.settings.cta2_link }}" class="button cta-button-2">
+      {{ section.settings.cta2_text }}
+      {% endif %}
+    </a>
+  </div>
+  <div>
+    <img src="{{ section.settings.banner_img | img_url: 'master' }}" alt="page banner" class="banner-img">
+  </div>
+</div>
+
+{% style %}
+.category-banner.container {
+    margin-bottom: 20px;
+    background-color: #002D72;
+    background: url('https://wellwise.s3.amazonaws.com/homepagebanner_blue.png') center center no-repeat;
+	background-size: cover;
+	max-width: 100%;
+}
+.category-banner .inner {
+    display: flex;
+	max-width: 1520px;
+    margin: 0px auto;
+}
+.category-banner .inner > div {
+	position: relative;
+    width: 100%;
+}
+.category-banner .inner > div:first-child {
+    padding: 70px 0px 120px;
+}
+.category-banner .banner-img {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	right: -10vw;
+	height: 100%;
+	max-width: none;
+	width: auto;
+}
+.category-banner h1, 
+.category-banner h2, 
+.category-banner p {
+	color: #fff;
+	line-height: 1;
+	margin: 0 0 5px 0;
+}
+.category-banner h1 {
+	font-size: 42px;
+	line-height: 1;
+	color: #C7DDF3;
+}
+.category-banner h2 {
+	font-size: 65px;
+	line-height: 1;
+	margin-bottom: 20px;
+}
+.category-banner p {
+	font-size: 22px;
+	line-height: 1.25;
+}
+.category-banner .button {
+    background: #fff;
+    color: #002D72;
+    border: 1px solid #fff;
+    font-family: "VolteB";
+    margin-top: 35px;
+    display: inline-block;
+    width: calc(50% - 10px);
+    max-width: 380px;
+    font-size: 20px;
+}
+.category-banner .button.cta-button-1 {
+	margin-right: 10px;
+}
+.category-banner .button.cta-button-2 {
+	background: #C3D7EE;
+	color: #002D72;
+	border-color: #C3D7EE;
+}
+.category-banner .button.cta-button-1:hover,
+.category-banner .button.cta-button-2:hover {
+	color: #fff;
+	background: #CB333B;
+	border-color: #CB333B;
+}
+
+@media(max-width: 1024px) {
+	.category-banner.container {
+		background: #002D72;
+	}
+	.category-banner .inner > div:first-child {
+		padding: 45px 0px 40px
+	}
+	.category-banner .inner {
+		flex-direction: column;
+		max-width: 100%;
+	}
+	.category-banner .button {
+		max-width: 100%;
+		width: 100%;
+		margin-right: 0px;
+	}
+	.category-banner .button.cta-button-2 {
+		margin-top: 15px;
+	}
+}
+
+@media(min-width: 1024px) and (max-width: 1385px) {
+	.category-banner .button {
+		max-width: 380px;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.category-banner .button.cta-button-2 {
+		margin-top: 10px;
+	}
+}
+@media (min-width: 1024px) and (max-width: 1460px) {
+    .category-banner .button {
+		max-width: 380px;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.category-banner .button.cta-button-2 {
+		margin-top: 10px;
+	}
+}
+{% endstyle %}

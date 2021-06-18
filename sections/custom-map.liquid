@@ -1,0 +1,426 @@
+<div class="find-location-module">
+	<div class="find-location-inner container">
+		<div>
+          <div class="find-location_search-header">
+            <div class="close-search-ic">
+              <svg focusable="false" class="icon icon--close" viewBox="0 0 19 19" role="presentation">
+                <path d="M9.1923882 8.39339828l7.7781745-7.7781746 1.4142136 1.41421357-7.7781746 7.77817459 7.7781746 7.77817456L16.9705627 19l-7.7781745-7.7781746L1.41421356 19 0 17.5857864l7.7781746-7.77817456L0 2.02943725 1.41421356.61522369 9.1923882 8.39339828z" fill="currentColor" fill-rule="evenodd"></path>
+              </svg>
+            </div>
+			<h1>
+				{{ section.settings.title }}
+			</h1>
+			<div class="btn-group">
+				<input type="text" name="Postal" class="address-input" placeholder="{{ section.settings.search_placeholder }}" /><button type="button" class="geolocate-btn" aria-label="geolocate">
+					<img src="https://wellwise.s3.amazonaws.com/my-location.png" alt="" />
+				</button><button type="button" class="search-btn" aria-label="search">
+					Search
+				</button>
+			</div>
+				
+			<button type="button" class="button button--primary find-store-cta" aria-label="find store">
+				{{ section.settings.search_button }}
+			</button>
+          </div>
+          <div class="find-location_search-list"></div>
+		</div>
+		<div>
+			<div id="google-map" class="google-maps-sect" data-api-key="{{ section.settings.google_api_key }}"></div>
+		</div>
+	</div>
+</div>
+
+{% style %}
+	.find-location-module {
+		background: #002D72;
+		margin: 100px auto 100px;
+	}
+		.find-location_search-header { position: relative; }
+		.find-location-module h1 {
+			font-family: 'VolteB';
+			font-size: 60px;
+			line-height: 1.05;
+		}
+		.find-location-module .marker-content {
+			padding: 2px 14px 10px;
+			min-height: 100px;
+		}
+            .find-location-module .marker-content h1,
+            .find-location-module .marker-content p {
+                color: #000;
+                font-size: 15px;
+                line-height: 1.2;
+            }
+			.find-location-module .marker-content h1 {
+				font-size: 22px;
+				line-height: 1.05;
+				margin-bottom: 2px;
+			}
+		.find-location-module .address-input {
+			width: 100%;
+			max-width: 470px;
+			height: 50px;
+			padding: 15px 14px;
+			font-size: 16px;
+			line-height: 1;
+			border: 0;
+		}
+			.find-location-module .address-input.err-input { border: 2px solid red; }
+		.find-location-module .address-input,
+		.find-location-module .geolocate-btn {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.find-location-module .geolocate-btn {
+			background: #307FE2;
+			padding: 12px 14px;
+			height: 50px;
+			transition: 200ms;
+		}
+        .find-location-module .search-btn {
+            display: none;
+            background: #cb333b;
+            color: #fff;
+            padding: 12px 14px;
+            height: 50px;
+            transition: 200ms;
+			vertical-align: middle;
+        }
+			.find-location-module .geolocate-btn:hover {
+                background: #4799ff;
+            }
+			.find-location-module .geolocate-btn > img {
+				margin: 0px;
+				max-width: 24px;
+			}
+		.find-location-module h1,
+		.find-location-module p {
+			color: #fff;
+		}
+		.find-location-inner {
+			display: flex;
+			max-width: 1560px;
+			margin: 0px auto;
+		}
+            .find-location-inner > div:nth-child(1) { 
+                width: 49%;
+                padding: 80px 4.5% 70px 6%;
+            }
+            .find-location-inner > div:nth-child(2) { width: 51%; }
+            .find-location-module .button--primary.find-store-cta {
+                background: #cb333b;
+                max-width: 350px;
+                margin-top: 100px;
+            }
+		.find-location-module .google-maps-sect {
+			width: 55vw;
+			height: 100%
+		}
+			.find-location-module .google-maps-sect .gm-ui-hover-effect {
+				top: 4px !important;
+				right: 6px !important;
+			}
+			.find-location-module .google-maps-sect .gm-ui-hover-effect img {
+				width: 18px !important;
+				height: 18px !important;
+			}
+	.find-location_search-list,
+	.find-search-active .find-store-cta,
+	.close-search-ic {
+		display: none;
+	}
+		.close-search-ic svg { color: #fff; }
+		.find-location_search-list .find-location_search-item {
+			border-bottom: 1px solid #fff;
+    		padding: 15px 25px;
+			transition: 300ms;
+		}
+			.find-location_search-list .find-location_search-item:hover {
+				background: rgba(0, 0, 0, 0.24);
+				cursor: pointer;
+			}
+		.find-location_search-results-label { 
+			margin-bottom: 5px; 
+			line-height: 1;
+			font-size: 20px;
+		}
+		.find-location_search-list .find-location_search-item:last-child { border-bottom: 0; }
+        .find-location_search-list .find-location_search-item h1 {
+            font-size: 24px;
+            line-height: 1.2;
+            margin-bottom: 0;
+        }
+        .find-location_search-list .find-location_search-item p {
+            font-size: 18px;
+            line-height: 1.2;
+			margin-bottom: 0;
+        }
+	
+	.find-search-active { }
+		.find-search-active .close-search-ic {
+			position: absolute;
+			top: 0;
+			right: 0;
+			cursor: pointer;
+			display: block;
+		}
+        .find-search-active > div:nth-child(1) {
+            padding-top: 3%;
+			padding-bottom: 0px;
+        }
+        .find-search-active .find-location_search-list {
+            display: block;
+			margin-top: 20px;
+			max-height: 500px;
+			overflow: auto;
+        }
+		.find-location-module .find-search-active .search-btn {
+			display: inline-block;
+		}
+		.find-location-module .find-search-active .address-input {
+			max-width: calc(100% - 140px);
+		}
+		.find-search-active h1 {
+			font-size: 32px;
+			margin-bottom: 15px;
+		}
+.find-location_search-list::-webkit-scrollbar {
+ width: 13px;
+ height: 13px;
+}
+.find-location_search-list::-webkit-scrollbar-thumb {
+ background: #fff;
+ border-radius: 10px;
+}
+.find-location_search-list::-webkit-scrollbar-thumb:hover{
+ background: #fff;
+}
+.find-location_search-list::-webkit-scrollbar-track{
+ background: #002d72;
+ border-radius: 10px;
+ box-shadow: inset 7px 10px 12px #f2f2f2;
+}	
+
+	@media(max-width: 1250px) {
+		.find-location-module h1 {
+			font-size: 42px;
+			line-height: 1;
+		}
+		.find-location-inner {
+			flex-direction: column;
+			text-align: center;
+		}
+		.find-location-module .address-input {
+			width: 80%;
+		}
+			.find-location-inner > div:nth-child(1) {
+				padding-bottom: 30px;
+			}
+			.find-location-inner > div,
+			.find-location-module .google-maps-sect {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+			.find-location-module .google-maps-sect {
+				max-width: 900px !important;
+				max-height: 450px;
+				height: 58vw;
+				margin: 0px auto 30px;
+			}
+			.find-location-module .button--primary.find-store-cta {
+				margin-top: 30px;
+			}
+	}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Custom Map",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find a location."
+    },
+	{
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search input placeholder",
+      "default": "Enter your address or Postal code"
+    },
+	{
+      "type": "text",
+      "id": "search_button",
+      "label": "Search button label",
+      "default": "Find your store"
+    },
+	{
+      "type": "text",
+      "id": "google_api_key",
+      "label": "Google API Key"
+    }
+  ],
+  "blocks": [ ],
+  "presets": [
+    {
+      "category": "Advanced",
+      "name": "Custom Map"
+    }
+  ]
+}
+{% endschema %}
+{% javascript %}
+	window.map = null;
+	const googleAPIKey= $("#google-map").attr('data-api-key');
+	const BullseySearchAPI = 'https://ws2.bullseyelocations.com/RestSearch.svc/DoSearch2?ClientId=4664&ApiKey=27ab1bab-2901-4156-aec2-bfb51a7ce538&CountryID=2&StartIndex=0&PageSize=50&radius=15&Keyword=wellwise';
+	
+    // Create the script tag, set the appropriate attributes
+    var script = document.createElement('script');
+	script.src = 'https://maps.googleapis.com/maps/api/js?key=' + googleAPIKey + '&callback=initMap';
+    script.async = true;
+
+    // Attach your callback function to the `window` object
+    window.initMap = function() {
+		window.geocoder = new google.maps.Geocoder();
+		window.map = new google.maps.Map(document.getElementById('google-map'), {
+  			center: {
+				lat: 43.68141177546197, 
+				lng: -79.38203763271723
+			},
+  			zoom: 11
+		});
+    };
+
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
+
+	const addMarkers = function(searchEndpoint, searchKey) {
+        $.ajax({
+             url: searchEndpoint,
+             type: "GET",
+             dataType: "json",
+             success: function(data) {
+             	if(typeof data !== 'undefined') {
+					let searchListHtml = '';
+					
+					if(searchKey) {
+						searchListHtml += '<p class="find-location_search-results-label">Stores results for: ' + searchKey + '</p>';
+					}
+                    data.ResultList.map(function(retailer, index) {
+						const isCenter = index == 0;
+                        const retailerLatLng = {
+                            lat: retailer.Latitude, 
+                            lng: retailer.Longitude
+                        };
+						const retailerName = retailer.Name.replace('WELLWISE ', '');
+                        const contentString = `<div class="content marker-content" data-lat="${retailer.Latitude}" data-lng="${retailer.Longitude}">
+                          <h1>${retailerName}</h1>
+                          <p> Wellwise <br />
+                          ${retailer.Address1} <br />
+                          ${retailer.City}, ${retailer.State} <br />
+                          ${retailer.PostCode} <br />
+                          Tel: <a href="tel:${retailer.PhoneNumber}">${retailer.PhoneNumber}</a></p>
+                        </div>`;
+                        const infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                        });
+                        const marker = new google.maps.Marker({
+                           position: retailerLatLng,
+                           title: retailer.Name,
+                           icon: "https://wellwise.s3.amazonaws.com/map-marker.png"
+                        });
+						
+                        searchListHtml += `<div class="find-location_search-item" data-lat="${retailer.Latitude}" data-lng="${retailer.Longitude}">
+                            <h1>
+                              ${retailer.Name.replace('WELLWISE ', '')}
+                            </h1>
+                            <p> 
+                                Wellwise <br />
+                                ${retailer.Address1} <br />
+                                ${retailer.City}, ${retailer.State} <br />
+                                ${retailer.PostCode} <br />
+                                Tel: <a href="tel:${retailer.PhoneNumber}">${retailer.PhoneNumber}</a>
+                            </p>
+                        </div>`;
+                        console.log('retailer:', retailer.Name, retailerLatLng);
+
+                        marker.setMap(window.map);
+						marker.addListener("click", function() {
+							infowindow.open(window.map, marker);
+  						});
+						
+						if(isCenter) {
+							window.map.setCenter(retailerLatLng);
+							window.map.setZoom(11);
+						}
+                    });
+
+					$('.find-location_search-list').html(searchListHtml);
+					if(searchListHtml.length > 0) {
+						$('.find-location-inner').addClass('find-search-active');
+					}
+                 }
+             }
+         });
+	}
+
+	$(document).on('click', '.geolocate-btn', function() {
+		window.navigator.geolocation.getCurrentPosition(function(info) {
+			var latitude = info.coords.latitude;
+			var longitude = info.coords.longitude;
+
+			if(longitude != null && latitude != null) {
+				$('.address-input').removeClass('err-input');
+                let searchEndpoint = BullseySearchAPI + '&longitude=' + longitude + "&latitude=" + latitude;
+				addMarkers(searchEndpoint);
+			}
+		});
+	});
+
+	$(document).on('click', '.close-search-ic', function() {
+		$('.find-location-inner').removeClass('find-search-active');
+	});
+
+	$(document).on('click', '.find-location_search-item', function() {
+		const $this = $(this);
+		const lat = $this.attr('data-lat');
+		const lng = $this.attr('data-lng');
+
+		console.log('lat lng', lat, lng);
+
+		if(lat && lng) {
+			window.map.setCenter({
+				lat: Number(lat),
+				lng: Number(lng)
+			});
+			window.map.setZoom(15);
+		}
+	});
+
+	$(document).on('click', '.find-store-cta, .find-location_search-header .search-btn', function() {
+		const address = $('.address-input').val();
+		let searchEndpoint = '';
+		$('.address-input').removeClass('err-input');
+
+		if(address.length <= 2) {
+			$('.address-input').addClass('err-input');
+			return false;
+		}
+                              
+		geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == 'OK') {
+			const latLng = results[0].geometry.location;
+            map.setCenter(latLng);
+			console.log('data--->', latLng);
+			 
+			const searchEndpoint = BullseySearchAPI + '&longitude=' + latLng.lng() + "&latitude=" + latLng.lat();
+			addMarkers(searchEndpoint, address);
+          } else {
+			$('.address-input').addClass('err-input');
+            //alert('Please enable the Geocoder API in GCM. Status: ' + status);
+			//Geocoding API needs to enabled on GCM
+          }
+        });
+	});
+{% endjavascript %}

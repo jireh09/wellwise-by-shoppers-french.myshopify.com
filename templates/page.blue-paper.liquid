@@ -1,0 +1,176 @@
+{% assign titleSplit = page.title | split: "-" %}
+
+
+<div class="blue-paper-wrapper">
+  <div class="container container--takeover-custom">
+      <header class="page__header">
+        <h1 class="page__title heading">
+          Article Series
+          <span class="white-text">
+          {{ titleSplit[0] }}
+          </span>
+        </h1>
+        <h2 class="heading">
+          {{ titleSplit[1] }}
+        </h2>
+      </header>
+  </div>
+  <div class="page__content rte">
+  	<div>
+  		{{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% style %}
+	.container.container--takeover-custom {
+		background: url('https://wellwise.s3.amazonaws.com/blue-paper-bg.png') center center no-repeat;
+		background-color: #C7DDF3;
+		background-size: cover;
+	}
+	.blue-paper-wrapper hr {
+		max-width: none;
+		width: 70vw;
+		margin: 95px auto 20px;
+	}
+	.blue-paper-wrapper .page__content {
+		max-width: 1550px;
+		margin: 0px auto 50px;
+		padding: 40px 15px;
+	}
+		.blue-paper-wrapper .page__content > div {
+			max-width: 900px;
+		}
+		.container.container--takeover-custom {
+			padding: 3% 20px;
+		}
+	.blue-paper-wrapper h1,
+	.blue-paper-wrapper h2,
+	.blue-paper-wrapper h3,
+	.blue-paper-wrapper h4 {
+		color: #002D72;
+		font-family: 'VolteB';
+		margin: 10px 0 15px;
+		line-height: 1.1;
+	}
+	.blue-paper-wrapper h1 { font-size: 42px; }
+	.blue-paper-wrapper h2 { 
+		font-size: 32px;
+		margin: 20px 0 15px;
+	}
+	.blue-paper-wrapper h3 { font-size: 24px; }
+	.blue-paper-wrapper h4 { font-size: 22px; }
+	.blue-paper-wrapper p,	
+	.blue-paper-wrapper ul li {
+		font-size: 22px;
+		line-height: 1.25;
+		color: #002D72;
+	}
+    .blue-paper-wrapper ul  {
+		padding-left: 35px;
+		margin-bottom: 30px !important;
+    }
+        .blue-paper-wrapper ul li {
+            padding-left: 10px;
+        }
+            .blue-paper-wrapper ul li:before {
+                background: #002D72;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+		.blue-paper-wrapper .page__content.rte p a {
+			color: #002D72 !important;
+			text-decoration: underline;
+			font-family: 'VolteB';
+			text-underline-position: auto;
+		}
+
+	.blue-paper-wrapper .rte p a.view-product {
+		position: relative;
+		font-family: 'VolteB';
+		font-size: 20px;
+		line-height: 1.25;
+		color: #307FE2 !important;
+		text-decoration: none;
+		margin: 20px 0 0;
+		display: inline-block;
+	}
+	.blue-paper-wrapper .rte p a.view-product:after {
+        position: absolute;
+        content: ' ';
+        right: -20px;
+        top: 48%;
+        width: 10px;
+        height: 10px;
+        background: url('https://wellwise.s3.amazonaws.com/fa-arrow-right-lb.png') center center no-repeat;
+        background-size: contain;
+        transform: translateY(-50%);
+    }
+.container--takeover-custom h1.heading {
+	font-size: 42px;
+	line-height: 1;
+	color: #C7DDF3;
+	margin: 0px 0 10px;
+	padding: 0px;
+	text-align: left;
+	max-width: 50%;
+}
+.container--takeover-custom h1.heading .white-text {
+	color: #fff;
+	display: block;
+}
+.container--takeover-custom h2.heading {
+	font-size: 65px;
+	padding: 0px;
+	margin: 15px 0 15px;
+	max-width: 60%;
+}
+.container--takeover-custom .page__header {
+	text-align: left !important;
+}
+
+@media(max-width: 768px) {
+	.container.container--takeover-custom {
+		background: #002D72;
+	}
+		.container--takeover-custom .page__header {
+			flex-direction: column;
+			padding: 15px 0 5px;
+		}
+		.container.container--takeover-custom .heading {
+			padding: 0 0px;
+			width: 100%;
+		}
+		.container--takeover-custom h1.heading {
+			font-size: 24px;
+			max-width: 100%;
+		}
+		.container--takeover-custom h2.heading {
+			font-size: 36px;
+			margin-top: 0px;
+			max-width: 100%;
+		}
+	.blue-paper-wrapper h1 { font-size: 30px; }
+	.blue-paper-wrapper h2 { font-size: 25px; }
+	.blue-paper-wrapper h3 { font-size: 20px; }
+	.blue-paper-wrapper h4,
+	.blue-paper-wrapper p { 
+		font-size: 18px;
+	}
+	.blue-paper-wrapper .rte a {
+		font-size: 20px;
+	}
+}
+
+@media(min-width: 768px) and (max-width: 1280px) {
+	.container--takeover-custom .page__header {
+		flex-direction: column;
+		margin: 0px;
+		max-width: 60%;
+	}
+	.container--takeover-custom .heading {
+		max-width: 100% !important;
+		width: 100%;
+	}
+}
+{% endstyle %}

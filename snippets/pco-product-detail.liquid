@@ -1,0 +1,36 @@
+
+{%- assign pco = selected_variant.metafields.pim.pco -%}
+{% assign basePco = selected_variant.price | divided_by: 100 | floor | times: 15 %}
+{% capture bonusPco %}
+	{%- if pco.PCOBonus == 'yes' -%}
+      {%- if pco.PCOPromoType == 'fixed' -%} 
+      	<span class="product-meta__pco-bonusAmount">{{pco.PCOAmount | times: 100 | money_without_currency | remove: '.00' }}</span>
+      {%- else -%}
+      	<span class="product-meta__pco-bonusAmount">{{pco.PCOAmount}}</span>
+      {%- endif -%}
+    {%- endif -%}
+{% endcapture %}
+
+{% capture bonus-points %}
+		 <span class="product-meta__pco-bonus">
+           	{%- if pco.PCOBonus == 'yes' -%}
+              {%- if pco.PCOPromoType == 'fixed' -%} 
+                  {{section.settings.pcoBonusFixed | replace: '##amount##', bonusPco }}
+               {%- else -%}
+                  {{section.settings.pcoBonusMultiple | replace: '##amount##', bonusPco }}
+              {%- endif -%}
+           {%- endif -%}
+		</span>
+{% endcapture %}
+
+{% capture base-points %}
+	<span class="product-meta__pco-base">{{ basePco }}</span>
+{% endcapture %}
+
+<div class="product-meta__pco">
+  <i>{{section.settings.pcoBase | replace: '##bonus-points##', bonus-points | replace: '##basePco##', base-points}}</i>
+  <div class="tooltip">
+    <i class="fa fa-into-circle circle-icon">i</i>
+    <span class="tooltiptext">{{section.settings.pcoTooltip}}</span>
+  </div>
+</div>

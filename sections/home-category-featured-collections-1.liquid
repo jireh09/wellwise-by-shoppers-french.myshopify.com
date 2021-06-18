@@ -1,0 +1,41 @@
+{% include 'category-product-collections' %}
+
+{% schema %}
+  {
+    "name": "Featured Collections",
+	"class": "container category-page-section category-product-list",
+    "settings": [
+		{
+          "id": "title1",
+          "type": "text",
+          "label": "Title",
+          "default": "Section title"
+        },
+        {
+          "id": "title2",
+          "type": "textarea",
+          "label": "Copy",
+          "default": "Section copy."
+        }
+	],
+	"blocks": [
+	{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+			{
+              "id": "collection",
+              "type": "collection",
+              "label": "Featured Collection"
+            }
+          ]
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

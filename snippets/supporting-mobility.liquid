@@ -1,0 +1,185 @@
+<h1 class="heading">
+  {{ section.settings.title }}
+</h1>
+<p>
+  {{ section.settings.copy }}
+</p>
+
+<div class="flex-mob-group slick-carousel" data-slidesToScroll="5" data-responsive='[{ "breakpoint": 1350, "settings": { "rows": 1, "slidesToScroll": 1, "slidesToShow": 1 } }]'>
+  {% for block in section.blocks %}
+  <div>
+    <div class="mob-header">
+      <div class="img-icon-container">
+        <img src="{{ block.settings.icon| img_url: "master" }}" alt="" class="icon-img" />
+      </div>
+    </div>
+    <div class="mob-body">
+      <h2 class="heading">
+        {{ block.settings.title }}
+      </h2>
+      <p>
+        {{ block.settings.copy }}
+      </p>
+      <a href="{{ block.settings.link_url }}" class="item_cta">
+        <span>{{ block.settings.link_text }}</span>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% style %}
+.supp-mobil-sect > h1 {
+	margin: 20px auto 20px;
+}
+.supp-mobil-sect > p {
+	font-size: 22px;
+	line-height: 1.2;
+	color: #002D72;
+}
+.supp-mobil-sect .flex-mob-group {
+	border: 1px solid #D8D8D8;
+	margin: 35px 0 0;
+}
+  .supp-mobil-sect .flex-mob-group .slick-track {
+	display: flex !important;
+  }
+  .supp-mobil-sect .flex-mob-group .slick-slide {
+	height: inherit;
+	position: relative;
+    width: 100%;
+	text-align: center;
+	background: #fff;
+  }
+	.supp-mobil-sect .flex-mob-group .mob-header {
+		position: relative;
+		z-index: 2;
+		background: #00AB84;
+		padding: 80px 20px 70px;
+	}
+		
+		.supp-mobil-sect .flex-mob-group .mob-header img {
+			margin: 0px auto;
+		}
+		.supp-mobil-sect .flex-mob-group .mob-header:after {
+          content: ' ';
+          position: absolute;
+          right: 75%;
+          top: 50%;
+          transform: translateY(-50%);
+          background: url('https://wellwise.s3.amazonaws.com/dotline.png') center center no-repeat;
+          background-size: contain;
+          width: 150px;
+          height: 8px;
+		}
+		.supp-mobil-sect .flex-mob-group .slick-slide:first-child .mob-header:after { display: none; }
+	.supp-mobil-sect .flex-mob-group .mob-body {
+		padding: 40px 12% 85px;
+	}
+      .supp-mobil-sect .flex-mob-group .mob-body:after {
+          content: ' ';
+		  z-index: 1;
+		  position: absolute;
+          right: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background: #D8D8D8;
+      }
+		.supp-mobil-sect .flex-mob-group > div:last-child .mob-body:after { display: none; }
+	.supp-mobil-sect .flex-mob-group .mob-body h2 {
+		font-size: 30px;
+		line-height: 1;
+		margin: 0px auto 20px;
+	}
+	.supp-mobil-sect .flex-mob-group .mob-body p {
+		font-size: 22px;
+		line-height: 1.25;
+		color: #002D72;
+	}
+
+	.supp-mobil-sect .flex-mob-group .mob-body .item_cta {
+		position: absolute;
+		bottom: 50px;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 20px;
+		line-height: 1;
+		color: #307FE2;
+		font-family: 'VolteB';
+		max-width: calc(100% - 10px);
+		width: 100%;
+	}
+		.supp-mobil-sect .flex-mob-group .mob-body .item_cta span { position: relative; padding-right: 30px; }
+		.supp-mobil-sect .flex-mob-group .mob-body .item_cta span:after {
+            content: ' ';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: url('https://wellwise.s3.amazonaws.com/fa-arrow-right-lb.png') center center no-repeat;
+            background-size: contain;
+            width: 11px;
+            height: 11px;
+		}
+
+@media(min-width: 1024px) and (max-width: 1350px) {
+	.supp-mobil-sect .flex-mob-group {
+		max-width: 640px;
+		margin: 0px auto;
+	}
+	.supp-mobil-sect .flex-mob-group .slick-dots {
+		/*display: none*/
+    	display: block;
+    	position: absolute;
+    	bottom: -60px;
+    	left: 50%;
+    	transform: translateX(-50%);
+	}
+
+	.supp-mobil-sect .flex-mob-group .mob-header:after {
+		right: 0px;
+	}
+}
+@media(max-width: 1024px) {
+	.supp-mobil-sect .flex-mob-group {
+		flex-direction: column;
+		margin-left: -20px;
+		width: calc(100% + 40px);
+		border-bottom: none;
+		overflow: hidden;
+		border: none;
+	}
+	.supp-mobil-sect .flex-mob-group > div {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.supp-mobil-sect .flex-mob-group .mob-header {
+		background: url('https://wellwise.s3.amazonaws.com/dotline.png') 100% center no-repeat #00AB84;
+	}
+	.supp-mobil-sect .flex-mob-group .mob-header:after {
+		display: none;
+	}
+	.slick-slide {
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+		position: relative;
+    }
+	.supp-mobil-sect .slick-dots {
+		margin-top: 35px;
+	}
+    .supp-mobil-sect .flex-mob-group .mob-body:after {
+        display: none;
+    }
+
+	.category-items-spons-group {
+		margin-left: -20px;
+		width: calc(100% + 40px);
+		overflow: hidden;
+	}
+	.sponsors-section .slick-dots {
+		margin-top: 30px;
+	}
+}
+{% endstyle %}

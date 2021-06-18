@@ -1,0 +1,27 @@
+{%- assign pco = item.metafields.pim.pco -%}
+
+{% capture bonusPco %}
+	{%- if pco.PCOBonus == 'yes' -%}
+      {%- if pco.PCOPromoType == 'fixed' -%} 
+      	<span class="product-meta__pco-bonusAmount">{{pco.PCOAmount | times: 100 | money_without_currency | remove: '.00' }}</span>
+      {%- else -%}
+      	<span class="product-meta__pco-bonusAmount">{{pco.PCOAmount}}</span>
+      {%- endif -%}
+    {%- endif -%}
+{% endcapture %}
+
+{% capture bonus-points %}
+		 <span class="product-meta__pco-bonus">
+           	{%- if pco.PCOBonus == 'yes' -%}
+              {%- if pco.PCOPromoType == 'fixed' -%} 
+                  {{settings.product_tile_pcoBonusFixed | replace: '##amount##', bonusPco }}
+               {%- else -%}
+                  {{settings.product_tile_pcoBonusMultiple | replace: '##amount##', bonusPco }}
+              {%- endif -%}
+           {%- endif -%}
+		</span>
+{% endcapture %}
+
+<div style="color: #CB333B; position: absolute; margin-top: -42px;">
+  {{ bonus-points }}
+</div>

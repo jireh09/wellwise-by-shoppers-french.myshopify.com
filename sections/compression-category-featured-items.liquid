@@ -1,0 +1,55 @@
+{% include 'featured-items' %}
+
+{% schema %}
+  {
+    "name": "Featured Items",
+	"class": "container category-page-section featured-items-section",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "copy",
+              "type": "richtext",
+              "label": "Copy"
+            },
+			{
+              "id": "link_text",
+              "type": "text",
+              "label": "Link text"
+            },
+			{
+              "id": "link_Url",
+              "type": "text",
+              "label": "Link Url"
+            },
+			{
+              "id": "featured_image",
+              "type": "image_picker",
+              "label": "Featured Image"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

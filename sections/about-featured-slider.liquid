@@ -1,0 +1,91 @@
+<div class="container">
+  <h1 class="heading">
+  	{{ section.settings.title }}
+  </h1>
+  
+  <div class="fg-container slick-carousel">
+  {% for block in section.blocks %}
+    <div>
+        <div class="fg">
+          <div>
+                <img src="{{ block.settings.featured_image | img_url : 'master' }}" alt="" />
+          </div>
+          <div>
+            <h2 class="heading">
+              {{ block.settings.title }}
+            </h2>
+
+            {% if block.settings.copy contains '</p>' %}
+                {{ block.settings.copy }}
+            {% else %}
+            <p>
+              {{ block.settings.copy }}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Featured slider",
+	"class": "category-items-container about-westand-container",
+    "settings": [
+     {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        }
+    ],
+	"blocks": [
+    {
+      "type": "slider",
+      "name": "Slider",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "copy",
+          "type": "richtext",
+          "label": "Copy"
+        },
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Featured image"
+        }
+      ]
+    }],
+  	"presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.about-us-wrapper .about-westand-container {
+	background: #C7DDF3;
+	padding: 64px 0px;
+	margin: 100px auto 100px;
+}	
+	.about-us-wrapper .about-westand-container h1 {
+		font-size: 50px;
+		line-height: 1.1;
+		margin-bottom: 20px;
+	}
+	.about-westand-container .fg {
+		display: flex;
+		align-items: center;
+	}
+		.about-westand-container .fg > div { width: 50%; }
+		.about-westand-container .fg > div:nth-child(2) { padding-left: 8%; }
+		.about-westand-container .fg h2 {
+			font-size: 42px;
+			line-height: 1.1;
+			margin: 0 0 10px;
+		}
+{% endstylesheet %}

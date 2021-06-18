@@ -1,0 +1,230 @@
+<div class="container">
+  <h1 class="heading">
+    {{ section.settings.title }}
+  </h1>
+  
+  <div class="fg-promotion-container">
+    {% for block in section.blocks %}
+    <div class="fg-promotion">
+      <div>
+        <img src="{{ block.settings.featured_img | img_url: 'master' }}" alt="" />
+        
+        {% if block.settings.button_text != blank %}
+        <a href="{{ block.settings.button_link}}" class="button button--primary shop-now-btn" style="background: {{ block.settings.button_background }}; color: {{ block.settings.button_text_color }};">
+          {{ block.settings.button_text }}
+        </a>
+        {% endif %}
+      </div>
+      <div>
+        <h2 class="heading">
+          {{ block.settings.title }}
+        </h2>
+        <h3>
+          {{ block.settings.subtitle }}
+        </h3>
+        {% if block.settings.link_text != blank %}
+        <a href="{{ block.settings.link_url }}" class="button button--primary">
+          {{ block.settings.link_text }}
+        </a>
+        {% endif %}
+        <p class="desktop-legal">
+          {{ block.settings.legal }}
+        </p>
+      </div>
+    </div>
+    <p class="mobile-legal">
+      {{ block.settings.legal }}
+    </p>
+    {% endfor %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Promotion block",
+	"class": "category-items-container promotion-block-container",
+    "settings": [
+		{
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+		}
+	],
+	"blocks": [
+  		{
+          "type": "category_item",
+          "name": "Item",
+          "settings": [
+            {
+              "id": "featured_img",
+              "type": "image_picker",
+              "label": "Featured image"
+            },
+			{
+              "id": "title",
+              "type": "text",
+              "label": "Title"
+            },
+			{
+              "id": "subtitle",
+              "type": "text",
+              "label": "Subtitle"
+            },
+			{
+              "id": "legal",
+              "type": "text",
+              "label": "Legal"
+            },
+            {
+              "id": "link_text",
+              "type": "text",
+              "label": "Link text"
+            },
+            {
+              "id": "link_url",
+              "type": "url",
+              "label": "Link Url"
+            },
+			{
+              "id": "button_text",
+              "type": "text",
+              "label": "Button"
+            },
+            {
+              "id": "button_link",
+              "type": "url",
+              "label": "Link"
+            },
+            {
+              "type": "color",
+              "id": "button_background",
+              "label": "Background",
+              "default": "#CB333B"
+            },
+            {
+              "type": "color",
+              "id": "button_text_color",
+              "label": "Text",
+              "default": "#ffffff"
+            }
+          ]
+        }	
+  	],
+  "presets": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+.fg-promotion {
+	display: flex;
+	background: #fff;
+	margin-bottom: 35px;
+	border: 1px solid #D9D9D9;
+	align-items: center;
+}
+.fg-promotion-container .mobile-legal { display: none; font-size: 16px !important; line-height: 1.2; }
+
+    .fg-promotion > div:nth-child(1) { 
+		width: 30%;
+		position: relative;
+	}
+    .fg-promotion > div:nth-child(2) {
+        width: 70%;
+        padding: 20px 50px;
+    }
+    .offers-promotions-wrapper .fg-promotion p {
+        font-size: 16px;
+        line-height: 1.1;
+    }
+	.fg-promotion .button.shop-now-btn {
+		position: absolute;
+		bottom: 8%;
+		left: 6.5%;
+		margin: 0;
+		line-height: 2em;
+		width: auto;
+		max-width: none;
+	}
+    .fg-promotion h2 {
+        font-size: 30px;
+        line-height: 1.1;
+        margin: 10px 0 10px;
+    }
+    .fg-promotion h3 {
+        font-size: 22px;
+        line-height: 1.1;
+        color: #002D72;
+        font-family: 'Volte';
+        margin: 0px 0 15px;
+    }
+    .fg-promotion .button {
+        width: 100%;
+        max-width: 380px;
+        margin: 15px 0 30px;
+    }
+
+@media(max-width: 768px) {
+	.fg-promotion {
+		flex-direction: column;
+		max-width: 460px;
+		width: calc(100% + 80px);
+		margin: 0px auto 40px -40px;
+	}
+		.fg-promotion-container .mobile-legal {
+			max-width: 460px;
+			width: 100%;
+			margin: 0px auto 100px;
+		}
+        .fg-promotion > div:nth-child(1),
+        .fg-promotion > div:nth-child(2) {
+            width: 100%;
+        }
+		.fg-promotion > div:nth-child(1) img { width: 100%; }
+		.fg-promotion > div:nth-child(2) { 
+			padding: 0px 40px;
+		}
+
+	.fg-promotion-container .desktop-legal { display: none; }
+	.fg-promotion-container .mobile-legal { display: block; }
+	.offers-wic-container .offers-category-wi-icons .inner {
+		display: block !important;
+	}
+	.offers-wic-container .offers-category-wi-icons .inner > div {
+		border-bottom: 1px solid #D8D8D8;
+	}
+}
+@media(min-width: 440px) and (max-width: 768px) {
+	.fg-promotion {
+		margin: 0px auto 40px;
+	}
+}
+@media(min-width: 768px) and (max-width: 1200px) {
+	.fg-promotion-container .desktop-legal { display: none; }
+	.fg-promotion-container .mobile-legal { display: block; }
+	.fg-promotion > div:nth-child(1) { width: 40% }
+    .fg-promotion > div:nth-child(2) { width: 60%; }
+	.fg-promotion > div:nth-child(2) { 
+		padding: 0px 30px;
+	}
+		.fg-promotion .button { margin-bottom: 5px; }
+	.fg-promotion h2 {
+		font-size: 26px;
+		line-height: 1.1;
+	}
+	.fg-promotion h3 {
+		font-size: 18px;
+		line-height: 1.05;
+	}
+	.fg-promotion-container .mobile-legal {
+    	width: 100%;
+    	margin: 0px auto 50px;
+    }
+}
+@media(min-width: 1200px) and (max-width: 1400px) {
+	.fg-promotion > div:nth-child(1) { width: 35%; }
+	.fg-promotion > div:nth-child(2) { width: 65%; }
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

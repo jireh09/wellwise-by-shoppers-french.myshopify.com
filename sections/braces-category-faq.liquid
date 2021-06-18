@@ -1,0 +1,81 @@
+{% include 'category-faq' with section %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "id": "faq_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "faq_image",
+      "label": "Featured image"
+    },
+	{
+      "type": "header",
+      "content": "Stay In Touch"
+    },
+	{
+       "id": "title",
+       "type": "text",
+       "label": "Title",
+	   "default": "Let's stay in touch!"
+    },
+    {
+       "id": "copy",
+       "type": "richtext",
+       "label": "Copy"
+    },
+    {
+       "id": "success_title",
+       "type": "text",
+       "label": "Title",
+	   "default": "Thank you for signing up!"
+    },
+    {
+       "id": "success_copy",
+       "type": "text",
+       "label": "copy",
+	   "default": "Keep an eye on your inbox for exclusive offers, and information on the latest products."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "id": "question",
+          "type": "text",
+          "label": "Question"
+        },
+        {
+          "id": "answer",
+          "type": "richtext",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": []
+}
+{% endschema %}
+
+{% javascript %}
+	$(document).on('click', '.faq-module .faq-item__header', function(e) {
+      e.preventDefault(); 
+      const $parentEl = $(this).parents('.faq-item');
+	  $parentEl.toggleClass('active');
+
+      $parentEl.find('.faq-item__body').slideToggle();
+    });
+	$(document).on('click', '.faq-module .load-more-faq', function(e) {
+    	e.preventDefault(); 
+
+		$(this).slideToggle();
+		$('.faq-item.load-more-hidden').slideToggle();
+	});
+{% endjavascript %}

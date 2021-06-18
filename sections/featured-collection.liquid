@@ -1,0 +1,401 @@
+<section class="section" data-section-id="{{ section.id }}" data-section-type="featured-collection">
+  {%- assign blocks = section.blocks -%}
+
+  <div class="container">
+    <header class="section__header">
+      <div class="section__header-stack">
+        <h2 class="section__title heading">{{ section.settings.title | escape }}</h2>
+      </div>
+    </header>
+  </div>
+  
+  <div class="container tab-container">
+    <div class="select-region-tabs">
+      {% for block in blocks %}
+      <div data-collection="{{ block.settings.collection }}">
+        {{ block.settings.label }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="select-region-tab-body" data-max-count="{{ section.settings.products_count }}"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Products to show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collections",
+      "settings": [
+       	{
+        	"id": "collection",
+        	"type": "collection",
+        	"label": "Collection"
+        },
+       	{
+        	"id": "label",
+        	"type": "text",
+        	"label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Featured collection",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+  
+{% stylesheet %}
+  .container.tab-container {
+  	margin: 35px auto 20px;
+  }
+  .product-item__info-inner .product-item__title {
+ 	line-height: 1.2;
+  }
+	.select-region-tab-body .slick-track {
+		margin: 0px !important;
+	}
+	.select-region-tab-body .slick-slide {
+		margin-right: 14px;
+	}
+	.select-region-tab-body .slick-dots {
+		margin: 0px auto 30px;
+	}
+  .select-region-tabs > div:first-child {
+  	border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .select-region-tabs > div:last-child {
+  	border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .collections-product-item {
+  	position: relative;
+  	background: #fff;
+    width: 25%;
+    margin: 0 5px 40px;
+    padding: 60px 25px 85px;
+    border: 1px solid #ccc;
+  }
+	.collections-product-item .pc-opt-flag {
+		position: absolute;
+		top: 25px;
+		left: 25px;
+		font-family: 'VolteBI';
+		color: #CB333B;
+		font-size: 14px;
+		line-height: 1.05;
+	}
+	.collections-product-item .in-stock-flag {
+        color: #00AB84;
+        font-size: 16px;
+        line-height: 1;
+		margin: 0px 0 20px;
+	}
+	.collections-product-item .price-off-flag {
+		font-family: 'VolteB';
+        color: #CB333B;
+		border: 2px solid #CB333B;
+        font-size: 16px;
+        line-height: 1;
+		padding: 4px 15px;
+		display: inline-table;
+	}
+	.collections-product-item .free-shipping-flag {
+		position: absolute;
+		top: 18px;
+		right: 0px;
+        color: #fff;
+		background: #CB333B;
+		font-family: 'VolteB';
+        font-size: 16px;
+        line-height: 1;
+		padding: 8px 20px;
+	}
+    .collections-product-item .ptitle {
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 4px 0px 0px;
+      display: block;
+    }
+    .collections-product-item .ww-product-item__price {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+	.collections-product-item .ww-product-item__price .price-container {
+		display: flex;
+		align-items: center;
+	}
+	.collections-product-item .ww-product-item__price .discount-price {
+		color: #CB333B;
+		font-size: 24px;
+		font-family: 'VolteB';
+		display: none;
+	}
+    .collections-product-item .ww-product-item__price .price {
+  		color: #2C2C2C;
+		font-family: 'VolteB';
+		font-size: 24px;
+		line-height: 1;
+    }
+  	.collections-product-item.has-discount .ww-product-item__price {
+		margin: 0 0;
+	}
+		.collections-product-item.has-discount .ww-product-item__price .discount-price {
+			display: block;
+		}
+		.collections-product-item.has-discount .ww-product-item__price .price {
+			font-size: 16px;
+			font-family: 'Volte';
+			margin-left: 10px;
+			text-decoration: line-through;
+		}
+  .collections-product-item .img-container {
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+  }
+    .collections-product-item .img-container img {
+      margin: 0px auto;
+      display: block;
+      height: 100%;
+	  padding: 20px 0;
+    }
+  .collections-product-item .button.product-item__action-button {
+  	position: absolute;
+    bottom: 25px;
+    max-width: calc(100% - 40px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media(min-width: 768px) and (max-width: 1540px) {
+	.collections-product-item .pc-opt-flag,
+	.collections-product-item .free-shipping-flag {
+		font-size: 12px;
+		line-height: 1;
+	}
+  }
+  @media(max-width: 768px) { }
+{% endstylesheet %}
+
+{% javascript %}
+	const $regionBody = $(".select-region-tab-body");
+	const maxCount = parseInt($regionBody.attr('data-max-count'));
+	
+	$regionBody.on('breakpoint init', function(event, slick) {
+		let html = '<ul class="slick-dots custom-dots" style="display: block;">';
+	    const dotsLength = Math.ceil(slick.slideCount / slick.options.slidesToShow);
+	    const $dots = slick.$dots;
+
+	    if(dotsLength > 1)
+	        html += '<li class="not-slick arrow-prev"><span></span></li>';
+	    for(var i = 0; i < dotsLength; i++) {
+	        html += '<li ' + (i == 0 ? 'class="slick-active"' : '' ) + '><span class="dot"></span></li>';
+	    }
+	    if(dotsLength > 1)
+	        html += '<li class="not-slick arrow-next"><span></span></li>';
+
+	    html += '</ul>';
+	    if(dotsLength > 1)
+	        $(slick.$list.context).append(html);
+		
+		matchHeights('.select-region-tab-body .ptitle', true);
+	});
+
+	$(document).on("click", ".select-region-tab-body .product-item__action-button", function (e) {
+		e.preventDefault();
+		const productVariantID = $(this).attr('data-variant-id');
+
+		const cartData = {
+          "bsub-recur": "",
+          form_type: "product",
+          id: productVariantID,
+          "product-template-6704265068717-1": "Extra Small",
+          "product-template-6704265068717-2": "10 Count",
+          quantity: "1",
+          utf8: "✓"
+		};
+
+        fetch("/cart/add.js", {
+          "headers": {
+            "accept": "*/*",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-requested-with": "XMLHttpRequest"
+          },
+		  "body": JSON.stringify(cartData),
+          "method": "POST",
+          "mode": "cors",
+        }).then(res => res.json()).then((res) => {
+          document.documentElement.dispatchEvent(new CustomEvent('product:added', {
+              bubbles: true,
+              detail: {
+                  quantity: 1
+              }
+          }));
+        });
+	});
+
+    $(document).on("click", ".select-region-tabs > div", function (e) {
+      e.preventDefault();
+	
+	  if($regionBody.hasClass('slick-initialized')) {
+		$regionBody.slick('unslick');
+	  }
+
+      if ($(this).hasClass("active")) return false;
+	  let productsHtml = '';
+
+      const target = $(this).text().trim().toLowerCase();
+      const collection = $(this).attr("data-collection");
+      $(".select-region-tabs > div.active").removeClass("active");
+      $(this).addClass("active");
+
+      $.ajax({
+        url: "/collections/" + collection + "/products.json",
+        type: "GET",
+      }).done(function (data) {
+        let productsHtml = "";
+        let productsLength = data.products.length;
+
+        if (productsLength > maxCount) {
+          productsLength = maxCount;
+        }
+
+        for (var i = 0; i < productsLength; i++) {
+          const product = data.products[i];
+          const discountPrice = product.variants[0].price;
+          const productPrice = product.variants[0].compare_at_price || productPrice;
+          const productLink = "/collections/" + collection + "/products/" + product.handle;
+          const addToCartLink = "/cart/add?id=" + product.variants[0].id + "&quantity=1";
+		  const productVariantID = product.variants[0].id;
+          let discountOffNum = Math.round((1 - (discountPrice / productPrice)) * 100);
+          let productImage;
+          const isFreeShipping = productPrice > 25;
+                                           
+          if (product.images.length > 0 && product.images[0].src != null) {
+            productImage = product.images[0].src;
+          }
+		  if(productImage) {
+			productImage = productImage.replace('.png', '_200x.png');
+		  }
+          if (product) {
+            productsHtml += `<div class="collections-product-item ${ productPrice != discountPrice ? "has-discount" : ""}">
+                <div>
+                    <div class="pc-opt-flag">
+                        10x PC optimum™ Points
+                    </div>
+                  ${ isFreeShipping ?
+                    `<div class="free-shipping-flag">
+                        Free Shipping
+                    </div>` : ''
+                  }
+                    <a href="${productLink}">
+                      <div class="img-container"> 
+                        <img src="${ productImage }" alt="" /> 
+                      </div>
+
+                      <span class="heading ptitle">
+                        ${product.title}
+                      </span>
+                    </a>
+                    <div class="ww-product-item__price">
+                      <div class="price-container">
+                        <span class="visually-hidden"> Sale price </span>
+                        <span class="discount-price">
+                            ${"$" + discountPrice}
+                        </span>
+                        <span class="price">
+                            ${"$" + productPrice}
+                        </span>
+                      </div>
+
+                      ${ discountOffNum > 0 ?
+                        `<div class="price-off-flag">
+                          ${discountOffNum}% Off
+                        </div>` : ''
+                      }
+                    </div>
+                    <p class="in-stock-flag">
+                        In-stock
+                    </p>
+                </div>
+
+                <a href="${addToCartLink}" data-variant-id="${productVariantID}" class="product-item__action-button button button--primary">Add to cart</a>
+            </div>`;
+          }
+        }
+		$regionBody.html(productsHtml);
+		$regionBody.slick({
+          rows: 1,
+          slidesToScroll: 4,
+          slidesToShow: 4,
+          dots: false,
+          arrows: false,
+          infinite: true,
+		  swipe: false,
+          customPaging: function(slider, i) {
+            return '<span class="dot"></span>';
+          },
+          speed: 300,
+          responsive: [
+			{
+              breakpoint: 1450,
+              settings: {
+                slidesToScroll: 3,
+                slidesToShow: 3
+              }
+            },
+			{
+              breakpoint: 1250,
+              settings: {
+                slidesToScroll: 2,
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToScroll: 1,
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      });
+  });
+
+  $(document).ready(function () {
+  	$(".select-region-tabs > div:first-child").trigger("click");
+  });
+{% endjavascript %}

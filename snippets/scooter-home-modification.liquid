@@ -1,0 +1,175 @@
+<div class="container category-page-section scooter-hmo-sect">
+  <h1 class="heading">
+    Prepare your home for your new scooter or power chair.<br />
+    Home Modifications.
+  </h1>
+  <p>
+    We offer a variety of solutions so you can adapt your home to easily accommodate a scooter or power chair.
+  </p>
+  
+  <div class="fg">
+    <div>
+      <ul>
+        <li>
+          Solutions range from ramps and porch lifts, to door operators.
+        </li>
+        <li>
+          Our CAPS certified design consultants offer home assessments and home safety design consultations.
+        </li>
+        <li>
+          All our contractors are reputable, licensed, and committed to quality service.
+        </li>
+        <li>
+          We offer scheduled post-sale follow-ups and preventative maintenance services.
+        </li>
+        <li>
+          All our products and services are compliant with health & safety standards.
+        </li>
+        <li>
+          All our equipment is certified (weight load testing)
+        </li>
+      </ul>
+    </div>
+    <div class="bg-img">
+      <img src="https://wellwise.s3.amazonaws.com/home-mod-icon.png" alt="" />
+    </div>
+  </div>
+  
+  <a href="#" class="button button--primary">
+    Contact Home Services
+  </a>
+  <p class="disclaimer">
+    Home Services are currently only available in Ontario.
+  </p>
+</div>
+
+{% style %}
+.scooter-hmo-sect {
+	margin: 100px auto 40px;
+}
+.scooter-hmo-sect > h1 {
+	margin-bottom: 15px;
+}
+.scooter-hmo-sect > p {
+	font-size: 22px;
+	line-height: 1.2;
+	color: #002D72;
+}
+.scooter-hmo-sect .fg {
+	display: flex;
+	background: #C3D7EE80;
+	padding: 70px 35px 20px;
+	margin: 40px 0 55px;
+}
+.scooter-hmo-sect .fg > div:nth-child(1) { width: 70%;}
+.scooter-hmo-sect .fg > div:nth-child(2) { width: 30%;}
+.scooter-hmo-sect ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+.scooter-hmo-sect li {
+	font-family: 'VolteB';
+	width: 50%;
+	position: relative;
+	font-size: 20px;
+	line-height: 1.3;
+	color: #002D72;
+	padding: 0px 10% 70px 55px;
+}
+	.scooter-hmo-sect li:before {
+		content: ' ';
+		position: absolute;
+		left: 0;
+		top: 0%;
+		width: 34px;
+		height: 34px;
+		background: url('https://wellwise.s3.amazonaws.com/checkmark_icon.png') center center no-repeat;
+		background-size: contain;
+	}
+.scooter-hmo-sect .bg-img {}
+.scooter-hmo-sect .bg-img img {
+	width: 100%;
+	max-width: 350px;
+	position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+.scooter-hmo-sect .button--primary {
+	display: block;
+	margin: 0px auto 10px;
+}
+.scooter-hmo-sect .disclaimer {
+	text-align: center;
+	font-size: 20px;
+	line-height: 1;
+	margin: 30px auto 0;
+	display: block;
+}
+
+@media(max-width: 1024px) {
+	.scooter-hmo-sect {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.scooter-hmo-sect .button--primary {
+		width: calc(100% - 40px);
+	}
+		.scooter-hmo-sect > h1,
+		.scooter-hmo-sect > p {
+			padding-left: 6%;
+			padding-right: 6%;
+		}
+	.scooter-hmo-sect .fg,
+	.scooter-hmo-sect ul {
+		flex-direction: column;
+	}
+      .scooter-hmo-sect .fg > div:nth-child(1),
+	  .scooter-hmo-sect .fg > div:nth-child(2),
+	  .scooter-hmo-sect ul > li {
+		width: 100%;
+      }
+		.scooter-hmo-sect li {
+			padding-bottom: 30px;
+		}
+	.scooter-hmo-sect .bg-img img {
+		top: auto;
+		transform: none;
+		margin: 10px auto 20px;
+		display: block;
+		max-width: 140px;
+	}
+}
+
+@media(min-width: 1024px) and (max-width: 1250px) {
+	.scooter-hmo-sect {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.scooter-hmo-sect .button--primary {
+		width: calc(100% - 40px);
+	}
+		.scooter-hmo-sect > h1,
+		.scooter-hmo-sect > p {
+			padding-left: 6%;
+			padding-right: 6%;
+		}
+	.scooter-hmo-sect .fg {
+		flex-direction: column;
+	}
+	.scooter-hmo-sect .fg > div:nth-child(1),
+	.scooter-hmo-sect .fg > div:nth-child(2) {
+		width: 100%;
+	}
+	.scooter-hmo-sect li {
+		padding-right: 3%;
+	}
+	.scooter-hmo-sect .bg-img img {
+		top: auto;
+		transform: none;
+		margin: 0px auto 40px;
+		display: block;
+		max-width: 290px;
+	}
+}
+{% endstyle %}

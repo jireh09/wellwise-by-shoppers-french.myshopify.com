@@ -1,0 +1,130 @@
+<h1 class="heading sect__title">
+  {{ section.settings.title }}
+</h1>
+
+<p>
+  {{ section.settings.copy }}
+</p>
+
+<h2 class="heading rental-pricing-label">
+  Rental Pricing Guide.
+</h2>
+
+<div class="sec_flex_group" >
+  {% for block in section.blocks %}
+  <div>
+    <div class="sect__header">
+      <h3>
+        {{ block.settings.title }}
+      </h3>
+      <h4>
+        {{ block.settings.subTitle }}
+      </h4>
+    </div>
+    <div class="sect__body">
+      <p>
+        {{ block.settings.copy }}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<p class="price-disclaimer">
+  Rental pricing may vary by store.
+</p>
+{% if section.settings.link_text != blank %}
+<a href="{{ section.settings.link_url }}" class="button button--primary" >
+  {{ section.settings.link_text }}
+</a>
+{% endif %}
+
+{% style %}
+.rental-pricing-section {
+	margin: 0px auto 100px;
+}
+.rental-pricing-section .sect__title {
+	margin-bottom: 15px;
+}
+.rental-pricing-section p {
+	color: #002D72;
+	font-size: 22px;
+	line-height: 1.2;
+}
+.rental-pricing-section .rental-pricing-label {
+	font-size: 30px;
+	line-height: 1;
+	margin-top: 50px;
+	color: #002D72;
+}
+.sec_flex_group {
+	display: flex;
+	column-gap: 15px;
+}
+.sec_flex_group > div {
+	width: 33.33%;
+	border: 1px solid #D8D8D8;
+	background: #fff;
+	text-align: center;
+}
+.sec_flex_group > div .sect__header {
+	border-bottom: 1px solid #D8D8D8;
+	padding: 25px 30px;
+}
+.sec_flex_group > div:nth-child(1) .sect__header {
+	background: #54585A;
+}
+.sec_flex_group > div:nth-child(2) .sect__header {
+	background: #307FE2;
+}
+.sec_flex_group > div:nth-child(3) .sect__header {
+	background: #002D72;
+}
+.sec_flex_group > div .sect__header h3,
+.sec_flex_group > div .sect__header h4 {
+	color: #fff;
+	font-family: 'VolteB';
+}
+.sec_flex_group > div .sect__header h3 {
+	font-size: 30px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+.sec_flex_group > div .sect__header h4 {
+	font-size: 22px;
+	line-height: 1;
+}
+.sec_flex_group > div .sect__body {
+	padding: 35px 30px 45px;
+}
+.sec_flex_group > div .sect__body p {
+	color: #002D72;
+	font-size: 22px;
+	line-height: 1.2;
+	max-width: 400px;
+	margin: 0px auto;
+}
+.rental-pricing-section .price-disclaimer {
+	margin: 25px 0 20px;
+	color: #002D72;
+}
+.rental-pricing-section .button--primary {
+	display: block;
+	margin: 0px auto;
+}
+
+@media(max-width: 1024px) {
+	.sec_flex_group {
+		flex-direction: column
+	}
+		.sec_flex_group > div {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+}
+@media(max-width: 768px) {
+    .sec_flex_group > div {
+    	margin-left: -20px;
+    	width: calc(100% + 40px);
+    }
+}
+{% endstyle %}

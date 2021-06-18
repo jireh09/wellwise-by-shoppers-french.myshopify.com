@@ -1,0 +1,31 @@
+{%- assign pco = selected_variant.metafields.pim.pco -%}
+{% assign basePco = selected_variant.price | times: quantity | divided_by: 100 | floor | times: 15 %}
+{% capture bonusPco %}
+	{%- if pco.PCOBonus == 'yes' -%}
+      {%- if pco.PCOPromoType == 'fixed' -%} 
+      	<span class="cart-product-meta__pco-bonusAmount">{{pco.PCOAmount | times: quantity | times: 100 | money_without_currency | remove: '.00' }}</span>
+      {%- else -%}
+      	<span class="cart-product-meta__pco-bonusAmount">{{pco.PCOAmount | minus: 1 | times: basePco | times: 100 | money_without_currency | remove: '.00' }}</span>
+      {%- endif -%}
+    {%- endif -%}
+{% endcapture %}
+
+{% capture bonus-points %}
+		 <span class="cart-product-meta__pco-bonus">
+           	{%- if pco.PCOBonus == 'yes' -%}
+              {%- if pco.PCOPromoType == 'fixed' -%} 
+                  {{settings.cart_pcoBonusFixed | replace: '##bonusPco##', bonusPco }}
+               {%- else -%}
+                  {{settings.cart_pcoBonusMultiple | replace: '##bonusPco##', bonusPco }}
+              {%- endif -%}
+           {%- endif -%}
+		</span>
+{% endcapture %}
+
+{% capture base-points %}
+	<span class="cart-meta__pco-base">{{ basePco | times: 100 | money_without_currency | remove: '.00' }}</span>
+{% endcapture %}
+
+<div style="font-size: 16px" class="cart-product-meta__pco">
+  <b>{{settings.cart_pcoBase | replace: '##bonus-points##', bonus-points | replace: '##basePco##', base-points}}</b>
+</div>

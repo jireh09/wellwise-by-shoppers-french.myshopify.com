@@ -1,0 +1,132 @@
+<div class="sleep-aid-symp-sect">
+  <div class="container category-page-section">
+    <div class="fg">
+      <div class="maxws">
+        <h1 class="heading">
+          Don’t sleep on <br /> these symptoms.
+        </h1>
+        <p class="copy">
+          If you are experiencing any of the below symptoms*, you may be suffering from Sleep Apnea, a sleep disorder that affects nearly 1 billion people across the world.
+          <br /> <br /> 
+          Discover more about Sleep Apnea here.
+        </p>
+        <a href="#" class="button button--primary">
+        	Learn more about sleep apnea
+        </a>
+        
+        <p class="heading source-label">
+          Source:
+        </p>
+        <a href="https://www.mayoclinic.org/diseases-conditions/sleep-apnea/symptoms-causes/syc-20377631" class="source-link" target="_blank">
+          https://www.mayoclinic.org/diseases-conditions/sleep-apnea/symptoms-causes/syc-20377631
+        </a>
+      </div>
+      <div>
+        <ul>
+          <li>Fatigue, even after a full night’s sleep</li>
+          <li>Loud snoring</li>
+          <li>Repeated stops in breathing during sleep</li>
+          <li>Sudden wakefulness accompanied by choking or gasping</li>
+          <li>Waking up with a sore throat or dry mouth</li>
+          <li>Morning headaches</li>
+          <li>Difficulty concentrating</li>
+          <li>Frequent nighttime urination</li>
+          <li>Memory loss</li>
+          <li>Nighttime sweating</li>
+          <li>Hypertension (high blood pressure)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+.sleep-aid-symp-sect {
+	background: #FFFFFF;
+	padding: 85px 0 90px;
+	margin: 80px auto 0;
+}
+.sleep-aid-symp-sect h1 {
+	font-size: 55px;
+	line-height: 1;
+	margin-bottom: 20px;
+}
+.sleep-aid-symp-sect .copy {
+	font-size: 22px;
+	line-height: 1.2;
+	color: #002D72;
+}
+.sleep-aid-symp-sect .source-label {
+	font-size: 18px;
+	line-height: 1;
+	margin: 0 0;
+}
+.sleep-aid-symp-sect .fg {
+	display: flex;
+}
+.sleep-aid-symp-sect .fg > div:nth-child(1) { width: 60%; }
+.sleep-aid-symp-sect .fg > div:nth-child(2) { width: 40%; }
+.sleep-aid-symp-sect .fg ul {
+	list-style: none;
+}
+.sleep-aid-symp-sect .fg li {
+	position: relative;
+	font-family: 'VolteB';
+	font-size: 22px;
+	line-height: 1.2;
+	color: #002D72;
+	padding: 10px 0 12px 55px;
+}
+	.sleep-aid-symp-sect .fg li:before {
+		content: ' ';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 34px;
+		height: 34px;
+		background: url('https://wellwise.s3.amazonaws.com/checkmark_icon.png') center center no-repeat;
+		background-size: contain;
+	}
+.sleep-aid-symp-sect .fg .maxws {
+	padding-right: 5%
+}
+  .sleep-aid-symp-sect .fg .maxws p {
+      max-width: 760px;
+	}
+.sleep-aid-symp-sect .source-link {
+	font-size: 15px;
+	line-height: 1;
+	color: #002D72;
+}
+.sleep-aid-symp-sect .button--primary {
+	margin: 20px 0px 40px;
+}
+@media(max-width: 1024px) {
+	.faq-module .faq-item__header:after {
+		top: 40%;
+	}
+	.sleep-aid-symp-sect .button--primary {
+		width: 100%;
+		max-width: 100%;
+	}
+}
+@media(max-width: 1200px) {
+	.sleep-aid-symp-sect {
+		padding: 60px 20px 45px;
+	}
+	.sleep-aid-symp-sect .fg {
+		flex-direction: column;
+	}
+	.sleep-aid-symp-sect .fg > div:nth-child(1),
+	.sleep-aid-symp-sect .fg > div:nth-child(2) {
+		width: 100%;
+	}
+	.sleep-aid-symp-sect .fg > div:nth-child(2) {
+		margin-top: 30px;
+	}
+	.sleep-aid-symp-sect .fg .maxws {
+		padding-right: 0px;
+	}
+}
+{% endstyle %}

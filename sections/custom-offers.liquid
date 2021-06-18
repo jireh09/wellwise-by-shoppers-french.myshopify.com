@@ -1,0 +1,85 @@
+<section class="section" data-section-id="{{ section.id }}" data-section-type="offers">
+    <div class="container">
+        <header class="section__header">
+            <h2 class="section__title heading h3">
+                {{ section.settings.title }}
+            </h2>
+        </header>
+        <div class="more-grid">
+          {% for block in section.blocks %}
+          <div class="more-grid-item {% if forloop.index > 6 %}not-visible{% endif %}" id="block-{{ block.id }}">
+            <img src="{{ block.settings.featured_image | img_url : 'master' }}" alt="" class="offer-img" />
+            <a href="{{ block.settings.button_link }}" class="button button--primary">
+              {{ block.settings.button_text }}
+            </a>
+
+            <style>
+              #block-{{ block.id }} .button.button--primary {
+                background: {{ block.settings.button_background }};
+                color: {{ block.settings.button_text_color }};
+              }
+            </style>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if section.blocks.size > 6 %}
+        <a href="#" class="button button--primary more-view-all">
+          View All
+        </a>
+        {% endif %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Offers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Your title"
+    }
+  ],
+  "blocks": [{
+      "type": "offers",
+      "name": "Offers",
+      "settings": [
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": "Button"
+        },
+        {
+          "id": "button_link",
+          "type": "url",
+          "label": "Link"
+        },
+		{
+          "type": "color",
+          "id": "button_background",
+          "label": "Background",
+          "default": "#CB333B"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Text",
+          "default": "#ffffff"
+        },
+        {
+          "id": "featured_image",
+          "type": "image_picker",
+          "label": "Featured image"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "category": "Advanced",
+      "name": "Custom Offers"
+    }
+  ]
+}
+{% endschema %}

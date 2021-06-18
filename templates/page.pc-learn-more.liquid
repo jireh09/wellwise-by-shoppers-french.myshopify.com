@@ -1,0 +1,422 @@
+<div class="pc-opt-wrapper">  
+  <div class="pc-container">
+    <div class="container">
+      <img src="https://wellwise.s3.amazonaws.com/offer-promotions/PC_logo.png" class="pc-logo" alt="" />
+    </div>
+  </div>
+  
+  <div class="container pc-intro">
+  	{{ page.content }}
+  </div>
+  
+  <div class="not-member-yet-sect">
+    <div>
+      <h1 class="heading">
+        Not a member yet?
+      </h1>
+      <p>
+        Don’t miss out on earning points and getting exclusive offers, visit pcoptimum.ca to get started today.
+      </p>
+      <a href="https://accounts.pcid.ca/create-account" target="_blank" class="button button--primary">
+        Join now
+      </a>
+    </div>
+    <div>
+      <img src="https://wellwise.s3.amazonaws.com/offer-promotions/notamember.png" class="not-memb-img" alt="" />
+    </div>
+  </div>
+  
+  <div class="learn-earn-sect">
+    <div class="container">
+      <h1>
+        Learn how to earn.
+      </h1>
+      <p>
+        Calculating how many PC Optimum™ points you can earn is easy: Every 10,000 points is like $10 worth of free stuff – meaning the more you earn, the more you save! †
+      </p>
+      
+      <div class="fg">
+        <div>
+          <h1>
+            Get shopping,<br /> start earning
+          </h1>
+          <p>
+            Earn 15 points on almost every dollar you spend online at wellwise.ca and Wellwise by Shoppers™ locations.
+          </p>
+        </div>
+        <div>
+          <h1>
+            Save or spend your <br /> points – it’s up to you!
+          </h1>
+          <p>
+            For every 10,000 points you earn, you get $10 off once you decide to use them. You can save up to 500,000 points or $500 towards an eligible purchase!
+          </p>
+        </div>
+        <div>
+          <h1>
+            Start your <br /> spending spree
+          </h1>
+          <p>
+            When you’re ready to use your points, just apply them to eligible purchases and enjoy the savings you’ve earned!
+          </p>
+        </div>
+      </div>
+      
+      <p class="les-legal">
+        †Purchase a qualifying product before taxes and after redemptions and all coupons and discount are deducted in a single transaction (excludes any products for which government funding is provided, rentals, services, delivery charges, transit tickets, passport photos, gift cards, third-party gift cards and any other products that may not legally be offered in connection with the Program, are provincially regulated or as we determine from time to time), to earn the bonus points and base points indicated. PC Optimum™ points will be awarded to your account within 4 weeks after your order has been shipped. Product availability may vary by store. We are not obligated to award points based on errors or misprints. No cash value. Does not apply to prior purchases. Minimum redemption 10,000 points. See terms & conditions for redemption restrictions.
+      </p>
+    </div>
+
+    <div class="pc-ring pc-ring-1"></div>
+    <div class="pc-ring pc-ring-2"></div>
+    <div class="pc-ring pc-ring-3"></div>
+  </div>
+  
+  <div class="how-redeem-sect">
+    <div class="container">
+      <h1>
+        How to redeem your PC Optimum™ points.
+      </h1>
+
+      <div class="fg">
+        <div>
+          <p>
+            You can use your PC Optimum™ points to pay, or partially pay, for eligible purchases by using your PC Optimum™ card or the PC Optimum™ App at our in-store locations. One of our friendly staff would be happy to apply your points to your purchase and walk you through the process. 
+          </p>
+          <p class="hr-legal">
+            You must redeem a minimum of 10,000 PC Optimum™ points at a time, which are worth $10 in rewards. If you want to redeem more than 10,000 PC Optimum™ points at one time, you must redeem them in increments of 10,000 PC Optimum™ points, each increment being worth $10 in rewards. The maximum value of PC Optimum™ points that you can redeem in one transaction is 500,000, or such higher amount as may be set by us from time to time.
+          </p>
+        </div>
+        <div>
+          <img src="https://wellwise.s3.amazonaws.com/offer-promotions/PCOptimum_Right.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="learn-more-sect">
+    <div class="container">
+      <h2>
+        Want to learn more?
+      </h2>
+      <p>
+        You can explore the full program details by visiting the PC Optimum™ Terms & Conditions page.
+      </p>
+      <a class="button button--primary" href="https://www.pcoptimum.ca/company-policy/terms-and-conditions#:~:text=To%20%E2%80%9Credeem%E2%80%9D%20means%20to%20use,terminal%20or%20other%20payment%20processing" target="_blank">
+        Learn more
+      </a>
+    </div>
+  </div>
+  
+  <p class="learn-more-disclaimer container">
+    PC Optimum™, PC®, and PC Logo are trademarks of Loblaws Inc., used under license.
+    <br />
+    The PC Optimum™ program is provided by President's Choice Services Inc.
+  </p>
+</div>
+
+{% style %}
+@font-face {
+  font-family: 'NoirPro';
+  src: url("{{ 'NoirPro-Medium.woff' | asset_url }}") format("woff");
+  font-weight: normal;
+  font-style: normal; 
+}
+@font-face {
+  font-family: 'NoirPro';
+  src: url("{{ 'NoirPro-Bold.woff' | asset_url }}") format("woff");
+  font-weight: bold;
+  font-style: normal; 
+}
+@font-face {
+  font-family: 'Chronicle';
+  src: url("{{ 'Chronicle-Display-Semibold.woff' | asset_url }}") format("woff");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+.pc-opt-wrapper {
+	background: #fff;
+}
+	.pc-opt-wrapper .heading {
+		font-family: 'NoirPro';
+		font-weight: bold;
+	}
+.pc-container {
+	background: #FFD9D9;
+	padding: 65px 20px 80px;
+}
+	.pc-container .pc-logo {
+		max-width: 550px;
+	}
+
+	.pc-intro {
+		width: 100%;
+		margin: 50px auto 20px;
+	}
+		
+	.pc-opt-wrapper .pc-intro p {
+		max-width: 1230px;
+		font-family: 'Chronicle';
+		font-size: 25px;
+		line-height: 1.45;
+	}
+	.pc-opt-wrapper p {
+		font-size: 22px;
+		line-height: 1.2;
+		color: #1C1C1C;
+	}
+	.not-member-yet-sect {
+		display: flex;
+		border: 5px solid #F7A3A0;;
+		margin: 120px auto 20px;
+		max-width: 1330px;
+		position: relative;
+	}
+		.not-member-yet-sect .not-memb-img {
+    		position: relative;
+      		margin-top: -9%;
+    		left: 9%;
+			padding-bottom: 30px;
+		}
+        .not-member-yet-sect > div:nth-child(1) { 
+			width: 60%;
+			padding: 6% 10%;
+		}
+        .not-member-yet-sect > div:nth-child(2) { width: 40%; }
+		.not-member-yet-sect > div h1 {
+			font-size: 50px;
+			line-height: 1.1;
+			color: #EE3124;
+			margin-bottom: 15px;
+		}
+		.not-member-yet-sect p {
+			font-family: 'NoirPro';
+		}
+		.not-member-yet-sect .button--primary {
+			background: #000;
+			max-width: 260px;
+			width: 100%;
+			font-family: 'NoirPro';
+			font-weight: normal;
+			font-size: 18px;
+		}
+.learn-earn-sect {
+	background: #EE3124;
+	margin: 100px auto 50px;
+	padding: 90px 0 60px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+	
+	.learn-earn-sect > .container {
+		position: relative;
+		z-index: 2;
+	}
+		.learn-earn-sect > .container > p {
+			max-width: 1060px;
+			margin: 0px auto;
+        }
+	.learn-earn-sect .pc-ring {
+		position: absolute;
+		width: 200px;
+		height: 200px;
+  }
+	.learn-earn-sect .pc-ring-1 {
+		background: url('https://wellwise.s3.amazonaws.com/offer-promotions/pc_ring.png') center center no-repeat;
+		background-size: contain;
+		top: -10%;
+		left: -5.2%;
+	}
+	.learn-earn-sect .pc-ring-2 {
+		background: url('https://wellwise.s3.amazonaws.com/offer-promotions/pc_ring2.png') center center no-repeat;
+		background-size: contain;
+		bottom: -12%;
+		left: -3%;
+		width: 350px;
+		height: 350px;
+	}
+	.learn-earn-sect .pc-ring-3 {
+		background: url('https://wellwise.s3.amazonaws.com/offer-promotions/pc_ring2.png') center center no-repeat;
+		background-size: contain;
+		top: 10%;
+		right: -4%;
+		transform: rotate(-90deg);
+	}
+    .learn-earn-sect p,
+    .learn-earn-sect h1 {
+        color: #fff;
+    }
+    .learn-earn-sect h1 {
+        font-size: 50px;
+        line-height: 1.1;
+		font-family: 'NoirPro';
+		font-weight: bold;
+		margin-bottom: 30px;
+    }
+    .learn-earn-sect p {
+        font-size: 24px;
+        line-height: 1.2;
+		font-family: 'Chronicle';
+    }
+	.learn-earn-sect .fg {
+		display: flex;
+		text-align: left;
+		margin: 70px auto 90px;
+	}
+	.learn-earn-sect .fg > div {
+		width: 100%;
+		padding: 0 4%;
+	}
+		.learn-earn-sect .fg h1 {
+			position: relative;
+			font-size: 30px;
+			line-height: 1.1;
+			margin-bottom: 15px;
+		}
+		.learn-earn-sect .fg p {
+			line-height: 1.25;
+		}
+			.learn-earn-sect .fg h1:before {
+				position: absolute;
+				top: 0;
+				left: -32px;
+				width: 40px;
+				height: 40px;
+			}
+		.learn-earn-sect .fg > div:nth-child(1) h1:before { content: '1.'; }
+		.learn-earn-sect .fg > div:nth-child(2) h1:before { content: '2.'; }
+		.learn-earn-sect .fg > div:nth-child(3) h1:before { content: '3.'; }
+		.learn-earn-sect .les-legal {
+			font-family: 'NoirPro';
+			line-height: 1.3;
+			font-size: 14px;
+			max-width: 1090px;
+			margin: 0px auto;
+		}
+.how-redeem-sect {
+	background: #fff;
+	margin: 100px auto 20px;
+}
+  .how-redeem-sect .fg {
+      display: flex;
+      align-items: center;
+	}
+	.how-redeem-sect .fg > div {
+		width: 100%;
+	}
+	.how-redeem-sect h1 {
+        font-size: 50px;
+        line-height: 1.1;
+        color: #EE3124;
+        text-align: center;
+		font-family: 'NoirPro';
+		font-weight: bold;
+        margin: 0px auto 15px;
+    }
+	.how-redeem-sect p {
+		font-family: 'Chronicle';
+	}
+	.how-redeem-sect .hr-legal {
+		font-family: 'NoirPro';
+		font-size: 14px;
+		line-height: 1.3;
+	}
+.learn-more-sect {
+	background: #FFD9D9;
+	text-align: center;
+	padding: 50px 20px 60px;
+}
+	.learn-more-sect h2 {
+		font-family: 'NoirPro';
+		font-weight: bold;
+		font-size: 36px;
+		line-height: 1.1;
+		color: #EE3124;
+		margin: 0px auto 20px;
+	}
+	.learn-more-sect .button--primary {
+        background: #000;
+        max-width: 260px;
+        width: 100%;
+		font-family: 'NoirPro';
+		font-weight: normal;
+        font-size: 18px;
+		margin: 10px auto 10px;
+	}
+.learn-more-disclaimer.container {
+	margin: 60px auto 0px;
+	font-family: 'NoirPro';
+	font-size: 18px;
+	line-height: 2;
+	padding-bottom: 80px;
+	color: #2D2E39;
+}
+
+@media(max-width: 768px) {
+.pc-container {
+	padding: 40px 0px;
+}
+	.not-member-yet-sect {
+		max-width: 100%;
+		flex-direction: column;
+		margin: 50px auto 20px;
+	}
+	.not-member-yet-sect .not-memb-img {
+		left: auto;
+		display: block;
+		margin: 0px auto -40px;
+		padding-bottom: 0px;
+		max-width: calc(100% - 40px);
+	}
+	.pc-container .pc-logo {
+		max-width: 270px;
+		width: 100%;
+	}
+        .not-member-yet-sect > div:nth-child(1),
+        .not-member-yet-sect > div:nth-child(2) {
+            width: 100%;
+        }
+		.not-member-yet-sect > div:nth-child(1) {
+			padding: 6% 20px;
+		}
+	.not-member-yet-sect .button--primary {
+		max-width: 100%;
+	}
+	
+    .learn-earn-sect .fg {
+        flex-direction: column;
+        padding-left: 20px;
+        margin-bottom: 40px;
+    }
+        .learn-earn-sect .fg > div {
+            margin-bottom: 25px;
+        }
+        .learn-earn-sect .les-legal {
+            text-align: left;
+        }
+	
+	.how-redeem-sect h1 {
+		font-size: 36px;
+	}
+	.how-redeem-sect .fg {
+		flex-direction: column;
+	}
+	.how-redeem-sect .fg p {
+		font-size: 18px;
+	}
+	.how-redeem-sect .fg .hr-legal {
+		font-size: 14px;
+	}
+}
+@media(min-width: 768px) and (max-width: 1200px) {
+	.learn-earn-sect .fg {
+		flex-direction: column;
+	}
+		.learn-earn-sect .fg > div {
+			margin-bottom: 25px;
+		}
+		.learn-earn-sect .fg > div br { display: none; }
+}
+{% endstyle %}

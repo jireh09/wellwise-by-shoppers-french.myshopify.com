@@ -1,0 +1,395 @@
+{% render 'stay-in-touch' with section %}
+
+{% if section.blocks.size > 0 %}
+<div class="container category-page-section faq-section">
+  {% if section.settings.faq_title != blank %}
+  <h1 class="heading heading-top-faq">
+    {{ section.settings.faq_title }}
+  </h1>
+  {% endif %}
+  
+  <div class="faq-module">
+    <div class="faq-items">
+      {% assign loadMore = false %}
+      {% for block in section.blocks %}
+      
+      {% if forloop.index > 4 %}
+      	{% assign wrapperClass = "load-more-hidden" %}
+      {% endif %}
+      
+      <div class="faq-item {{ wrapperClass }}">
+        <div class="faq-item__header">
+          <h2 class="heading">
+          {{ block.settings.question }}
+          </h2>
+        </div>
+        <div class="faq-item__body">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+      {% if forloop.index > 4 and loadMore == false %}
+      	{% assign loadMore = true %}
+      	<a href="#" class="load-more-faq heading">
+          Load more
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div>
+      {% if section.settings.faq_image != blank %}
+      <img src="{{section.settings.faq_image | img_url:'master'}}" class="faq-featured-img" alt="" />
+      {% endif %}
+      
+      <h1 class="heading heading-featured-faq">
+        {{ section.settings.faq_title }}
+      </h1>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="container-wide pc-opt-section">
+  <div class="pc-opt-section__header">
+    <div class="container">
+      <div>
+        <h1 class="heading">
+          Shop. Earn points. Repeat.
+        </h1>
+        <h2>
+          The <strong>PC Optimum™</strong> program tailors your rewards to match the products that you buy most.
+        </h2>
+      </div>
+      <div>
+        <img src="https://wellwise.s3.amazonaws.com/pc_vector.png" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="container pc-opt-section__body">
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_1_icon.png" alt="" />
+      </div>
+      <p>
+        Earn and spend your <strong>PC Optimum™</strong> points at 40+ WellwiseTM locations across Ontario, Albert, British Columbia and online at wellwise.ca.
+      </p>
+    </div>
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_2_icon.png" alt="" />
+      </div>
+      <p>
+        Earn 15 points on almost every dollar you spend in-store or online with wellwise.ca.<sup>2</sup>
+      </p>
+    </div>
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_3_icon.png" alt="" />
+      </div>
+      <p>
+        Earn points in-store, online, during points events and through personalized offers with your online account.
+      </p>
+    </div>
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_4_icon.png" alt="" />
+      </div>
+      <p>
+        Earn points even faster with PC Financial®. Learn how at pcfinancial.ca.
+      </p>
+    </div>
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_5_icon.png" alt="" />
+      </div>
+      <p>
+        Every 10,000 points is like $10 worth of free stuff.<sup>1</sup>
+      </p>
+    </div>
+    <div>
+      <div class="pc-opt-icon">
+      	<img src="https://wellwise.s3.amazonaws.com/category-custom/pc_6_icon.png" alt="" />
+      </div>
+      <p>
+        Redeem points at Wellwise™ in-store locations during special “spend your points events” to get even more value.<sup>3</sup>
+      </p>
+    </div>
+  </div>
+  <div class="pc-opt-button-group">
+    <a href="https://www.pcoptimum.ca/register" class="button sign-up-pc-cta" target="_blank">
+      Sign up for PC Optimum™
+    </a>
+    <a href="https://wellwise-by-shoppers-dev.myshopify.com/pages/learn-more" class="learn-more-pc-cta" target="_blank">
+      Learn more
+    </a>
+  </div>
+</div>
+
+{% style %}
+.faq-section {
+	margin-bottom: 80px;
+
+}
+.faq-module {
+	display: flex;
+	margin: 35px 0 0;
+}
+.faq-module > div:nth-child(1) {
+	width: 62.1%;
+	padding-right: 20px;
+
+}
+.faq-module > div:nth-child(2) {
+	width: 37.8%;
+}
+.faq-module .faq-item {
+	padding: 0px 30px;
+	border: 1px solid #D8D8D8;
+	background: #fff;
+	border-top: none;
+	transition: 100ms;
+}
+.faq-module .faq-item:first-child {
+	border-top: 1px solid #D8D8D8;
+}
+.faq-module .faq-item.active {
+	border-top: 1px solid #D8D8D8;
+	margin: 10px 0;
+	padding-bottom: 24px;
+}
+.faq-module .faq-item:first-child.active {
+	margin-top: 0px;
+
+}
+.faq-module .faq-item__header {
+	position: relative;
+	padding: 25px 0px;
+	cursor: pointer;
+}
+	.faq-module .faq-item__header:after {
+      position: absolute;
+      content: ' ';
+      right: 0;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background: url('https://wellwise.s3.amazonaws.com/plus-ic.png') center center no-repeat;
+      background-size: contain;
+	  transform: translateY(-50%);
+	}
+.faq-module .faq-item.active .faq-item__header:after {
+	background: url('https://wellwise.s3.amazonaws.com/minus-ic.png') center center no-repeat;
+      background-size: contain;
+}
+.faq-module .faq-item__header h2 {
+	font-size: 24px;
+	line-height: 1;
+	color: #002D72;
+	max-width: 650px;
+	padding-right: 50px;
+
+}
+.faq-module .faq-item__body {
+	display: none;
+	margin-top: -10px;
+}
+.faq-module .faq-item__body p {
+	font-size: 20px;
+	line-height: 1.2;
+	color: #2C2C2C;
+	margin-bottom: 10px;
+	max-width: calc(100% - 50px);
+}
+.faq-module .faq-item__body a {
+	position: relative;
+	top: 5px;
+	color: #307FE2;
+	font-family: 'VolteB';
+	font-size: 20px;
+}
+	.faq-module .faq-item__body a:after {
+      content: ' ';
+      position: absolute;
+      right: -26px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: url('https://wellwise.s3.amazonaws.com/fa-arrow-right-lb.png') center center no-repeat;
+      background-size: contain;
+      width: 11px;
+      height: 11px;
+    }
+.faq-module .faq-item__body p:nth-child(1) > a {
+	top: auto;
+	color: #2C2C2C;
+	text-decoration: underline;
+	font-family: 'Volte';
+}
+.faq-module .faq-item__body p:nth-child(1) > a:after { display: none; }
+.faq-module .load-more-hidden { display: none; }
+.faq-module .load-more-faq {
+	position: relative;
+	font-size: 20px;
+	line-height: 1;
+	color: #307FE2;
+    margin: 55px auto 0;
+    display: block;
+    text-align: center;
+    max-width: 150px;
+}
+  .faq-module .load-more-faq:after {
+      content: ' ';
+      position: absolute;
+      left: 50%;
+      top: 30px;
+      transform: translateX(-50%) rotate(90deg);
+      background: url('https://wellwise.s3.amazonaws.com/fa-arrow-right-lb.png') center center no-repeat;
+      background-size: contain;
+      width: 11px;
+      height: 11px;
+  }
+
+.pc-opt-section__header {
+	background: #CB333B;
+	padding: 70px 0 75px;
+}
+  .pc-opt-section__header .container {
+      display: flex;
+  }
+      .pc-opt-section__header .container > div:nth-child(1) { width: 75%; }
+      .pc-opt-section__header .container > div:nth-child(2) { width: 25%; }
+.pc-opt-section__header h1.heading,
+.pc-opt-section__header h2 {
+	color: #fff;
+}
+.pc-opt-section__header h1.heading {
+	font-size: 50px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+.pc-opt-section__header h2 {
+	font-size: 20px;;
+	line-height: 1;
+}
+.pc-opt-button-group {
+	max-width: 500px;
+	margin: 0px auto 90px;
+	text-align: center;
+
+}
+.pc-opt-button-group > a.sign-up-pc-cta {
+	color: #fff;
+	background: #CB333B;
+	display: block;
+	max-width: 380px;
+	margin: 0 auto 20px;
+	font-size: 20px;
+}
+.pc-opt-button-group > a.learn-more-pc-cta {
+	text-decoration: underline;
+	font-size: 16px;
+	line-height: 1;
+}
+.pc-opt-section__body {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top: 40px;
+}
+.pc-opt-section__body > div {
+	width: 33.33%;
+	padding: 45px 20px;
+	text-align: center;
+}
+.pc-opt-section__body p {
+	max-width: 390px;
+	margin: 20px auto 0;
+	font-size: 20px;
+	line-height: 1.2;
+}
+.pc-opt-section__body .pc-opt-icon {
+	min-height: 68px;
+}
+.heading-featured-faq {
+	display: none;
+}
+/*STAY TOUCH FORM*/
+.stay-touch-sect.container {
+	background: #002d72;
+	max-width: 100%;
+	margin: 85px auto 100px;
+	padding: 0px;
+}
+
+@media(max-width: 1024px) {
+	.pc-opt-section__header {
+		padding: 40px 0px 45px;
+	}
+    .pc-opt-section__header .container {
+        flex-direction: column;
+    }
+        .pc-opt-section__header .container > div:nth-child(1),
+        .pc-opt-section__header .container > div:nth-child(2) {
+            width: 100%;
+            max-width: 100%;
+        }
+		.pc-opt-section__header .container > div:nth-child(2) {
+			margin-top: 40px;
+		}
+	
+	.pc-opt-section__body {
+		flex-direction: column;
+	}
+		.pc-opt-section__body > div {
+            width: 100%;
+			max-width: 100%;
+			padding: 25px 20px 30px;
+        }
+	.pc-opt-button-group > a.sign-up-pc-cta {
+		margin-top: 25px;
+		max-width: calc(100% - 40px);
+	}
+	.pc-opt-section__header img {
+		max-width: 180px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.pc-opt-section__header .container {
+		flex-direction: row;
+	}
+	.pc-opt-section__body {
+		flex-direction: row;
+	}
+	.pc-opt-section__body > div {
+		width: 50%;
+	}
+	.pc-opt-section__header .container > div:nth-child(1) { width: 80%; }
+	.pc-opt-section__header .container > div:nth-child(2) { width: 20%; margin-top: 8px; }
+}
+@media(max-width: 1250px) {
+	.faq-module {
+		flex-direction: column-reverse;
+		max-width: 900px;
+		margin: 0px auto;
+	}
+		.faq-module > div:nth-child(1),
+		.faq-module > div:nth-child(2){
+			width: calc(100% + 40px);
+			max-width: none;
+			padding: 0px;
+			margin-left: -20px;
+		}
+
+	.faq-featured-img {
+		display: block;
+		margin: 0px auto;
+		width: 100%;
+	}
+	.heading-top-faq { display: none; }
+	.heading-featured-faq {
+		display: block;
+		font-size: 36px;
+		line-height: 1;
+		margin: 45px 0px 35px !important;
+		padding: 0 25px;
+	}
+}
+{% endstyle %}

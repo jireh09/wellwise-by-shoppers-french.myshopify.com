@@ -1,0 +1,134 @@
+<div class="container category-page-section roll-rental-sect">
+  <h1 class="heading">
+    In need of a product for a short period? <br /> Our rentals can help.
+  </h1>
+  
+  <div class="fg-container">
+    <div class="fg">
+      <div>
+        <h2 class="heading">
+          A range of mobility products.
+        </h2>
+        <p class="heading">
+          Including walkers, rollators, scooters, canes, transport chairs, and removable/portable ramps.
+        </p>
+      </div>
+      <div>
+        <h2 class="heading">
+          Clean & safe.
+        </h2>
+        <p class="heading">
+          All rental products are cleaned and sterilized before returning to our rental program.
+        </p>
+      </div>
+      <div>
+        <h2 class="heading">
+          Ideal for short-term needs.
+        </h2>
+        <p class="heading">
+          Our rentals follow a 28-day cycle, with automatic billing every four weeks.
+        </p>
+      </div>
+    </div>
+    <a href="/pages/store-locator" class="button button--primary">
+      Find location
+    </a>
+  </div>
+</div>
+
+{% style %}
+.roll-rental-sect {
+	margin: 80px auto 40px;
+}
+.roll-rental-sect > h1 {
+	margin-bottom: 35px;
+}
+.roll-rental-sect > p {
+	font-size: 22px;
+	line-height: 1.2;
+}
+.roll-rental-sect .fg-container {
+	background: #C3D7EE80;
+	padding: 55px 30px 60px;
+}
+.roll-rental-sect .fg {
+	display: flex;
+	column-gap: 12px;
+	text-align: left;
+}
+.roll-rental-sect .fg > div {
+	width: 33.33%;
+	padding: 10px 15px;
+}
+.roll-rental-sect .fg h2 {
+	font-size: 30px;
+	line-height: 1;
+	color: #002D72;
+	margin-bottom: 15px;
+	min-height: 50px;
+}
+.roll-rental-sect .fg p {
+	position: relative;
+	font-size: 20px;
+	line-height: 1.2;
+	color: #002D72;
+	padding-left: 70px;
+	max-width: 380px;
+}
+.roll-rental-sect .fg p:before {
+	content: ' ';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 34px;
+	height: 34px;
+	background: url('https://wellwise.s3.amazonaws.com/checkmark_icon.png') center center no-repeat;
+	background-size: contain;
+}
+.roll-rental-sect .fg-container .button--primary {
+	display: block;
+	margin: 60px auto 0;
+}
+@media (max-width: 1024px) {
+	.roll-rental-sect {
+		padding-left: 0;
+		padding-right: 0;
+	}
+		.roll-rental-sect  > h1 {
+			padding: 0px 6%;
+		}
+	.roll-rental-sect .fg {
+		flex-direction: column;
+	}
+		.roll-rental-sect .fg > div {
+			width: 100%;
+			margin-bottom: 25px;
+		}
+		.roll-rental-sect .fg h2 {
+			margin-bottom: 15px;
+		}
+	.roll-rental-sect .fg-container .button--primary {
+		margin-top: 30px;
+	}
+}
+@media(min-width: 768px) and (max-width: 1200px) {
+	.roll-rental-sect {
+		padding-left: 0;
+		padding-right: 0;
+	}
+		.roll-rental-sect  > h1 {
+			padding: 0px 6%;
+		}
+	.roll-rental-sect .fg {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+		.roll-rental-sect .fg > div {
+			width: calc(50% - 8px);
+			margin-bottom: 25px;
+		}
+		.roll-rental-sect .fg p {
+			max-width: 94%;
+		}
+}
+{% endstyle %}
