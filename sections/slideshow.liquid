@@ -141,7 +141,6 @@
         margin-top: 1.4vw;
         max-width: 360px;
         width: 100%;
-        padding: 10px 30px;
     }
 
 /*GRAPHICS BANNER*/
@@ -200,18 +199,14 @@
         display: block;
         z-index: 1;
     }
-	.slideshow .aspect-ratio.hidden-phone,
     .slideshow__slider--banner__graphic_banner .hidden-phone {
-    	display: none !important;
+    	display: none;
     }
 }
 @media(max-width: 800px) {
   .slideshow {
       background: transparent;
   }
-    .slideshow .aspect-ratio.hidden-phone {
-        display: none !important;
-    }
   	.slideshow__slider--banner__graphic_banner .slideshow__title {
 		max-width: 100%;
   	}
@@ -268,11 +263,6 @@
 		background: url('https://heb.pdf.richmondday.com/wellwise/carousel-icon-arrow.png') center center no-repeat;
 	}
 	/*END*/
-}
-@media(min-width: 768px) and (max-width: 800px) {
-	.slideshow .aspect-ratio.hidden-tablet-and-up {
-		padding-bottom: 65px !important;
-	}
 }
 {% endstylesheet %}
 

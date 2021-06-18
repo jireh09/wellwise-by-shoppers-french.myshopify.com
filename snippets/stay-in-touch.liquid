@@ -1,18 +1,22 @@
-
 <section class="section">
     <div class="stay-in-touch-sect stay-in-touch-form">
         <div class="stay-touch-flex container">
         	<div>
                 <h1 class="heading">
-                  {{ section.settings.title }}
+                  Let's stay in touch!
                 </h1>
-              	{% if section.settings.copy != blank %}
-              	{{ section.settings.copy }}
-              	{% else %}
-              	<p>Sign up to receive the latest health &amp; wellness guidance, offers, and product information delivered right to your inbox from Wellwise by Shoppers™. If you are a PC Optimum™ member, please provide the same email address that is associated with your account.</p><p><strong>By providing your email address, you consent to receiving electronic communications from Shoppers Drug Mart Inc. You may withdraw your consent at any time.</strong></p>
-              	<p><strong>Shoppers Drug Mart Inc. 243 Consumers Rd., Toronto, Ontario, M2J 4W8</strong></p>
-              	<p><strong>Our privacy policy:&nbsp;</strong><a href="https://www.loblaw.ca/en/privacy-policy/" target="_blank" rel="noopener noreferrer" aria-describedby="a11y-new-window-message"><strong>https://www.loblaw.ca/en/privacy-policy/</strong></a></p>
-              	{% endif %}
+                <p>
+                  Sign up to receive the latest health &amp; wellness guidance, offers, and product information delivered right to your inbox from Wellwise by Shoppers™. If you are a PC Optimum™ member, please provide the same email address that is associated with your account.
+                </p>
+                <p class="italic">
+                  By providing your email address, you consent to receiving electronic communications from Shoppers Drug Mart Inc. You may withdraw your consent at any time. 
+                  <br>
+                  <br>
+                  Shoppers Drug Mart Inc. 243 Consumers Rd., Toronto, Ontario, M2J 4W8
+                  <br />
+                  <br />
+                  Our privacy policy: <a href="https://www.loblaw.ca/en/privacy-policy/" target="_blank">https://www.loblaw.ca/en/privacy-policy/</a>
+                </p>
             </div>
             <div>
                 <div class="vs-center hide-if-success">
@@ -23,13 +27,74 @@
                 </div>
               	<div class="vs-center show-if-success">
                   <h1>
-                    {{ section.settings.success_title }}
+                    Thank you for signing up!
                   </h1>
                   <p>
-					{{ section.settings.success_copy }}
+					Keep an eye on your inbox for exclusive offers, and information on the latest products.
                   </p>
               	</div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+  .show-if-success { display: none; }
+      .show-if-success h1 {
+        font-size: 32px;
+        line-height: 1.1;
+        margin: 0 0;
+      }
+      .show-if-success p {
+        font-size: 20px;
+        line-height: 1;
+      }
+  .has-failed .subscribe-email-input {
+    border-color: red !important;
+  }
+  .subscribe-submit-btn.disable-btn {
+    background: #d0d0d0 !important;
+  	color: #484848 !important;
+    cursor: not-allowed;
+  }
+</style>
+
+<script>
+  $(document).on('click', '.subscribe-submit-btn', function() {
+    const $this = $(this);
+    
+    if($this.hasClass('disable-btn')) return false;
+    $this.addClass('disable-btn');
+    
+    const $stayInTouchForm = $(this).parents('.stay-in-touch-form');
+    const $email = $stayInTouchForm.find('.subscribe-email-input');
+    const emailPattern = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+    const formData = {
+      email: $email.val()
+    };
+    const isEmailValid = emailPattern.test($email.val());
+    console.log('isValid', isEmailValid);
+    
+    if(isEmailValid) {
+      $stayInTouchForm.removeClass('has-failed');
+      console.log('form submission', formData);
+      
+      $.ajax({
+        url: "",
+        method: "POST",
+        data: formData,
+        complete: function(data) {
+          console.log('data - ', data);
+          
+      	  $this.removeClass('disable-btn');
+          $stayInTouchForm.removeClass('has-failed');
+          $stayInTouchForm.find('.hide-if-success').slideUp();
+          $stayInTouchForm.find('.show-if-success').slideDown();
+        }
+      });
+    } else {
+      $this.removeClass('disable-btn');
+      $stayInTouchForm.addClass('has-failed');
+    }
+  });
+</script>

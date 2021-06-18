@@ -94,7 +94,7 @@
   },
   "search": {
     "general": {
-      "title": "What can we help you find?",
+      "title": "Search",
       "title_with_terms": "Search results for \"{{terms}}\"",
       "products_with_terms": "Products for \"{{terms}}\"",
       "articles_with_terms": "Blog posts for \"{{terms}}\"",
@@ -191,12 +191,12 @@
       "list": "Display products as list"
     },
     "product": {
-      "from_price_html": "{{price_min}}",
+      "from_price_html": "From {{price_min}}",
       "add_to_cart": "Add to cart",
       "pre_order": "Pre-order",
       "quick_view": "Quick view",
       "choose_options": "Choose options",
-      "sold_out": "Find a Location",
+      "sold_out": "Sold out",
       "in_stock": "In stock",
       "oversell_stock": "Re-stocking soon",
       "discount_html": "Save {{savings}}",
@@ -403,7 +403,7 @@
         "other": "In stock ({{count}} units), ready to be shipped"
       },
       "add_to_cart": "Add to cart",
-      "sold_out": "Find a Location",
+      "sold_out": "Sold out",
       "pre_order": "Pre-order",
       "unavailable": "Unavailable",
       "contact_us": "Contact us",

@@ -3,7 +3,7 @@
   	{{ section.settings.title }}
   </h1>
   
-  <div class="fg-container slick-carousel">
+  <div class="fg-container">
   {% for block in section.blocks %}
     <div>
         <div class="fg">
@@ -89,3 +89,22 @@
 			margin: 0 0 10px;
 		}
 {% endstylesheet %}
+
+{% javascript %}
+	$('.about-westand-container .fg-container').slick({
+        rows: 1,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        dots: true,
+        arrows: false,
+        infinite: true,
+        customPaging: function(slider, i) {
+          return '<span class="dot"></span>';
+        },
+        speed: 300,
+        responsive: [{
+            breakpoint: 1024,
+            settings: { }
+        }]
+    });
+{% endjavascript %}

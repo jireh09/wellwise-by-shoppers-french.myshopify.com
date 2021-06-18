@@ -29,7 +29,7 @@
     {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
     <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'theme_overrides.css' | asset_url }}">
-    <link rel="preload" as="script" href="{%- comment -%}{{ 'theme.min.js' | asset_url }}{%- endcomment -%}{{ 'theme.js' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'theme.min.js' | asset_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
@@ -41,9 +41,7 @@
     {% render 'social-meta-tags' %}
     {% render 'css-variables' %}
 
-    {{ content_for_header }}{% render 'bold-checkout-loader' %}{{ 'bsub.js' | asset_url | script_tag }}
-{{ 'bsub.scss.css' | asset_url | stylesheet_tag }}
-
+    {{ content_for_header }}
 
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
@@ -111,7 +109,7 @@
       <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
     {%- endif -%}
 
-    <script src="{%- comment -%}{{ 'theme.min.js' | asset_url }}{%- endcomment -%}{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}"></script>
 
     {%- if request.page_type != 'cart' -%}
@@ -130,18 +128,12 @@
     {%- endif -%}
     {% render 'translation-lab-language-management' %}
 
-
-
-
-
-
-  {%- render 'bold-subscription-widget' -%}
-
 <!--begin-boost-pfs-filter-css-->
   {% render 'boost-pfs-style' %}
 <!--end-boost-pfs-filter-css-->
 
 
+  {%- render 'bold-subscription-widget' -%}
 </head>
 
   <body class="warehouse--v1 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}" data-instant-intensity="viewport">
@@ -165,16 +157,13 @@
       {% section 'static-newsletter' %}
     {%- endif -%}
 
+    {% section 'text-with-icons' %}
     {% section 'footer' %}
 
     <ul hidden>
       <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
     </ul>
   <!-- langify-v2-scripts-begin -->{% comment %}ly_liquid_scripts_begin{% endcomment %}{% endcapture %}{% render 'ly-liquid-scripts' content: ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}{% comment %}ly_core_scripts_begin{% endcomment %}{% render 'ly-core-scripts' %}{% comment %}ly_core_scripts_end{% endcomment %}{% comment %}ly_switcher_factory_begin{% endcomment %}{% render 'ly-switcher-factory' %}{% comment %}ly_switcher_factory_end{% endcomment %}<!-- langify-v2-scripts-end -->
-
-
-
-
 <!--begin-boost-pfs-js-->
   {% render 'boost-pfs' %}
 <!--end-boost-pfs-js-->

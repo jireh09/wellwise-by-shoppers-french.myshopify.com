@@ -113,6 +113,7 @@
 								{% include 'boost-pfs-filter-skeleton', width: 1 %}                                                
 								</div>
 							</div>
+
 							{% comment %}
 							<div class="collection__toolbar-item collection__toolbar-item--layout">
 								<span class="collection__layout-label hidden-phone">{{ 'collection.layout.title' | t }}</span>
@@ -125,7 +126,7 @@
 								<button type="button" class="collection__layout-button {% if view_mode == 'grid' %}is-selected{% endif %} link touch-area" aria-label="{{ 'collection.layout.grid' | t }}" data-action="change-layout" data-layout-mode="grid">{% include 'icon' with 'grid' %}</button>
 								{%- endif -%}
 							</div>
-							{% endcomment %}
+              {% endcomment %}
 						</div>
 
 						{%- comment -%}
@@ -287,7 +288,6 @@
 	};
 </script>
 {% schema %}
-
 
 {
   "name": "Search page",

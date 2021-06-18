@@ -16,7 +16,7 @@
     <script type="text/javascript">
       (function($) {
         $(document).on("page:load page:change", function(){             
-          $('a:contains("Log in")').attr("href", "https://wellwise-prod-apim.azure-api.net/account/login");
+          $('a:contains("Ouvrir une session")').attr("href", "https://wellwise-prod-apim.azure-api.net/account/login?language=fr");
         });
       })(Checkout.$);
     </script>
@@ -39,9 +39,6 @@
             {{ breadcrumb }}
             {{ alternative_payment_methods }}
           </header>
-          {% if checkout.customer.has_account != true %}
-          	 {% render 'checkout-guest' %}
-          {% endif %}
           <main class="main__content" role="main">
             {{ content_for_layout }}
           </main>
@@ -55,8 +52,6 @@
           </div>
           <div class="sidebar__content">
             {{ content_for_order_summary }}
-            
-          {% render 'pco-module-checkout', items: checkout.line_items %}
           </div>
         </aside>
       </div>

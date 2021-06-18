@@ -13,33 +13,6 @@
       "type": "image_picker",
       "id": "faq_image",
       "label": "Featured image"
-    },
-	{
-      "type": "header",
-      "content": "Stay In Touch"
-    },
-	{
-       "id": "title",
-       "type": "text",
-       "label": "Title",
-	   "default": "Let's stay in touch!"
-    },
-    {
-       "id": "copy",
-       "type": "richtext",
-       "label": "Copy"
-    },
-    {
-       "id": "success_title",
-       "type": "text",
-       "label": "Title",
-	   "default": "Thank you for signing up!"
-    },
-    {
-       "id": "success_copy",
-       "type": "text",
-       "label": "copy",
-	   "default": "Keep an eye on your inbox for exclusive offers, and information on the latest products."
     }
   ],
   "blocks": [
@@ -73,7 +46,7 @@
       $parentEl.find('.faq-item__body').slideToggle();
     });
 	$(document).on('click', '.faq-module .load-more-faq', function(e) {
-    	e.preventDefault(); 
+      e.preventDefault(); 
 
 		$(this).slideToggle();
 		$('.faq-item.load-more-hidden').slideToggle();

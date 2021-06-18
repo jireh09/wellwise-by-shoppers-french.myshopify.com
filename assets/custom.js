@@ -65,8 +65,6 @@
     hash = hash || window.location.hash;
     delay = delay || 500;
     
-    console.log('dl', hash, delay);
-    
     if(hash.indexOf('#deeplink=') > -1) {
       var selector = hash.replace('#deeplink=', '');
       var scrollPosition = $(selector).offset().top - ($('#shopify-section-header').height() + 20);
@@ -145,8 +143,7 @@
             }
 
             $slickCarousel.on('breakpoint init', function(event, slick) {
-              
-                let html = '<ul class="slick-dots custom-dots" style="display: block;">';
+                var html = '<ul class="slick-dots custom-dots" style="display: block;">';
                 const dotsLength = Math.ceil(slick.slideCount / slick.options.slidesToShow);
                 const $dots = slick.$dots;
 
@@ -159,9 +156,8 @@
                     html += '<li class="not-slick arrow-next"><span></span></li>';
 
                 html += '</ul>';
-              	
                 if(dotsLength > 1)
-                    $(slick.$list).append(html);
+                    $(slick.$list.context).append(html);
             });
 
             $slickCarousel.on('swipe', function(event, slick, direction) {
@@ -203,7 +199,7 @@
       e.preventDefault();
       const $this = $(this);
       const $moreGrid = $this.parent().find('.more-grid');
-      const labelOptions = ["View All", "View Less"];
+      const labelOptions = ["Voir tout", "Voir moins"];
       const moreGridLength = $moreGrid.find('.more-grid-item:visible').length;
       
       if(moreGridLength > 6) {
@@ -256,7 +252,7 @@
   	});
     
     $(document).on('click', '.category-banner .button', function() {
-      var hash = $(this).attr('href');
+      const hash = $(this).attr('href');
       
       if(hash.indexOf('#deeplink=') > -1) {
       	deeplinkTo(hash, 1);
@@ -274,6 +270,7 @@
       const $megaMenu = $('.mega-menu__inner');
       const href = $(this).attr('href');
       const cdnUrl = 'https://wellwise.s3.amazonaws.com';
+      const title = $(this).text().trim().toLowerCase();
       
       $megaMenu.find('.mega-menu__main_ul .active-menu').removeClass('active-menu');
       $(this).parents('li').addClass('active-menu');
@@ -281,187 +278,8 @@
       $megaMenu.find('.mega-menu__linklist').hide();
       $megaMenu.find('[data-parent-url="' + href + '"]').css('display', 'flex');
       
-      //TODO - Replace and add a section in the admin panel for user to input these
-      const navLearnMore = [
-        {
-            id: "/collections/incontinence",
-            image_name: "incontience.jpg",
-            copy: "Explore resources designed to help you find the best incontinence solutions for your unique needs.",
-            cta_label: "Incontinence",
-            cta_link: "/pages/incontinence-1"
-        },
-        {
-            id: "/collections/ostomy",
-            image_name: "ostomy.jpg",
-            copy: "Browse a variety of resources that can help you manage your unique ostomy needs.",
-            cta_label: "Ostomy",
-            cta_link: "/pages/ostomy"
-        },
-        {
-            id: "/collections/cpap",
-            image_name: "cpap.jpg",
-            copy: "Discover our wide range of sleep apnea resources and learn what you can do to get a better night's sleep.",
-            cta_label: "CPAP",
-            cta_link: "/pages/cpap"
-        },
-        {
-            id: "/collections/electronics-1",
-            image_name: "electronics.jpg",
-            copy: "Gain a better understanding of our latest electronics products and solutions with these helpful resources.",
-            cta_label: "Electronics",
-            cta_link: "/pages/electronics"
-        },
-        {
-            id: "/collections/sleep-aids",
-            image_name: "sleepaids.jpg",
-            copy: "Explore resources designed to help you find the best sleep solutions for your unique needs.",
-            cta_label: "Sleep Aids",
-            cta_link: "/pages/sleep-aids"
-        },
-        {
-            id: "/collections/light-therapy",
-            image_name: "lighttherapy.jpg",
-            copy: "Gain a better understanding of our latest light therapy products and solutions with these helpful resources.",
-            cta_label: "Light Therapy",
-            cta_link: "/pages/light-therapy"
-        },
-        {
-            id: "/collections/rollators-walkers",
-            image_name: "rollatorwalkers.jpg",
-            copy: "Discover our wide range of mobility resources and learn what you can do to help maintain your independence.",
-            cta_label: "Rollators & Walkers",
-            cta_link: "/pages/rollators-walkers"
-        },
-        {
-            id: "/collections/scooters-power-chairs-1",
-            image_name: "scooterspowerchairs.jpg",
-            copy: "Gain a better understanding of our scooters and power chairs with these helpful resources.",
-            cta_label: "Scooters & Power Chairs",
-            cta_link: "/pages/scooters-power-chairs"
-        },
-        {
-            id: "/collections/wheelchairs-transport-chairs",
-            image_name: "wheelchairs.jpg",
-            copy: "Browse a variety of resources that can help you manage your unique mobility needs.",
-            cta_label: "Wheelchairs & Transport Chairs",
-            cta_link: "/pages/wheelchairs-transport-chairs"
-        },
-        {
-            id: "/collections/canes-1",
-            image_name: "canes.jpg",
-            copy: "Explore resources designed to help you find the best cane(s) for your unique needs.",
-            cta_label: "Canes",
-            cta_link: "/pages/canes"
-        },
-        {
-            id: "/collections/braces-supports",
-            image_name: "bracessupport.jpg",
-            copy: "Gain a better understanding of our latest braces and supports offerings with these helpful resources.",
-            cta_label: "Braces & Supports",
-            cta_link: "/pages/braces-supports"
-        },
-        {
-            id: "/collections/compression",
-            image_name: "compression.jpg",
-            copy: "Discover our wide range of compression therapy resources and how compression products could help you.",
-            cta_label: "Compression",
-            cta_link: "/pages/compression"
-        },
-        {
-            id: "/collections/pain-management",
-            image_name: "painmanagement.jpg",
-            copy: "Explore resources designed to help you learn more about available pain management products and solutions.",
-            cta_label: "Pain Management",
-            cta_link: "/pages/pain-management"
-        },
-        {
-            id: "/collections/health-monitoring",
-            image_name: "healthmonitoring.jpg",
-            copy: "Browse a variety of resources that can help you better understand your health monitoring needs.",
-            cta_label: "Health Monitoring",
-            cta_link: "/pages/health-monitoring"
-        },
-        {
-            id: "/collections/home-1",
-            image_name: "home.jpg",
-            copy: "Discover our wide range of home comfort and safety resources and learn what you can do to stay longer in the home you love.",
-            cta_label: "Home",
-            cta_link: "/pages/home"
-        },
-        {
-            id: "/collections/daily-living",
-            image_name: "dailyliving.jpg",
-            copy: "Gain a better understanding of our latest daily living products and solutions with these helpful resources.",
-            cta_label: "Daily Living",
-            cta_link: "/pages/daily-living"
-        },
-        {
-            id: "/collections/fitness-nutrition",
-            image_name: "fitness.jpg",
-            copy: "Explore resources designed to help you create and reach your fitness and nutrition goals.",
-            cta_label: "Fitness & Nutrition",
-            cta_link: "/pages/fitness-nutrition"
-        },
-        {
-            id: "/collections/wellness",
-            image_name: "wellness.jpg",
-            copy: "Browse a variety of wellness resources that can help educate you on your everyday needs.",
-            cta_label: "Wellness",
-            cta_link: "/pages/wellness"
-        }
-      ];
-      
-	  var learnMoreData = navLearnMore.filter(function(a) { if(a.id.toLowerCase().indexOf(href.toLowerCase()) > -1) return a; });
-      if(learnMoreData != null && learnMoreData.length > 0) {
-        learnMoreData = learnMoreData[0];
-        
-        $megaMenu.find('.mm-col-3 img').attr('src', cdnUrl + '/nav/learn/' + learnMoreData.image_name);
-        $megaMenu.find('.mm-col-3 p').text(learnMoreData.copy);
-        $megaMenu.find('.mm-col-3 a').text(learnMoreData.cta_label + " Resources").attr('href', learnMoreData.cta_link);
-      }
-    });
-    
-    //STAY IN THE KNOW FORM
-    $(document).on('click', '.subscribe-submit-btn', function() {
-      const $this = $(this);
-
-      if($this.hasClass('disable-btn')) return false;
-      $this.addClass('disable-btn');
-
-      const $stayInTouchForm = $(this).parents('.stay-in-touch-form');
-      const $email = $stayInTouchForm.find('.subscribe-email-input');
-      const emailPattern = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-      const formData = {};
-      const isEmailValid = emailPattern.test($email.val());
-
-      if(isEmailValid) {
-       formData.email = $email.val().trim();
-
-        $stayInTouchForm.removeClass('has-failed');
-        console.log('form submission', formData);
-
-        $.ajax({
-          url: "https://social.richmondday.com/contact.php",
-          type: "POST",
-          dataType: "json",
-          data: formData,
-          complete: function(data, status) {
-            console.log('data - ', data, status);
-
-            $this.removeClass('disable-btn');
-
-            if(data.statusText == "error") 
-              return console.error('Salesfource - Not Authorized - https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/error-handling.htm');
-
-            $stayInTouchForm.removeClass('has-failed');
-            $stayInTouchForm.find('.hide-if-success').slideUp();
-            $stayInTouchForm.find('.show-if-success').slideDown();
-          }
-        });
-      } else {
-        $this.removeClass('disable-btn');
-        $stayInTouchForm.addClass('has-failed');
-      }
+      $('.endx[data-title').hide();
+      $('.endx[data-title="' + title + '"]').show();
     });
     
     $(document).on('click', '.nav-bar__linklist > .nav-bar__item:first-child > a', function(e) {
@@ -483,8 +301,7 @@
     resizeSelectors.map(function(sel) {
       window.matchHeights(sel, true);
     });
-    
-    
+     
     $('.no-blank').attr('target','_self');
   });
 }(window, jQuery));
@@ -547,4 +364,3 @@ document.addEventListener('variant:changed', function(event) {
     
   } 
 });
-

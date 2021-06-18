@@ -1,13 +1,13 @@
 {%- if product.media.size > 0 -%}
   {%- assign show_thumbnails_if_one_media = true -%}
 
-  <div style="height: 735px" class="card">
+  <div class="card">
     <div class="card__section card__section--tight">
       <div class="product-gallery {% if show_thumbnails_if_one_media %}product-gallery--with-thumbnails{% endif %}">
         {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
 
         <div class="product-gallery__carousel-wrapper">
-          <div style="max-height: 650px" class="product-gallery__carousel {% if template != 'product.quick-view' and section.settings.enable_image_zoom %}product-gallery__carousel--zoomable{% endif %}" data-media-count="{{ product.media.size }}" data-initial-media-id="{{ selected_media.id }}">
+          <div class="product-gallery__carousel {% if template != 'product.quick-view' and section.settings.enable_image_zoom %}product-gallery__carousel--zoomable{% endif %}" data-media-count="{{ product.media.size }}" data-initial-media-id="{{ selected_media.id }}">
             {%- for media in product.media -%}
               {%- assign is_media_group = false -%}
               {%- assign is_media_filtered = false -%}
@@ -60,7 +60,7 @@
                       {%- assign image_url = media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
                       <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: media.aspect_ratio }}%">
-                        <img style="height: 650px" class="product-gallery__image lazyload image--fade-in" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" data-zoom="{{ media | img_url: '1600x' }}" data-zoom-width="{{ media.width | at_most: 1600 }}" alt="{{ media_alt | escape }}">
+                        <img class="product-gallery__image lazyload image--fade-in" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" data-zoom="{{ media | img_url: '1600x' }}" data-zoom-width="{{ media.width | at_most: 1600 }}" alt="{{ media_alt | escape }}">
 
                         <noscript>
                           <img src="{{ media | img_url: '800x' }}" alt="{{ media_alt | escape }}">

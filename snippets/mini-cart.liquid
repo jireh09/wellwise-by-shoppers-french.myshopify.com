@@ -33,11 +33,6 @@
   {%- else -%}
     <div class="mini-cart__inner">
       <div class="mini-cart__content">
-        {% if cart.total_price > 2500 %}
-        <span class="shipping-eligibility">You are eligible for free shipping!</span>
-        {% else %}
-        <span class="shipping-eligibility">You're <b>{{ 2500 | minus: cart.total_price | money }}</b> away for free shipping!</span>
-        {% endif %}
         {%- if shipping_alert != blank -%}
           <div class="mini-cart__alert-wrapper">
             {{- shipping_alert -}}
@@ -76,8 +71,7 @@
                     {%- endif -%}
                   {%- endunless -%}
 
-                  <a href="{{ line_item.url }}" class="mini-cart__product-title text--strong link"><b>{{ line_item.title }}</b></a>
-                  {%- render 'pco-cart', selected_variant: line_item.variant, quantity: line_item.quantity -%}
+                  <a href="{{ line_item.url }}" class="mini-cart__product-title text--strong link">{{ line_item.title }}</a>
 
                   {%- if line_item.selling_plan_allocation -%}
                     <p class="mini-cart__plan-allocation">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
@@ -102,17 +96,17 @@
                   <div class="mini-cart__price-list">
                     {%- if line_item.final_line_price < line_item.original_line_price -%}
                       {%- if line_item.final_price == 0 -%}
-                        <span style="font-size: 16px; font-weight: bold; color: #cb333b !important" class="price price--highlight">{{ 'cart.general.free' | t }}</span>
+                        <span class="price price--highlight">{{ 'cart.general.free' | t }}</span>
                       {%- else -%}
-                        <span style="font-size: 16px; font-weight: bold; color: #cb333b !important" class="price price--highlight">{{ line_item.final_price | money }}</span>
+                        <span class="price price--highlight">{{ line_item.final_price | money }}</span>
                       {%- endif -%}
 
-                      <span style="font-size: 15px !important" class="price price--compare">{{ line_item.original_line_price | money }}</span>
+                      <span class="price price--compare">{{ line_item.original_line_price | money }}</span>
                     {%- elsif line_item.variant.compare_at_price > line_item.variant.price -%}
-                      <span style="font-size: 16px; font-weight: bold; color: #cb333b !important" class="price price--highlight">{{ line_item.final_line_price | money }}</span>
-                      <span style="font-size: 15px !important" class="price price--compare">{{ line_item.variant.compare_at_price | times: line_item.quantity | money }}</span>
+                      <span class="price price--highlight">{{ line_item.final_line_price | money }}</span>
+                      <span class="price price--compare">{{ line_item.variant.compare_at_price | times: line_item.quantity | money }}</span>
                     {%- else -%}
-                      <span style="font-size: 16px; font-weight: bold" class="price">{{ line_item.final_line_price | money }}</span>
+                      <span class="price">{{ line_item.final_line_price | money }}</span>
                     {%- endif -%}
                   </div>
 
@@ -139,15 +133,14 @@
                         </li>
                       {%- endfor -%}
                     </ul>
-                  {%- endif -%} 
-                  
+                  {%- endif -%}
                 </div>
 
                 {%- comment -%}If the product has the tag "__gift", we remove the price{%- endcomment -%}
 
                 {%- unless line_item.product.tags contains '__gift' -%}
                   <div class="mini-cart__quantity">
-                    <div style="width: 100px" class="quantity-selector">
+                    <div class="quantity-selector">
                       {%- assign allow_to_add_more = true -%}
 
                       {%- if line_item.variant.inventory_management and line_item.variant.inventory_policy == 'deny' and line_item.quantity == line_item.variant.inventory_quantity -%}
@@ -180,7 +173,7 @@
 
         <div class="mini-cart__recap-price-line">
           <span>{{ 'cart.general.total' | t }}</span>
-          <span style="color: black !important"><b>{{ cart.total_price | money }}</b></span>
+          <span>{{ cart.total_price | money }}</span>
         </div>
 
         {%- comment -%}To calculate the total discount, we take both into account the Shopify Script (for Plus merchants), but we also add the compare at price{%- endcomment -%}
@@ -196,22 +189,16 @@
           {%- endif -%}
         {%- endfor -%}
 
-        {% comment %} 
-          {%- if total_discount > 0 -%}
-            {%- capture amount_saved -%}<span>{{ total_discount | money }}</span>{%- endcapture -%}
-            <span class="mini-cart__amount-saved">{{ 'cart.general.amount_saved_html' | t: amount_saved: amount_saved }}</span>
-          {%- endif -%}
-        {% endcomment %}
+        {%- if total_discount > 0 -%}
+          {%- capture amount_saved -%}<span>{{ total_discount | money }}</span>{%- endcapture -%}
+          <span class="mini-cart__amount-saved">{{ 'cart.general.amount_saved_html' | t: amount_saved: amount_saved }}</span>
+        {%- endif -%}
 
         <div class="mini-cart__button-container">
           <div class="button-group button-group--loose button-group--fit">
             <a href="{{ routes.cart_url }}" class="button button--secondary">{{ 'cart.general.view_cart' | t }}</a>
-          </div>
-        </div>
-        <div class="mini-cart__button-container">
-          <div style="margin-top: -25px" class="button-group button-group--loose button-group--fit">
             {%- if settings.cart_show_checkout_button -%}
-              <button style="background: #CB333B" type="submit" name="checkout" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
+              <button type="submit" name="checkout" class="button button--primary">{{ 'cart.general.checkout' | t }}</button>
             {%- endif -%}
           </div>
         </div>

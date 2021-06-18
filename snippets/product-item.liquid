@@ -2,9 +2,6 @@
 {%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
 
 <div class="product-item {% if horizontal %}product-item--horizontal{% elsif list %}product-item--list{% else %}product-item--vertical{% endif %} {% if section.id == 'blog-sidebar' %}product-item--compact{% endif %} {{ grid_classes }}">
-  {% if product.price > 2500 %}
-  <div class="shipping-flag"> Free Shipping</div>
-  {% endif %}
   {%- capture product_labels -%}
     {%- unless hide_labels -%}
       {%- for tag in product.tags -%}
@@ -99,8 +96,9 @@
     <a href="{{ filtered_variant.url | default: product.url | within: collection }}" class="product-item__image-wrapper {% if show_secondary_media %}product-item__image-wrapper--with-secondary{% endif %}">
       {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800', image: primary_media.preview_image -%}{%- endcapture -%}
       {%- assign image_url = primary_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-		<img style="height: 100%" class="product-item__primary-image lazyload image--fade-in" data-media-id="{{ primary_media.id }}" data-src="{{ image_url }}" data-sizes="auto" data-widths="[{{ supported_sizes }}]" alt="{{ primary_media.alt | escape }}">
-      <div class="aspect-ratio {% if settings.product_image_size != 'natural' %}aspect-ratio--{{ settings.product_image_size }}{% endif %}" style="padding-bottom: 100% !important">
+
+      <div class="aspect-ratio {% if settings.product_image_size != 'natural' %}aspect-ratio--{{ settings.product_image_size }}{% endif %}" style="padding-bottom: {{ 100.0 | divided_by: primary_media.preview_image.aspect_ratio }}%">
+        <img class="product-item__primary-image lazyload image--fade-in" data-media-id="{{ primary_media.id }}" data-src="{{ image_url }}" data-sizes="auto" data-widths="[{{ supported_sizes }}]" alt="{{ primary_media.alt | escape }}">
 
         {%- if show_secondary_media -%}
           {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800', image: product.media[1].preview_image -%}{%- endcapture -%}
@@ -115,16 +113,9 @@
       </div>
     </a>
   {%- endif -%}
-{% comment %}
-  <div>
-    <span class="clist-pts"><b>10x Optimum™ Points</b></span>
-  </div>
-  {% endcomment %}
 
-  <div style="margin-top: 54px" class="product-item__info">
-    {% render 'pco-product-item', item: product.variants[0] %}
+  <div class="product-item__info">
     <div class="product-item__info-inner">
-      
       {%- capture price_list -%}
         <div class="product-item__price-list price-list">
           {%- if product.price < product.compare_at_price -%}
@@ -136,17 +127,17 @@
                 {{- 'collection.product.from_price_html' | t: price_min: price_min, price_max: price_max -}}
               </span>
 
-              <span style="font-size: 24px" class="price price--compare">
+              <span class="price price--compare">
                 <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
                 {{- product.compare_at_price_min | money -}}
               </span>
             {%- else -%}
-              <span style="font-size: 24px" class="price price--highlight">
+              <span class="price price--highlight">
                 <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
                 {{- product.price | money -}}
               </span>
 
-              <span style="color: #54585A; font-size: 24px !important" class="price price--compare">
+              <span class="price price--compare">
                 <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
                 {{- product.compare_at_price | money -}}
               </span>
@@ -166,20 +157,7 @@
             </span>
           {%- endif -%}
         </div>
-      {% if product.compare_at_price > product.price %}
-      <div class="savings-rate">
-        {% if product.compare_at_price_max > product.price %}
-        {{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 100 | remove: '.0'}}% Off{% endif %}
-        </div>
-      {% endif %}
-      <div style="margin-top: 3px" class="font-weight: normal" id="in-stock">
-              {% if variant.inventory_management == "shopify" and variant.inventory_policy != "continue" %}
-              We have {{ current_variant.inventory_quantity }} in stock.
-              {% else %}
-        In Stock
-              {% endif %}
-            </div>
-        
+
         {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
           <div class="product-item__price-info">
             <div class="unit-price-measurement">
@@ -217,7 +195,7 @@
         {{ vendor }}
       {%- endif -%}
 
-      <a style="margin-top: 2px" href="{{ filtered_variant.url | default: product.url | within: collection }}" class="product-item__title text--strong link">{{ product.title }}</a>
+      <a href="{{ filtered_variant.url | default: product.url | within: collection }}" class="product-item__title text--strong link">{{ product.title }}</a>
 
       {%- if settings.product_price_position == 'before_title' -%}
         {{ vendor }}
@@ -379,7 +357,7 @@
               <a href="{{ product.url | within: collection }}" class="{{ quick_buy_classes }}">{{ 'collection.product.choose_options' | t }}</a>
             {%- endif -%}
           {%- else -%}
-            <a style="background: #757575" href="/pages/store-locator" class="{{ quick_buy_classes }}">{{ 'collection.product.sold_out' | t }}</a>
+            <button class="{{ quick_buy_classes | replace: 'button--primary', 'button--disabled' }}" disabled>{{ 'collection.product.sold_out' | t }}</button>
           {%- endif -%}
 
           {%- if section.settings.show_quick_view == 'list_grid' -%}
@@ -387,9 +365,10 @@
           {%- else -%}
             {%- assign quick_view_classes = 'product-item__action-button product-item__action-button--list-view-only button button--small button--ternary hidden-phone' -%}
           {%- endif -%}
+
+          <button type="button" class="{{ quick_view_classes }}" data-action="open-modal" data-secondary-action="open-quick-view" aria-controls="modal-quick-view-{{ section.id }}" data-product-url="{{ product.url }}">{{ 'collection.product.quick_view' | t }}</button>
         {%- endform -%}
       {%- endif -%}
     {%- endif -%}
   </div>
 </div>
-

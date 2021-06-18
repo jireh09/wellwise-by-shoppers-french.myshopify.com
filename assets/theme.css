@@ -1186,12 +1186,12 @@ html {
 
 @media screen and (max-width: 640px) {
   /* When a table is within a card, on mobile, we need to change the margin and padding to respect the funny iOS-style border */
-  .card .card2 .card3 .card4 .table {
-    margin-left: 20px;  
+  .card .card2 .table {
+    margin-left: 20px;
   }
 
-  .card .card2 .card3 .card4 .table th:first-child,
-  .card .card2 .card3 .card4 .table td:first-child {
+  .card .card2 .table th:first-child,
+  .card .card2 .table td:first-child {
     padding-left: 0;
   }
 }
@@ -1247,6 +1247,9 @@ body:not(.is-tabbing) textarea:focus {
 }
 
 .container {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 var(--mobile-container-gutter);
 }
 
@@ -1295,9 +1298,6 @@ body:not(.is-tabbing) textarea:focus {
 
 @media screen and (min-width: 641px) {
   .container {
-    max-width: calc(1640px + (var(--desktop-container-gutter) * 2));
-    margin-left: auto;
-    margin-right: auto;
     padding: 0 var(--desktop-container-gutter);
   }
 }
@@ -2188,11 +2188,6 @@ img.lazyload[data-sizes=auto] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  
-  .article__image-wrapper + .card4 {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
 
   .article__inner {
     margin-top: 60px;
@@ -2444,8 +2439,8 @@ img.lazyload[data-sizes=auto] {
 .button {
   position: relative;
   display: inline-block;
-  padding: 4px 30px;
-  line-height: 48px;
+  padding: 15px 30px;
+  line-height: 1;
   border-radius: 0px;
   text-align: center;
   font-weight: normal;
@@ -2482,55 +2477,39 @@ img.lazyload[data-sizes=auto] {
 .button--primary {
   background: var(--primary-button-background);
   color: var(--primary-button-text-color);
-  font-weight: bolder;
-  font-size: 20px;
 }
 
 .button--primary:hover {
   background: #CB333B;
-  font-weight: bolder;
-  font-size: 20px;
 }
 
 .button--secondary {
   background: var(--secondary-button-background);
   color: var(--secondary-button-text-color);
-  font-weight: bolder;
-  font-size: 20px;
 }
 
 .button--secondary:hover {
   background: rgba(var(--secondary-button-background-rgb), 0.8);
-  font-weight: bolder;
-  font-size: 20px;
 }
 
 .button--ternary {
   color: var(--accent-color);
   box-shadow: 0 0 0 1px var(--border-color) inset;
-  font-weight: bolder;
-  font-size: 20px;
   /* use box-shadow instead of border to not create additional space */
 }
 
 .button--ternary:hover {
   background: rgba(var(--border-color-rgb), 0.5);
   color: var(--text-color);
-  font-weight: bolder;
-  font-size: 20px;
 }
 
 .button--transparent {
   color: var(--text-color);
   box-shadow: 0 0 0 1px var(--border-color) inset;
-  font-weight: bolder;
-  font-size: 20px;
   /* use box-shadow instead of border to not create additional space */
 }
 
 .button--transparent:hover {
-  font-weight: bolder;
-  font-size: 20px;
   background: var(--primary-button-background);
   color: var(--primary-button-text-color);
   box-shadow: 0 0 0 1px var(--primary-button-background) inset;
@@ -2621,18 +2600,12 @@ img.lazyload[data-sizes=auto] {
  * --------------------------------------------------------------------
  */
 
-.card, .card2, .card3, .card4 {
+.card, .card2 {
   position: relative;
   margin-bottom: 18px;
   background: var(--secondary-background);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-}
-
-@media (min-width: 992px) {
-  .card4 {
-    width: 1523px;
-  }
 }
 
 .card__header {
@@ -2743,7 +2716,7 @@ img.lazyload[data-sizes=auto] {
 }
 
 @media screen and (max-width: 640px) {
-  .card, .card4 {
+  .card {
     border-radius: 0; /* cards expand full-width on mobile */
   }
 
@@ -2774,14 +2747,14 @@ img.lazyload[data-sizes=auto] {
 }
 
 @media screen and (min-width: 641px) {
-  .card, .card4 {
-    margin-bottom: 100px;
+  .card {
+    margin-bottom: 30px;
     border-radius: 3px;
     border: 1px solid var(--border-color);
   }
 
   .card__header {
-    padding: 20px 20px 0 20px;
+    padding: 30px 30px 0 30px;
   }
 
   .card__section,
@@ -2971,7 +2944,7 @@ img.lazyload[data-sizes=auto] {
 
 .mini-cart__price-list > .price {
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 13px));
-  font-weight: bold;
+  font-weight: normal;
   color: black !important;
 }
 
@@ -3408,11 +3381,6 @@ img.lazyload[data-sizes=auto] {
 }
 
 .collection__image-wrapper + .card {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.collection__image-wrapper + .card4 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4389,6 +4357,7 @@ img.lazyload[data-sizes=auto] {
 
 @media screen and (min-width: 641px) {
   .collection-item__title {
+    transform: translateX(14px);
     transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
@@ -4875,7 +4844,6 @@ select::-ms-expand {
 .select-wrapper--primary {
   position: relative;
   background: var(--secondary-background);
-  width: 229px;
 }
 
 .select-wrapper--primary select {
@@ -5756,7 +5724,6 @@ select option {
     max-width: -webkit-max-content;
     max-width: -moz-max-content;
     max-width: max-content;
-    text-align: center;
   }
 
   .header__action-item .icon--lock-2 {
@@ -5796,15 +5763,6 @@ select option {
   /* Not really beautiful but coulnd't find a better way */
   .header__action-item.hidden-tablet-and-up:first-child + .header__action-item {
     padding-left: 35px;
-  }
-  .header__action-item {
-    text-align: center;
-  }
-  .header__action-item--stay-touch {
-    display: none;
-  }
-  .header__action-item--account {
-    padding-left: 20px;
   }
 }
 
@@ -7194,7 +7152,7 @@ select option {
   .nav-bar__item {
     position: relative;
     display: inline-block;
-    margin-right: 12px;
+    margin-right: 35px;
     padding: 17px 0;
   }
 
@@ -7572,14 +7530,10 @@ select option {
 }
 
 .line-item__quantity-remove {
-  display: block;
-  margin: 9px 16px;
+  display: inline-block;
+  margin-left: 10px;
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 13px));
   line-height: 1;
-}
-
-.line-item__quantity-remove:hover, .line-item__quantity-remove:focus {
-  text-decoration: underline;
 }
 
 @media screen and (max-width: 640px) {
@@ -7623,16 +7577,6 @@ select option {
   }
 }
 
-
-@media screen and (max-width: 768px) {
-  .hidden-tablet-and-up.line-item__quantity {
-    display: flex !important;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-}
-
-
 @media screen and (min-width: 641px) {
   .line-item__product-info-wrapper {
     align-items: center;
@@ -7645,6 +7589,14 @@ select option {
   .line-item__image-wrapper {
     width: 90px;
     min-width: 90px;
+  }
+
+  .line-item__quantity-remove {
+    display: block;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 10px auto 0 auto;
   }
 }
 
@@ -7701,10 +7653,6 @@ select option {
 
 @media screen and (max-width: 640px) {
   .card .order-foot {
-    margin-left: 20px;
-  }
-  
-  .card4 .order-foot {
     margin-left: 20px;
   }
 }
@@ -8503,8 +8451,9 @@ select option {
 }
 
 .product-meta__title {
-  margin: 0;
-  line-height: 1;
+  margin-bottom: 14px;
+  width: 543px;
+  margin-top: 13px;
 }
 
 /* When within a modal, we have to add an extra margin to prevent the title to overlap the close button */
@@ -8513,11 +8462,8 @@ select option {
 }
 
 .product-meta__label-list {
-  font-size: 0;
-}
-
-.product-meta__label-list .product-label {
   margin-bottom: 17px;
+  font-size: 0;
 }
 
 .product-meta__label-list .product-label + .product-label {
@@ -8539,6 +8485,10 @@ select option {
 
 .product-meta__reviews-badge .spr-badge .spr-badge-caption {
   margin-left: 12px;
+}
+
+.product-meta__vendor {
+  text-transform: uppercase;
 }
 
 .product-meta__vendor + .product-meta__sku::before {
@@ -8593,12 +8543,9 @@ select option {
     margin-top: 22px;
   }
 
-  .product-meta__reference {
-    margin: 8px 0;
-  }
-  
+  .product-meta__reference,
   .product-meta__reviews-badge {
-    margin-bottom: 0px;
+    margin-bottom: -2px;
   }
 
   .product-meta__reviews-badge {
@@ -8629,27 +8576,19 @@ select option {
  * PRODUCT FORM
  * --------------------------------------------------------------------
  */
-.product-form {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  margin-top: -8px; /* for pixel perfect alignment... */
-}
 
 .product-form__variants {
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto -9px;
+  margin-bottom: 24px;
 }
 
 .product-form__option {
-  margin: 9px;
+  margin-bottom: 23px;
+  margin-right: 21px;
 }
 
 .product-form__option-name {
   display: block;
   margin-bottom: 2px;
-  font-size: 18px;
 }
 
 .product-form__selected-value {
@@ -8660,13 +8599,13 @@ select option {
 .product-form__info-list {
   display: table;
   width: 100%;
-  margin: 6px 0;
+  margin: -22px 0 6px 0;
   border-spacing: 0 22px;
 }
 
 .product-form__info-item {
   display: table-row;
-  font-size: 18px;
+  height: 33px;
 }
 
 .product-form__info-title {
@@ -8712,27 +8651,20 @@ select option {
   margin-right: 14px;
 }
 
-@media (max-width: 769px) {
-  .product-form__payment-container {
-    margin: auto 0;
-  }
-}
-
 .product-form__payment-container {
   display: flex;
   flex-direction: column;
-  margin: auto -9px;
 }
-
-  .product-form__payment-container > * {
-    margin: 9px;
-  }
 
 .product-form__status-message {
   margin-top: 18px;
   height: 0;
   overflow: hidden;
   transition: height 0.25s ease-in-out;
+}
+
+.product-form .price--compare {
+  top: -2px;
 }
 
 @media screen and (max-width: 640px) {
@@ -8742,23 +8674,29 @@ select option {
 }
 
 @media screen and (min-width: 641px) {
+  .product-form {
+    margin-top: -8px; /* for pixel perfect alignment... */
+  }
 
   .product-form__option-name {
     margin-bottom: 7px;
+  }
+
+  .product-form__variants {
+    margin-bottom: 26px;
   }
 
   .product-form__payment-container {
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
+    margin: -9px;
   }
-  
-  .product-form__info-item--quantity {
-  	flex: 3 0 auto;
-  }
-  
-  .product-form__add-button {
-  	flex: 4 1 auto;
+
+  .product-form__payment-container > * {
+    flex: none;
+    width: calc(50% - 18px);
+    margin: 9px;
   }
 }
 
@@ -8848,10 +8786,6 @@ select option {
   .product-block-list__item:first-child .card {
     border-top: none;
   }
-  
-  .product-block-list__item:first-child .card4 {
-    border-top: none;
-  }
 }
 
 @media screen and (max-width: 999px) {
@@ -8861,10 +8795,6 @@ select option {
   }
 
   .product-block-list__item--info > .card {
-    top: 0 !important;
-  }
-  
-  .product-block-list__item--info > .card4 {
     top: 0 !important;
   }
 }
@@ -8890,17 +8820,17 @@ select option {
 
 @media screen and (min-width: 1280px) {
   .product-block-list--medium .product-block-list__wrapper {
-    width: calc(50% - 15px);
+    width: calc(55% - 15px);
   }
   .product-block-list--medium .product-block-list__item--info {
-    width: calc(50% - 15px);
+    width: calc(45% - 15px);
   }
 
   .product-block-list--large .product-block-list__wrapper {
-    width: calc(50% - 15px);
+    width: calc(60% - 15px);
   }
   .product-block-list--large .product-block-list__item--info {
-    width: calc(50% - 15px);
+    width: calc(40% - 15px);
   }
 }
 
@@ -8912,10 +8842,6 @@ select option {
 
 /* When within the modal we need to remove the border */
 .modal .featured-product .card {
-  border: none;
-}
-
-.modal .featured-product .card4 {
   border: none;
 }
 
@@ -8992,6 +8918,7 @@ select option {
   display: inline-flex;
   align-items: baseline;
   line-height: 1.5;
+  margin-top: 5px;
 }
 
 .price {
@@ -9000,17 +8927,13 @@ select option {
 }
 
 .price--highlight {
-  margin-right: 10px;
-  color: #CB333B;
-  font-weight: 900;
-  font-size: 36px;
+  margin-right: 0.7em;
+  color: var(--product-on-sale-accent);
 }
 
 .price--compare {
-  margin-right: 10px;
-  font-size: 31px !important;
   position: relative;
-  color: #54585A;
+  color: var(--text-color);
   font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 16px));
   text-decoration: line-through;
   -webkit-text-decoration-color: rgba(var(--text-color-rgb), 0.7);
@@ -9370,14 +9293,12 @@ select option {
 
 .product-item {
   position: relative;
-  padding-right: 33px;
-  min-width: 375.66px;
+  padding: 20px;
+  min-width: 0;
   flex-shrink: 0;
   background: var(--secondary-background);
   white-space: normal;
   height: 571px;
-  padding-left: 31px;
-  padding-bottom: 35px;
 }
 
 .product-item::after {
@@ -9394,12 +9315,8 @@ select option {
 
 .product-item__image-wrapper {
   display: block;
-  height: 188px;
-  margin-top: 70px;
-  margin-right: 39px;
-  margin-left: 40px;
-  margin-bottom: 28px;
-  text-align: -webkit-center;
+  margin-bottom: 20px;
+  height: 300px;
 }
 
 .product-item__image-wrapper .placeholder-svg {
@@ -9434,7 +9351,7 @@ select option {
 
 /* This trick is done to add some spacing in case the prices fall into two lines */
 .product-item__price-list {
-  margin-top: 56px;
+  margin-top: 55px;
   margin-bottom: -5px;
 }
 
@@ -9459,7 +9376,7 @@ select option {
 
 .product-item__title {
   margin-bottom: 12px;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   -webkit-box-orient: vertical;
   display: -webkit-box;
@@ -10498,12 +10415,6 @@ select option {
   margin: 2.7em 0;
 }
 
-.rte .videoWrapper {
-  position: static;
-  height: auto;
-  padding: 0;
-}
-
 .rte blockquote {
   margin: 3em 0 3em 10px;
   padding-left: 20px;
@@ -11492,10 +11403,6 @@ select option {
   padding: 20px;
 }
 
-.card4 .pagination {
-  padding: 20px;
-}
-
 @media screen and (min-width: 641px) {
   .pagination__nav {
     display: block;
@@ -11506,10 +11413,6 @@ select option {
   }
 
   .card .pagination {
-    padding: 20px 30px;
-  }
-  
-  .card4 .pagination {
     padding: 20px 30px;
   }
 }
@@ -12449,10 +12352,6 @@ select option {
 
 /* Ugly fix for border radius */
 .modal .card {
-  background: none;
-}
-
-.modal .card4 {
   background: none;
 }
 
@@ -13656,9 +13555,9 @@ select option {
   }
 }
 
-.order-summary2 {
+.order-summary {
   margin-top: 0;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
   color: white;
   border-bottom: 1px solid gray;
@@ -13670,6 +13569,7 @@ select option {
   background: var(--secondary-background);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+  margin-top: -75px;
   background-color: #002D72;
 }
 
@@ -13721,33 +13621,30 @@ select option {
   font-size: 12px;
 }
 
-@media (max-width: 769px) {
-  .quantity-on-cart {
-  	margin: 0 auto;
-  	width: 1600px;
-  	margin-top: -30px;
-  	margin-bottom: 15px;
-  	margin-left: -20px;
-  	margin-right: auto;
-  	padding: 0 var(--desktop-container-gutter);
-      }
-}
-
-
 .quantity-on-cart {
   margin: 0 auto;
   width: 1600px;
   margin-top: -30px;
   margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 var(--desktop-container-gutter);
 }
 
 .quantity-amount {
+  margin-left: 100px;
   font-weight: bold;
   font-size: 15px;
   color: #002D72;
+}
+
+.card__section {
+  margin-top: -15px;
+}
+
+.order-summary {
+  margin-top: 0;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  border-bottom: 1px solid gray;
 }
 
 .pco-rewards {
@@ -13819,20 +13716,6 @@ select option {
 }
 
 .savings-rate {
-  display: inline-block;
-  color: #CB333B;
-  border: 2px solid #CB333B;
-  width: 83px;
-  text-align: -webkit-center;
-  margin-bottom: 5px;
-  height: 39px;
-  font-weight: bold;
-  padding-bottom: 12px;
-  margin-top: 10px;
-  font-size: 19px;
-}
-
-.savings-rate2 {
   color: #CB333B;
   border: 2px solid #CB333B;
   float: right;
@@ -13840,27 +13723,23 @@ select option {
   text-align: -webkit-center;
   margin-bottom: 5px;
   height: 31px;
-  font-weight: bold;
+  font-size: 19px;
   padding-bottom: 12px;
-  margin-top: 81px;
 }
 
 .shipping-flag {
-  border: 1px solid #cb333b;
-  color: #fff;
+  border: 1px solid #CB333B;
+  color: white;
   height: 31px;
   width: 148px;
-  background: #cb333b;
+  background: #CB333B;
   z-index: 999;
   position: absolute;
   float: right;
   align-self: flex-end;
   font-size: 18px;
   text-align: -webkit-center;
-  font-weight: 400;
-  margin-right: -33px;
-  margin-top: 22px;
-  padding-bottom: 32px;
+  font-weight: normal;
 }
 
 .shipping-flag2 {
@@ -13875,8 +13754,7 @@ select option {
   font-size: 18px;
   text-align: -webkit-center;
   font-weight: normal;
-  margin-right: -20px;
-  padding-bottom: 32px;
+  margin-right: -29px;
 }
 
 .cpap {
@@ -13951,16 +13829,14 @@ select option {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-
 .description2 {
   display: -webkit-box;
-  width: 325px;
+  width: 625px;
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: normal;
-}
+  height: 115px;
 }
 
 .product-form__single-selector: after {
@@ -13973,9 +13849,8 @@ select option {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 70px;
+  margin-top: 67px;
   margin-bottom: 21px;
-  text-align: -webkit-center;
 }
 
 .shipping-eligibility {
@@ -13988,176 +13863,4 @@ select option {
   display: block;
   margin-top: 15px;
   text-align: -webkit-center;
-}
-
-.product-meta__pco {
-  position: relative;
-  color: #CB333B;
-  font-weight: bold;
-  font-size: 18px;
-  font-family: 'VolteB';
-  width: 460px;
-  line-height: 1;
-  margin-top: 23px;
-  margin-bottom: 12px;
-}
-
-.card3 {
-  margin-top: -380px;
-  background: white;
-  border-top: 1px solid #e1e3e4;
-  border-bottom: 1px solid #e1e3e4;
-}
-
-#shopify-section-collection-template .aspect-ratio img {
-  height: 198px !important;
-  width: 335px !important;
-}
-
-@media screen and (max-width: 1024px) {
-  .second-checkout {
-    display: none;
-  }
-}
-
-.tooltip {
-    display: inline-block;
-}
-
-.pco-modal {
-     align-items: center;
-}
-
-.fas {
-  font-weight: 900;
-  font-family: "Volte";
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  line-height: 1;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  font-weight: normal;
-  background-color: white;
-  color: #002D72;
-  text-align: center;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 9999;
-  top: calc(100% + 5px);
-  left: 0;
-  font-family: 'Volte';
-  border: #DEDEDE;
-  font-size: 14px;
-  width: 420px;
-  max-width: calc(100vw - 40px);
-  padding: 16px;
-  box-shadow: 0px 3px 11px 5px #0000005a;
-  line-height: 1.3;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-.circle-icon {
-  background: #002d72;
-  border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
-  padding: 5px;
-  color: white;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-right: 7px;
-  font-size: 14px;
-  height: 9.81px;
-  font-family: auto;
-  margin-left: 5px;
-}
-
-
-/*adjustments */
-.product-list::before {
-    border: 0;
-}
-
-
-.flickity-viewport .product-item {
-    border: solid 1px #e1e3e4;
-    border-right: 0;
-    border-left: 0;
-}
-
-
-
-.flickity-viewport .product-item::after {
-    width: 14px;
-    height: 101%;
-    left: -8px;
-    top: -1px;
-    background: #f7f7f7;
-    border: solid 1px #e1e3e4;
-    border-top: 0;
-    border-right: 0;
-}
-
-.flickity-viewport .product-item__info-inner{position:relative;}
-
-.flickity-viewport .product-item__title{
-	width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    height: 48px;
-}
-
-.flickity-viewport .shipping-flag {
-    margin-right: -25px;
-    margin-top: 15px;
-}
-
-
-.flickity-viewport .product-item:last-of-type::before{
-    width: 14px;
-    height: 101%;
-    right: -8px;
-    top: -1px;
-    background: #f7f7f7;
-    border: solid 1px #e1e3e4;
-    border-top: 0;
-    border-right: 0;
-    content: "";
-    position: absolute;
-  
-}
-
-.cart-price, .cart-price2 {
-  font-weight: bolder;
-  color: #CB333B;
-  font-size: 16px;
-  font-family: 'Volte';
-}
-
-@media (max-width: 768px) {
-  .cart-price2 {
-  font-weight: bolder;
-  color: #CB333B;
-  font-size: 16px;
-  font-family: 'Volte';
-  margin-bottom: -10px;
-  }
-}
-
-@media (min-width: 769px) {
-  .cart-price2 {
-    display: none;
-  }
-  
 }

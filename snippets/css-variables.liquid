@@ -32,10 +32,10 @@
   :root {
     --default-text-font-size : 15px;
     --base-text-font-size    : {{ settings.base_text_font_size }}px;
-    --heading-font-family    : Volte, Arial;
+    --heading-font-family    : {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --heading-font-weight    : {{ settings.heading_font.weight }};
     --heading-font-style     : {{ settings.heading_font.style }};
-    --text-font-family       : Volte, Arial;
+    --text-font-family       : {{ settings.text_font.family }}, {{ settings.text_font.fallback_families }};
     --text-font-weight       : {{ settings.text_font.weight }};
     --text-font-style        : {{ settings.text_font.style }};
     --text-font-bolder-weight: {{ text_font_bolder_weight }};

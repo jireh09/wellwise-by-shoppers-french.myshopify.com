@@ -24,8 +24,7 @@ var boostPFSTemplate = {
 	'reviewHtml': '<a class="product-item__reviews-badge link" href="{{itemUrl}}#product-reviews"><span class="shopify-product-reviews-badge" data-id="{{itemId}}"></span></a>',
 
 	// Grid Template
-	'productGridItemHtml': 	'<div data-product-id="{{itemId}}" class="product-item product-item--vertical 1/3--tablet-and-up {{gridWidthClass}} ">' +
-  								'{{itemFreeShipping}}'+
+	'productGridItemHtml': 	'<div class="product-item product-item--vertical 1/3--tablet-and-up {{gridWidthClass}} ">' +
 								'<div class="product-item__label-list">' +
 									'{{itemLabels}}' +
 								'</div>' +
@@ -34,8 +33,7 @@ var boostPFSTemplate = {
 										'{{itemImages}}' +
 									'</div>' +
 								'</a>' +
-								'<div class="product-item__info" style="margin-top: 54px">' +
-  									'<div class="boost-custom-html"></div>' + 
+								'<div class="product-item__info">' +
 									'<div class="product-item__info-inner">' +
 										'{{itemInfo}}' +
 										'{{itemReviews}}' +
@@ -58,7 +56,7 @@ var boostPFSTemplate = {
 	//QuickBuy Template
 	'quickBuyHtml': '<button type="submit" class="product-item__action-button {{quickBuyButtonClass}} button button--small button--primary" data-action="add-to-cart">' + boostPFSConfig.label.add_to_cart + '</button>',
 	'quickBuyChooseOptionsHtml': '<a type="button" class="product-item__action-button {{quickBuyButtonClass}} button button--small button--primary" href="{{itemUrl}}">' + boostPFSConfig.label.choose_options + '</a>',
-  'quickBuySoldOutHtml': '<a type="button" style="background: #757575" class="product-item__action-button {{quickBuyButtonClass}} button button--small button--primary" href="/pages/store-locator">' + boostPFSConfig.label.sold_out + '</a>',
+	'quickBuySoldOutHtml': '<button class="product-item__action-button {{quickBuyButtonClass}} button button--small button--disabled" disabled>' + boostPFSConfig.label.sold_out + '</button>',
 
 	// Pagination Template
 	'pageItemPreviousHtml': '<a class="pagination__prev link" rel="prev" title="Previous"  href="{{itemUrl}}">' +
@@ -212,14 +210,10 @@ var boostPFSTemplate = {
 
 		// Add Info
 		var itemInfoHtml = boostPFSConfig.custom.product_price_position == 'after_title' ?
-            '{{itemVendor}}{{itemTitleWrapper}}{{itemSwatch}}{{itemPrice}}{{savePercentage}}{{inStockLabel}}' :
-			'{{itemPrice}}{{itemTitleWrapper}}{{itemVendor}}{{savePercentage}}{{inStockLabel}}{{itemSwatch}}';
+			'{{itemVendor}}{{itemTitleWrapper}}{{itemSwatch}}{{itemPrice}}' :
+			'{{itemPrice}}{{itemTitleWrapper}}{{itemVendor}}{{itemSwatch}}';
 
 		itemHtml = itemHtml.replace(/{{itemInfo}}/g, itemInfoHtml);
-      
-        // Add FreeShipping
-		var freeShippingHtml = data.price_min > 25 ? '<div class="shipping-flag"> Free Shipping</div>' : '';
-		itemHtml = itemHtml.replace(/{{itemFreeShipping}}/g, freeShippingHtml);
 
 		// Add Vendor
 		var itemVendorHtml = boostPFSConfig.custom.show_vendor ? ('<a class="product-item__vendor link">' + data.vendor + '</a>') : '';
@@ -228,15 +222,6 @@ var boostPFSTemplate = {
 		// Add Title
 		var itemTitleWrapperHtml = '<a href="{{itemUrl}}" class="product-item__title text--strong link">{{itemTitle}}</a>';
 		itemHtml = itemHtml.replace(/{{itemTitleWrapper}}/g, itemTitleWrapperHtml);
-      
-      	// add available   
-      	var inStockLabel = data.available ? '<div class="font-weight: normal" id="in-stock" style="margin-top: -3px; position: absolute">In Stock</div>' : '';
-		itemHtml = itemHtml.replace(/{{inStockLabel}}/g, inStockLabel);
-      
-      	// Save percentage
-        var savePercentage = onSale ? '<div class="savings-rate">' + Math.floor(((data.compare_at_price_min - data.price_min) * 100 ) / data.compare_at_price_min) + ' % Off</div>' : '';
-		itemHtml = itemHtml.replace(/{{savePercentage}}/g, savePercentage);
-      	
 
 		// Add price
 		itemHtml = itemHtml.replace(/{{itemPrice}}/g, buildPrice(data));
@@ -360,7 +345,7 @@ var boostPFSTemplate = {
 	function buildPrice(data) {
 		var priceHtml = '<div class="product-item__price-list price-list">';
 		if (data.price_min) {
-			priceHtml += '<span style="font-size: 24px" class="price {{priceClass}}" data-money-convertible="">{{amount}}</span>';
+			priceHtml += '<span class="price {{priceClass}}" data-money-convertible="">{{amount}}</span>';
 
 			var priceAmount = priceAmount = Utils.formatMoney(data.price_min);
 			if (priceVaries) {
@@ -370,7 +355,7 @@ var boostPFSTemplate = {
 			priceHtml = priceHtml.replace(/{{priceClass}}/g, onSale ? 'price--highlight' : '');
 
 			if (onSale) {
-				priceHtml += '<span style="font-size: 24px !important" class="price price--compare" data-money-convertible="">' + Utils.formatMoney(data.compare_at_price_min) + '</span>';
+				priceHtml += '<span class="price price--compare" data-money-convertible="">' + Utils.formatMoney(data.compare_at_price_min) + '</span>';
 			}
 		}
 		priceHtml += '</div>';
@@ -664,7 +649,6 @@ var boostPFSTemplate = {
 			e.preventDefault();
 			e.stopPropagation();
 			FilterApi.setParam('sort', jQ(this).data('sort'));
-			FilterApi.setParam('page', 1);
 			FilterApi.applyFilter('sort');
 		});
 		jQ(Selector.topSorting + ' button.value-picker-button').click(function (e) {
@@ -747,16 +731,6 @@ var boostPFSTemplate = {
 		if (boostPFSConfig.custom.currency_conversion_enabled) {
 			convertAll();
 		}
-   
-
-      this.buildExtrasProductListByAjax(data, 'boost-integration', function(results){
-        results.forEach(function(result){
-          // Append the custom html to product item
-          jQ('[data-product-id="'+ result.id+ '"] .boost-custom-html').html(result.custom_html);
-        })
-      })
-
-
 	};
 
 	// Build additional elements

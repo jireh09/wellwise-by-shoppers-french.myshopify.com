@@ -64,8 +64,16 @@ fMobileButtonBackgroundColor
       {%- endif -%}
     }
     .boost-pfs-filter-tree-h .boost-pfs-filter-option-title-heading:before {
-      border-right-color: {{ boost_shop_metafields.fTitleTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
-      border-bottom-color: {{ boost_shop_metafields.fTitleTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- if boost_shop_metafields.fTitleTextColor != nil and boost_shop_metafields.fTitleTextColor != blank -%}
+        border-right-color: {{ boost_shop_metafields.fTitleTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        border-bottom-color: {{ boost_shop_metafields.fTitleTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- endif -%}
+    }
+
+    .boost-pfs-filter-refine-by .boost-pfs-filter-option-title h3 {
+      {%- if boost_shop_metafields.fOptionTextColor != nil and boost_shop_metafields.fOptionTextColor != blank -%}
+        color: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- endif -%}
     }
 
     .boost-pfs-filter-option-content .boost-pfs-filter-option-item-list .boost-pfs-filter-option-item button,
@@ -90,6 +98,12 @@ fMobileButtonBackgroundColor
         font-family: {{ boost_shop_metafields.fOptionFontFamily | strip | strip_html }};
       {%- endif -%}
     }
+    .boost-pfs-filter-tree-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear .refine-by-type, 
+    .boost-pfs-filter-refine-by-wrapper-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear .refine-by-type {
+      {%- if boost_shop_metafields.fOptionTextColor != nil and boost_shop_metafields.fOptionTextColor != blank -%}
+        color: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- endif -%}
+    }
 
     .boost-pfs-filter-option-multi-level-collections .boost-pfs-filter-option-multi-level-list .boost-pfs-filter-option-item .boost-pfs-filter-button-arrow .boost-pfs-arrow:before,
     .boost-pfs-filter-option-multi-level-tag .boost-pfs-filter-option-multi-level-list .boost-pfs-filter-option-item .boost-pfs-filter-button-arrow .boost-pfs-arrow:before {
@@ -99,9 +113,22 @@ fMobileButtonBackgroundColor
       {%- endif -%}
     }
 
-    .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:before,
-    .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:after {
-      background: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+    .boost-pfs-filter-refine-by-wrapper-v .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:after, 
+    .boost-pfs-filter-refine-by-wrapper-v .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:before, 
+    .boost-pfs-filter-tree-v .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:after, 
+    .boost-pfs-filter-tree-v .boost-pfs-filter-refine-by .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:before,
+    .boost-pfs-filter-refine-by-wrapper-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:after, 
+    .boost-pfs-filter-refine-by-wrapper-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:before, 
+    .boost-pfs-filter-tree-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:after, 
+    .boost-pfs-filter-tree-h .boost-pfs-filter-pc .boost-pfs-filter-refine-by-items .refine-by-item .boost-pfs-filter-clear:before {
+      {%- if boost_shop_metafields.fOptionTextColor != nil and boost_shop_metafields.fOptionTextColor != blank -%}
+        border-top-color: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- endif -%}
+    }
+    .boost-pfs-filter-option-range-slider .noUi-value-horizontal {
+      {%- if boost_shop_metafields.fOptionTextColor != nil and boost_shop_metafields.fOptionTextColor != blank -%}
+        color: {{ boost_shop_metafields.fOptionTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+      {%- endif -%}
     }
 
     .boost-pfs-filter-tree-mobile-button button,
@@ -180,7 +207,9 @@ qvTitle
         {%- endif -%}
       }
       .boost-pfs-quickview-btn svg {
+        {%- if boost_shop_metafields.qvBtnTextColor != nil and boost_shop_metafields.qvBtnTextColor != blank -%}
         fill: {{ boost_shop_metafields.qvBtnTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- endif -%}
       }
       .boost-pfs-quickview-btn:hover {
         {%- if boost_shop_metafields.qvBtnHoverBackgroundColor != nil and boost_shop_metafields.qvBtnHoverBackgroundColor != blank -%}
@@ -196,7 +225,9 @@ qvTitle
         {%- endif -%}
       }
       .boost-pfs-quickview-btn:hover svg {
-        fill: {{ boost_shop_metafields.qvBtnHoverTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- if boost_shop_metafields.qvBtnHoverTextColor != nil and boost_shop_metafields.qvBtnHoverTextColor != blank -%}
+          fill: {{ boost_shop_metafields.qvBtnHoverTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- endif -%}
       }
       .boost-pfs-addtocart-btn {
         {%- if boost_shop_metafields.atcBtnBackgroundColor != nil and boost_shop_metafields.atcBtnBackgroundColor != blank -%}
@@ -212,7 +243,9 @@ qvTitle
         {%- endif -%}
       }
       .boost-pfs-addtocart-btn svg {
+        {%- if boost_shop_metafields.atcBtnTextColor != nil and boost_shop_metafields.atcBtnTextColor != blank -%}
         fill: {{ boost_shop_metafields.atcBtnTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- endif -%}
       }
       .boost-pfs-addtocart-btn:hover {
         {%- if boost_shop_metafields.atcBtnHoverBackgroundColor != nil and boost_shop_metafields.atcBtnHoverBackgroundColor != blank -%}
@@ -228,7 +261,9 @@ qvTitle
         {%- endif -%}
       }
       .boost-pfs-addtocart-btn:hover svg {
-        fill: {{ boost_shop_metafields.atcBtnHoverTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- if boost_shop_metafields.atcBtnHoverTextColor != nil and boost_shop_metafields.atcBtnHoverTextColor != blank -%}
+          fill: {{ boost_shop_metafields.atcBtnHoverTextColor | replace: '"','' | replace: '||',',' | strip | strip_html }};
+        {%- endif -%}
       }
     </style>
   {%- endif -%}

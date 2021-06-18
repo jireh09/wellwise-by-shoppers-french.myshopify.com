@@ -45,7 +45,7 @@
         {%- capture mega_menu_columns -%}
           <div>
             <h1 class="heading">
-          		Shop By Category
+          		Magasiner par categorie
       	  	</h1>
             <ul class="mega-menu__main_ul">
             {%- for link in mega_menu.links -%}
@@ -58,7 +58,7 @@
       	  <div class="mm-col-2 mm-col-sub" >
             <div class="inner">
                 <h1 class="heading">
-                    Shop
+                    Magasiner
                 </h1>
                 {%- for link in mega_menu.links -%}
                   {%- if link.links.size > 0 -%}
@@ -81,17 +81,20 @@
       	  <div class="mm-col-3 mm-col-sub" >
             <div class="inner">
                 <h1 class="heading">
-                    Learn
+                    En savoir plus
                 </h1>
-                <div>
-                  <img src="https://via.placeholder.com/500x200?text=-" alt="" />
+              
+              	{%- for block in section.blocks -%}
+              	<div class="endx" data-title="{{ block.settings.title | downcase | strip }}" style="display: none;">
+                  <img src="{{ block.settings.featured_image | img_url: '550x' }}" alt="" />
                   <p>
-                    &nbsp;
+                      {{ block.settings.copy }}
                   </p>
-                  <a href="/">
-                    &nbsp;
+                  <a href="{{ block.settings.link_url }}" aria-label="product resource">
+                      {{ block.settings.link_text }}
                   </a>
-              </div>
+              	</div>
+              	{%- endfor -%}
             </div>
       	  </div>
         {%- endcapture -%}

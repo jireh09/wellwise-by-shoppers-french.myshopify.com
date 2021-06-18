@@ -17,7 +17,7 @@
       	
       	{%- if section.settings.show_locale_selector -%}
     	<div class="lang-selector">
-      		Language: <span class="active-lang">EN</span> | <a class="no-blank" target="_self" href="https://magasin.wellwise.ca">FR</a>
+      		Language: <a class="no-blank" target="_self" href="https://shop.wellwise.ca/">EN</a> | <span class="active-lang">FR</span>
     	</div>
         {%- endif -%}
     </div>
@@ -105,7 +105,7 @@
                 <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
 
                 <div class="search-bar__input-wrapper">
-                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="What can we help you find?">
+                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="{{ 'header.search.input_placeholder' | t }}">
                   <button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
                     <span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
                     {% render 'icon', icon: 'close' %}
@@ -213,7 +213,7 @@
 
           {% if true %}
           <div class="header__action-item header__action-item--store">
-            <a class="header__action-item-link header__cart-toggle" href="/pages/store-locator" aria-label="cart">
+            <a class="header__action-item-link header__cart-toggle" href="/pages/localisateur-de-magasin" aria-label="cart">
               <div class="header__action-item-content">
                 <div class="header__cart-icon icon-state">
                   <img src="https://wellwise.s3.amazonaws.com/nav/stores.png" alt=""/>
@@ -265,18 +265,23 @@
           </div>
           
           {%- if shop.customer_accounts_enabled -%}
-          <a target="_self" aria-label="wellwise login">
+          <a class="no-blank" target="_self" href="https://wellwise-prod-apim.azure-api.net/account/login?language=fr" aria-label="wellwise login">
             <div class="header__action-item header__action-item--account">
               <img src="https://wellwise.s3.amazonaws.com/nav/account.png" alt=""/>
               <div>
                   {%- if customer -%}
                     <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 }}</span>
                   {%- else -%}
-                	<span class="header__action-item-title hidden-pocket hidden-lap"><a href="/pages/login" class="login-label">{{ 'header.general.login' | t }}</a></span>
+                    <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>
                   {%- endif -%}
 
               	<div class="header__action-item-content">
-                  <a target="_self" href="{% if customer %}{{ routes.account_url }}{% else %}/pages/login{% endif %}" class="header__action-item-link hidden-pocket hidden-lap" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover">{{ 'header.general.account' | t }} {% render 'icon', icon: 'arrow-bottom' %}</a>
+                	<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover" {% if customer %}data-follow-link="phone"{% endif %}>
+                  		<span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
+                  		<span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+                	</a>
+
+                	<a class="no-blank" target="_self" href="https://wellwise-prod-apim.azure-api.net/account/login?language=fr" class="header__action-item-link hidden-pocket hidden-lap" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover">{{ 'header.general.account' | t }} {% render 'icon', icon: 'arrow-bottom' %}</a>
 
                   {% comment %}
                     <div id="account-popover" class="popover {% if customer %}popover--logged{% else %}popover--large popover--unlogged{% endif %}" aria-hidden="true">
@@ -403,6 +408,7 @@
           </a>
           {%- endif -%}
           
+          {% comment %}
           <div class="header__action-item header__action-item--stay-touch">
          	<div class="ww-st-fg">
               	<div>
@@ -412,12 +418,13 @@
               		</span>
             	</div>
             	<div>
-              		<a href="#" aria-label="open Stay in touch form">
+              		<a href="#">
                 		Sign up for the latest news
               		</a>
             	</div>
             </div>
           </div>
+          {% endcomment %}
         </div>
       </div>
     </div>
@@ -462,37 +469,26 @@ CONTACT US MODAL
     </div>
 
     <div class="modal__inner">
-      <div class="contact-modal-content stay-in-touch-form">
+      <div class="contact-modal-content">
         	<button class="popup-contact-us__close link" data-action="close-popup" aria-label="{{ 'general.accessibility.close' | t }}">
           	{%- render 'icon', icon: 'close' -%}
         	</button>
-        
-        	<div class="hide-if-success">
-                <h1 class="heading">
-                    Let’s stay in touch!
-                </h1>
-                <p>
-                    Sign up to receive the latest health &amp; wellness guidance, offers, and product information delivered right to your inbox from Wellwise by Shoppers™. If you are a PC Optimum™ member, please provide the same email address that is associated with your account.
-                </p>
-                <p class="italic">
-                    By providing your email address, you consent to receiving electronic communications from Shoppers Drug Mart Inc. You may withdraw your consent at any time. 
-                    <br>
-                    <br>
-                    Shoppers Drug Mart Inc. 243 Consumers Rd., Toronto, Ontario, M2J 4W8
-                </p>
-           		<input type="email" class="subscribe-email-input" placeholder="Enter your email">
-            	<button type="button" class="button button--primary subscribe-submit-btn">
-                	Submit
-            	</button>
-        	</div>
-        	<div class="show-if-success">
-                <h1>
-                	Thank you for signing up!
-                </h1>
-                <p>
-					Keep an eye on your inbox for exclusive offers, and information on the latest products.
-            	</p>
-            </div>
+            <h1 class="heading">
+                Let’s stay in touch!
+            </h1>
+            <p>
+                Sign up to receive the latest health &amp; wellness guidance, offers, and product information delivered right to your inbox from Wellwise by Shoppers™. If you are a PC Optimum™ member, please provide the same email address that is associated with your account.
+            </p>
+            <p class="italic">
+                By providing your email address, you consent to receiving electronic communications from Shoppers Drug Mart Inc. You may withdraw your consent at any time. 
+                <br>
+                <br>
+                Shoppers Drug Mart Inc. 243 Consumers Rd., Toronto, Ontario, M2J 4W8
+            </p>
+            <input type="text" class="subscribe-email-input" placeholder="Enter your email">
+            <button type="button" class="button button--primary subscribe-submit-btn">
+              Submit
+            </button>
         </div>
     </div>
   </div>
@@ -699,63 +695,38 @@ CONTACT US MODAL
       "settings": [
         {
           "type": "text",
+          "id": "title",
+          "label": "Title",
+		  "info": "This must match the nav item text."
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image",
+          "info": "600 x 400px .jpg recommended"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Copy"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "CTA",
+          "default": "Resource name"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Resource link"
+        },
+		{
+          "type": "text",
           "id": "menu_item",
           "label": "Menu item",
-          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
-        },
-        {
-          "type": "header",
-          "content": "Image 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
-        },
-        {
-          "type": "text",
-          "id": "image_1_heading",
-          "label": "Heading",
-          "default": "Your image"
-        },
-        {
-          "type": "text",
-          "id": "image_1_text",
-          "label": "Text",
-          "default": "Tell your story"
-        },
-        {
-          "type": "url",
-          "id": "image_1_link",
-          "label": "Link"
-        },
-        {
-          "type": "header",
-          "content": "Image 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
-        },
-        {
-          "type": "text",
-          "id": "image_2_heading",
-          "label": "Heading",
-          "default": "Your image"
-        },
-        {
-          "type": "text",
-          "id": "image_2_text",
-          "label": "Text",
-          "default": "Tell your story"
-        },
-        {
-          "type": "url",
-          "id": "image_2_link",
-          "label": "Link"
+          "default": "Magasiner",
+		  "info": "Must match parent menu item"
         }
       ]
     }

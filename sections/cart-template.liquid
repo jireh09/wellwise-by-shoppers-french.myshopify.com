@@ -42,10 +42,6 @@
         {%- endif -%}
       </header>
     </div>
-  
-  <div class="quantity-on-cart">
-    <span class="quantity-amount"> Items in Cart ({{ cart.item_count }}) </span>
-  </div>
 
     <div class="cart-wrapper">
       <div class="cart-wrapper__inner">
@@ -125,9 +121,7 @@
                                 </ul>
                               {%- endunless -%}
 
-                              <div style="font-weight: initial" class="line-item__price-list">
-                                <span class="sku"> <b>SKU</b> {{ line_item.sku }}</span>
-                                {% comment %}
+                              <div class="line-item__price-list">
                                 {%- if line_item.original_price > line_item.final_price -%}
                                   {%- if line_item.final_price == 0 -%}
                                     <span class="line-item__price line-item__price--highlight">{{ 'cart.general.free' | t }}</span>
@@ -151,7 +145,6 @@
                                     <span class="line-item__price">{{ line_item.final_price | money }}</span>
                                   {%- endif -%}
                                 {%- endif -%}
-                                {% endcomment %}
                               </div>
 
                               {%- if line_item.unit_price_measurement -%}
@@ -178,8 +171,7 @@
                                   {%- endfor -%}
                                 </ul>
                               {%- endif -%}
-                              
-                              {%- render 'pco-cart', selected_variant: line_item.variant, quantity: line_item.quantity -%}                             
+
                               <div class="line-item__quantity hidden-tablet-and-up">
                                 {%- comment -%}If the product has the tag "__gift", we remove the price{%- endcomment -%}
 
@@ -197,22 +189,10 @@
                                   </div>
                                 {%- else -%}
                                   <span>{{ line_item.quantity }}</span>
-                                {% endunless -%}                                
+                                {% endunless -%}
+
                                 <a href="{{ routes.cart_change_url }}?quantity=0&line={{ forloop.index }}" data-action="decrease-quantity" data-quantity="0" data-line="{{ forloop.index }}" class="line-item__quantity-remove link">{{ 'cart.items.remove' | t }}</a>
                               </div>
-                               <div class="hidden-tablet-and-up">
-                              	{%- assign line_item_compare_price = line_item.variant.compare_at_price | times: line_item.quantity -%}
-                                {%- if line_item.final_line_price == 0 -%}
-                                  {{- 'cart.general.free' | t -}}
-                                {% elsif line_item.final_line_price < line_item_compare_price%}
-                                  <span class="cart-price">{{ line_item.final_line_price | money }}</span>
-                                	<br>
-                               	  <span><strike>{{ line_item_compare_price | money }}</strike></span>
-                                {%- else -%}
-                                  <span>{{ line_item.final_line_price | money }}</span>
-                                {%- endif -%}
-                              </div>
-                              	
                             </div>
                           </div>
                         </td>
@@ -239,14 +219,9 @@
                           <a href="{{ routes.cart_change_url }}?quantity=0&line={{ forloop.index }}" data-action="decrease-quantity" data-quantity="0" data-line="{{ forloop.index }}" class="line-item__quantity-remove link">{{ 'cart.items.remove' | t }}</a>
                         </td>
 
-                        <td style="padding-top: 10px; line-height: 1.4" class="line-item__line-price table__cell--right hidden-phone">
-                          {%- assign line_item_compare_price = line_item.variant.compare_at_price | times: line_item.quantity -%}
+                        <td class="line-item__line-price table__cell--right hidden-phone">
                           {%- if line_item.final_line_price == 0 -%}
                             {{- 'cart.general.free' | t -}}
-                          {% elsif line_item.final_line_price < line_item_compare_price%}
-                          	<span class="cart-price">{{ line_item.final_line_price | money }}</span>
-                          <br>
-                          <span><strike>{{ line_item_compare_price | money }}</strike></span>
                           {%- else -%}
                             <span>{{ line_item.final_line_price | money }}</span>
                           {%- endif -%}
@@ -374,9 +349,8 @@
 
             <form class="cart-recap" method="post" action="{{ routes.cart_url }}" novalidate="novalidate" data-item-count="{{ cart.item_count }}">
               <div class="cart-recap__scroller">
-                <div class="card-right">
+                <div class="card">
                   <div class="card__section">
-                    <div class="order-summary2"> Order Summary </div>
                     {%- if cart.cart_level_discount_applications != blank -%}
                       {%- for discount_application in cart.cart_level_discount_applications -%}
                         <div class="cart-recap__price-line cart-recap__price-line--highlight text--pull">
@@ -386,27 +360,9 @@
                       {%- endfor -%}
                     {%- endif -%}
 
-                    <div style="color: white" class="cart-recap__price-line text--pull">
-                      <span class="subtotal"> Subtotal </span>
-                      <span class="subtotal-price">{{ cart.total_price | money }}</span>
-                    </div>
-                    <div style="color: white" class="cart-recap__price-line2 text--pull">
-                      <span class="promo">Shipping</span>
-                      {% if cart.total_price > 2500 %}
-                      <span class="promo-amount"> FREE </span>
-                      {% else %}
-                      <span class="promo-amount"> To Be Calculated at Checkout </span>
-                      {% endif %}
-                    </div>
-                    {% comment %}
-                    <div style="color: white" class="cart-recap__price-line3 text--pull">
-                      <span class="ship">Placeholder 3rd</span>
-                      <span class="shipping-amount"> Nothing here! </span>
-                    </div>
-                    {% endcomment %}
-                    <div style="color: white; font-weight: bolder; font-size: 19px" class="cart-recap__price-line4 text--pull">
-                      <span class="grand-total">Total before taxes</span>
-                      <span class="grand-total-amount">{{ cart.total_price | money }}</span>
+                    <div class="cart-recap__price-line text--pull">
+                      <span class="cart-recap__price-line-label">{{ 'cart.general.total' | t }}</span>
+                      <span class="cart-recap__price-line-price">{{ cart.total_price | money }}</span>
                     </div>
 
                     {%- comment -%}
@@ -429,12 +385,10 @@
                       {%- assign total_discount = total_discount | plus: discount_application.total_allocated_amount -%}
                     {%- endfor -%}
 
-                     {%- comment -%}
-                        {%- if total_discount > 0 -%}
-                          {%- capture amount_saved -%}<span>{{ total_discount | money }}</span>{%- endcapture -%}
-                          <span class="cart-recap__amount-saved">{{ 'cart.general.amount_saved_html' | t: amount_saved: amount_saved }}</span>
-                        {%- endif -%}
-                     {%- endcomment -%}
+                    {%- if total_discount > 0 -%}
+                      {%- capture amount_saved -%}<span>{{ total_discount | money }}</span>{%- endcapture -%}
+                      <span class="cart-recap__amount-saved">{{ 'cart.general.amount_saved_html' | t: amount_saved: amount_saved }}</span>
+                    {%- endif -%}
 
                     {%- if section.settings.enable_order_notes -%}
                       <div class="cart-recap__note">
@@ -454,9 +408,7 @@
                         </div>
                       </div>
                     {%- endif -%}
-                    
-                    
-					{% comment %}
+
                     <div class="cart-recap__notices rte">
                       <p>
                         {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
@@ -470,17 +422,16 @@
                         {%- endif -%}
                       </p>
                     </div>
-                    {% endcomment %}
 
                     <input type="hidden" name="attributes[collection_products_per_page]" value="">
                     <input type="hidden" name="attributes[collection_layout]" value="">
-                    <button style="background: #CB333B" type="submit" name="checkout" class="cart-recap__checkout button button--primary button--full button--large">{{ 'cart.general.checkout' | t }}</button>
+                    <button type="submit" name="checkout" class="cart-recap__checkout button button--primary button--full button--large">{{ 'cart.general.checkout' | t }}</button>
                   </div>
                 </div>
 
                 {%- if section.settings.show_payment_icons -%}
                   <div class="cart-recap__secure-payment">
-                    <p class="cart-recap__secure-payment-title">{% render 'icon', icon: 'lock-2' %} Secure Payments</p>
+                    <p class="cart-recap__secure-payment-title">{% render 'icon', icon: 'lock-2' %} {{ 'cart.general.secure_payments' | t }}</p>
 
                     <div class="cart-recap__secure-payment-list payment-list payment-list--centered">
                       {% for type in shop.enabled_payment_types %}
@@ -489,9 +440,6 @@
                     </div>
                   </div>
                 {%- endif -%}
-                
-               	{%- render 'pco-module-cart', items: cart.items -%}
-
               </div>
             </form>
           </div>
@@ -618,11 +566,6 @@
           {% endif %}
         </div>
       </div>
-      <div style="margin-top: -65px" class="second-checkout">
-        <span><a href="/checkout" class="cart-recap__checkout button button--primary button--full button--large" style="background: #CB333B; width: 280px; margin-left: 40px">{{ 'cart.general.checkout' | t }}</a></span>
-        <span style="margin-top: 15px; font-weight: bolder" class="continue-shopping"> <a href="/"> &lt Continue Shopping </a></span>
-      </div>
-        
     </div>
   {%- endif -%}
 </section>

@@ -172,14 +172,13 @@
 									<div class="boost-pfs-filter-top-show-limit value-picker-wrapper"></div>		
 									{% endcomment %}
 								</div> 
-                              
 
 								<div class="collection__toolbar-item collection__toolbar-item--sort">
 									<div class="value-picker-wrapper boost-pfs-filter-top-sorting">
 									</div>
 								</div>
-
-                              	{% comment %}
+                
+								{% comment %}
 								<div class="collection__toolbar-item collection__toolbar-item--layout">
 									<span class="collection__layout-label hidden-phone">{{ 'collection.layout.title' | t }}</span>
 
@@ -191,7 +190,7 @@
 									<button type="button" class="collection__layout-button {% if view_mode == 'grid' %}is-selected{% endif %} link touch-area" aria-label="{{ 'collection.layout.grid' | t }}" data-action="change-layout" data-layout-mode="grid">{% include 'icon' with 'grid' %}</button>
 									{%- endif -%}
 								</div>
-                             	{% endcomment %}
+                {% endcomment %}
 							</div>
 
 							{%- comment -%}
@@ -339,7 +338,6 @@
 </script>
 {% schema %}
 
-
 {
   "name": "Collection page",
   "settings": [
@@ -399,10 +397,10 @@
       "type": "range",
       "id": "default_products_per_page",
       "label": "Default products per page",
-      "min": 9,
-      "max": 36,
-      "step": 9,
-      "default": 18
+      "min": 24,
+      "max": 48,
+      "step": 12,
+      "default": 24
     },
     {
       "type": "select",

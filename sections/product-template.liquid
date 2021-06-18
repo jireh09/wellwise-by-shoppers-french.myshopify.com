@@ -42,7 +42,6 @@
 
         {%- if collection.previous_product or collection.next_product -%}
           <div class="page__navigation">
-            {% comment %}
             {%- if collection.previous_product -%}
               <span class="page__navigation-item page__navigation-item--prev">
                 <a href="{{ collection.previous_product.url }}" class="link" rel="prev">{%- render 'icon', icon: 'arrow-left' -%} {{- 'product.general.previous_product' | t -}}</a>
@@ -54,7 +53,6 @@
                 <a href="{{ collection.next_product.url }}" class="link" rel="next">{{- 'product.general.next_product' | t -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
               </span>
             {%- endif -%}
-            {% endcomment %}
           </div>
         {%- endif -%}
       </div>
@@ -70,7 +68,6 @@
           <div class="product-block-list__item product-block-list__item--info">
             {% render 'product-info' %}
           </div>
-        </div>
 
           {%- if product.description != blank -%}
             <div class="product-block-list__item product-block-list__item--description">
@@ -90,12 +87,12 @@
                   </div>
                 {%- else -%}
                   <div class="card__header">
-                    <h2 style="font-size: 30px" class="card__title heading h3">{{ 'product.general.description' | t }}</h2>
+                    <h2 class="card__title heading h3">{{ 'product.general.description' | t }}</h2>
                   </div>
 
                   {%- if section.settings.content_display_mode == 'show_all_and_expand_description' -%}
                     <div class="card__section">
-                      <div style="font-family: 'Volte'" class="rte text--pull">
+                      <div class="rte text--pull">
                         {{ product.description | remove: 'data-section-type="product"' }}
                       </div>
                     </div>
@@ -187,7 +184,7 @@
               </div>
             {%- endif -%}
           {%- endfor -%}
-       
+
           {%- for i in (1..3) -%}
             {%- assign global_tab_option = 'tab_page_' | append: i | append: '_handle' -%}
             {%- assign global_tab_page = pages[section.settings[global_tab_option]] -%}
@@ -221,7 +218,7 @@
                       <button class="expandable-content__toggle">
                         <span class="expandable-content__toggle-icon"></span>
                         <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
-                      </button>                     
+                      </button>
                     </div>
                   {%- endif -%}
                 </div>
@@ -362,24 +359,9 @@
               </div>
             </div>
           {%- endif -%}
-        
+        </div>
       </div>
-      
-      <div class="card">
-  
-  {% comment %}
-/snippets/bv-ratings-reviews.liquid
-Bazaarvoice Ratings & Reviews
-{% endcomment %}
-{% render 'bv-ratings-reviews' %}
-{% comment %}
-End Bazaarvoice Ratings & Reviews
-{% endcomment %}
-        
-      </div>
-      
     </div>
-
 
     {%- if section.settings.show_refunds_policy and shop.refund_policy != blank -%}
       <div id="modal-refunds-policy" class="modal" aria-hidden="true">
@@ -716,34 +698,6 @@ End Bazaarvoice Ratings & Reviews
       "label": "Show refunds policy",
       "info": "Refund policy must be added into your store policies. [Learn more](https://help.shopify.com/manual/sell-online/checkout-settings/refund-privacy-tos).",
       "default": true
-    },
- 	{
-      "type": "header",
-      "content": "PCO"
-    },
-    {
-     "type": "html",
-      "id": "pcoBase",
-      "label": "PCO Base",
-      "default": "Get ##bonus-points## ##basePco## base points* when purchasing this participating product"
-    },
-    {
-     "type": "html",
-      "id": "pcoBonusFixed",
-      "label": "PCO Bonus Fixed",
-      "default": "##amount## bonus points* and"
-    },
-    {
-     "type": "html",
-      "id": "pcoBonusMultiple",
-      "label": "PCO Bonus Multiple",
-      "default": "##amount##x the points* and"
-    },
-	{
-     "type": "html",
-      "id": "pcoTooltip",
-      "label": "PCO Tooltip",
-      "default": "*Purchase the qualifying product specified before taxes and after redemptions and all coupons and discount are deducted in a single transaction (excludes any products for which government funding is provided, rentals, services, delivery charges, transit tickets, passport photos, gift cards, third-party gift cards and any other products that may not legally be offered in connection with the Program, are provincially regulated or as we determine from time to time), to earn the bonus points and base points indicated. PC Optimum<sup>TM</sup> points will be awarded to your account within 4 weeks after your order has been shipped. Product availability may vary by store. We are not obligated to award points based on errors or misprints. No cash value. Does not apply to prior purchases. Minimum redemption 10,000 points. See terms & conditions for redemption restrictions."
     }
   ]
 }
